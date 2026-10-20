@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Adjie Brotosukmono: Energy Economics Consultant and Power System Engineer in Perth</title>
-  <meta name="description" content="Hi, I am Adjie Brotosukmono, an Indonesian energy economics consultant and power system engineer at Mott MacDonald in Perth, Western Australia. Read my story, my blog, and try the free tools I build.">
+  <meta name="description" content="Hi, I am Adjie Brotosukmono, an Indonesian energy economics consultant and power system engineer at Mott MacDonald in Perth. My story, my blog and free tools.">
   <meta name="author" content="Adjie Brotosukmono">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <link rel="canonical" href="https://www.adjiebrotots.com/">
@@ -73,6 +73,11 @@
       --mullion: rgba(255, 255, 255, .38);
       --lit: #FFD28C; --lit-on: 0; --star-on: 0; --sun-on: 1;
       --blade: #FFFFFF; --blade-2: #DCE4F0; --panel: #24477F; --panel-2: #7EAEF0; --pylon: #6A7890;
+      --mon: #FBF8F1; --mon-2: #DCD6C8; --mon-3: #C9CDD6; --mon-win: #4A5568; --cup: #8A5A24;
+      --bca-band: #C9D7EC; --bca-side: #4A6BA0;
+      --bhp: #2E4F8A; --bhp-2: #27467C; --bhp-slot: #172A4E; --bhp-band: rgba(222, 233, 250, .62); --bhp-lobby: #8FB0DE; --steel: #33415B; --bhp-sign: #F26B21;
+      --cp: #F3F5F9; --cp-2: #D8DEE8; --cp-pin: rgba(64, 84, 112, .42); --rio: #E4002B;
+      --pal: #2F6B64; --pal-2: #24564F; --pal-line: rgba(190, 236, 226, .35); --pal-clad: #EEF1F5;
       --shadow: 4px 4px 0 var(--line);
       --shadow-hover: 7px 7px 0 var(--line);
     }
@@ -96,6 +101,11 @@
         --mullion: rgba(141, 187, 255, .12);
         --lit-on: 1; --star-on: 1; --sun-on: 0;
         --blade: #C9D4E6; --blade-2: #8E9BB3; --panel: #18305A; --panel-2: #3A5F9A; --pylon: #6E7B96;
+        --mon: #D9DEE8; --mon-2: #A9B1C2; --mon-3: #39445C; --mon-win: #FFD28C; --cup: #6A4520;
+        --bca-band: #344C78; --bca-side: #1A2B4B;
+        --bhp: #1B2E55; --bhp-2: #172849; --bhp-slot: #0C162B; --bhp-band: rgba(141, 187, 255, .22); --bhp-lobby: #FFD28C; --steel: #5B6A86; --bhp-sign: #FF7A2E;
+        --cp: #3A4762; --cp-2: #2D384F; --cp-pin: rgba(10, 16, 30, .5); --rio: #FF4D6A;
+        --pal: #173B39; --pal-2: #122F2D; --pal-line: rgba(141, 220, 200, .16); --pal-clad: #46526B;
       }
     }
     :root[data-theme="dark"] {
@@ -116,6 +126,11 @@
       --mullion: rgba(141, 187, 255, .12);
       --lit-on: 1; --star-on: 1; --sun-on: 0;
       --blade: #C9D4E6; --blade-2: #8E9BB3; --panel: #18305A; --panel-2: #3A5F9A; --pylon: #6E7B96;
+      --mon: #D9DEE8; --mon-2: #A9B1C2; --mon-3: #39445C; --mon-win: #FFD28C; --cup: #6A4520;
+      --bca-band: #344C78; --bca-side: #1A2B4B;
+      --bhp: #1B2E55; --bhp-2: #172849; --bhp-slot: #0C162B; --bhp-band: rgba(141, 187, 255, .22); --bhp-lobby: #FFD28C; --steel: #5B6A86; --bhp-sign: #FF7A2E;
+      --cp: #3A4762; --cp-2: #2D384F; --cp-pin: rgba(10, 16, 30, .5); --rio: #FF4D6A;
+      --pal: #173B39; --pal-2: #122F2D; --pal-line: rgba(141, 220, 200, .16); --pal-clad: #46526B;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -344,6 +359,10 @@
     .jet { transform-box: fill-box; transform-origin: 50% 100%; animation: jet 1.6s ease-in-out infinite alternate; }
     .jet:nth-of-type(2) { animation-delay: -.5s; } .jet:nth-of-type(3) { animation-delay: -1s; }
     @keyframes jet { from { transform: scaleY(.75); } to { transform: scaleY(1.08); } }
+    .f-mon { fill: var(--mon); } .f-mon2 { fill: var(--mon-2); } .f-mon3 { fill: var(--mon-3); }
+    .f-bhp { fill: var(--bhp); } .f-bhp2 { fill: var(--bhp-2); } .f-cp { fill: var(--cp); } .f-cp2 { fill: var(--cp-2); } .f-pal { fill: var(--pal); } .f-pal2 { fill: var(--pal-2); }
+    .s-steel { fill: none; stroke: var(--steel); stroke-linecap: square; }
+    .flame-glow { opacity: calc(var(--lit-on) * .55); }
     .blink { animation: blink 1.6s steps(1) infinite; opacity: var(--lit-on); }
     @keyframes blink { 50% { fill: transparent; } }
 
@@ -539,7 +558,7 @@
 
     <div class="scene-wrap" id="sceneWrap">
       <svg class="scene" viewBox="0 110 1920 490" preserveAspectRatio="xMidYMax slice" role="img" aria-labelledby="sceneTitle">
-        <title id="sceneTitle">Flat illustration of Jakarta, with Monas, Wisma 46, Menara BCA and the Selamat Datang monument, then wind and solar farms, then Perth, with Brookfield Place, Central Park, the Bell Tower, Elizabeth Quay Bridge and Optus Stadium. A Singapore Airlines A380 flies overhead while a Transperth C-series train and a Transperth bus pass below.</title>
+        <title id="sceneTitle">Flat illustration of Jakarta, with Monas, Wisma 46, Menara BCA and the Selamat Datang monument, then wind and solar farms, then Perth, with the BHP Tower at Brookfield Place, Central Park (the Rio Tinto tower), the Palace Tower, the Bell Tower, Elizabeth Quay Bridge and Optus Stadium. A Singapore Airlines A380 flies overhead while a Transperth C-series train and a Transperth bus pass below.</title>
         <defs>
           <pattern id="mullV" width="6" height="8" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="1" height="8" class="f-mull"/></pattern>
           <pattern id="mullG" width="8" height="9" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="1" height="9" class="f-mull"/><rect x="0" y="0" width="8" height="1" class="f-mull"/></pattern>
@@ -566,6 +585,15 @@
           <g id="panel"><path class="s-pylon" d="M10 0 V-10 M46 0 V-14"/><path class="f-panel" d="M0 -8 L54 -8 L60 -22 L6 -22 Z"/><path d="M14 -8 L20 -22 M28 -8 L34 -22 M42 -8 L48 -22 M3 -15 L57 -15" stroke="var(--panel-2)" stroke-width=".8" fill="none"/></g>
           <g id="tree"><rect x="-1.5" y="-10" width="3" height="10" class="f-bronze"/><circle cy="-16" r="9" class="f-grass"/><circle cx="-5" cy="-11" r="6" class="f-grass"/><circle cx="5" cy="-12" r="6.5" class="f-grass2"/></g>
           <g id="palm"><path d="M0 0 C 1 -12 -1 -24 2 -36" stroke="var(--bronze)" stroke-width="2.6" fill="none"/><path class="f-grass2" d="M2 -36 c -10 -6 -18 -2 -22 4 c 8 -5 15 -5 22 -4z M2 -36 c 10 -6 18 -2 22 4 c -8 -5 -15 -5 -22 -4z M2 -36 c -4 -10 -12 -12 -18 -10 c 8 0 13 4 18 10z M2 -36 c 4 -10 12 -12 18 -10 c -8 0 -13 4 -18 10z"/></g>
+          <pattern id="bcaV" width="3.2" height="4.6" patternUnits="userSpaceOnUse"><rect width=".7" height="4.6" class="f-mull"/><rect width="3.2" height=".45" class="f-mull"/></pattern>
+          <pattern id="bcaLouvre" width="4" height="5" patternUnits="userSpaceOnUse"><rect x="1" y="1.4" width="2" height="2.2" fill="var(--bca-side)" opacity=".55"/></pattern>
+          <pattern id="bhpG" width="4" height="16" patternUnits="userSpaceOnUse"><rect width=".8" height="16" class="f-mull"/><rect y="0" width="4" height="1.7" fill="var(--bhp-band)"/><rect y="8" width="4" height=".5" class="f-mull"/></pattern>
+          <pattern id="cpPin" width="3.4" height="5" patternUnits="userSpaceOnUse"><rect x="1.1" width="1.2" height="5" fill="var(--cp-pin)"/><rect y="4.4" width="3.4" height=".6" fill="var(--cp-pin)" opacity=".5"/></pattern>
+          <pattern id="palG" width="4" height="5.5" patternUnits="userSpaceOnUse"><rect width=".8" height="5.5" fill="var(--pal-line)"/><rect width="4" height=".5" fill="var(--pal-line)"/></pattern>
+          <pattern id="lights3" width="16" height="18" patternUnits="userSpaceOnUse"><rect x="1" y="2" width="2.4" height="3" class="f-lit"/><rect x="9" y="9" width="2.4" height="3" class="f-lit"/><rect x="5" y="14" width="2.4" height="3" class="f-lit"/><rect x="13" y="3" width="2.4" height="3" class="f-lit"/></pattern>
+          <clipPath id="clipBca"><path d="M396 480 V216 C 396 187 424 166 463 161 C 479 159 488 160 490 164 V480 Z"/></clipPath>
+          <clipPath id="clipPal"><path d="M1482 480 V262 L1522 212 L1528 219 V480 Z"/></clipPath>
+          <radialGradient id="flameGlow"><stop offset="0" stop-color="#FFC861" stop-opacity=".9"/><stop offset="1" stop-color="#FFC861" stop-opacity="0"/></radialGradient>
         </defs>
 
         <!-- Far: haze of both cities and the Darling Range -->
@@ -626,15 +654,28 @@
         </g>
 
         <!-- ═══ Jakarta ═══ -->
-        <!-- Monas -->
-        <g data-label="Monas, Jakarta's golden flame">
-          <path class="f-grey" d="M48 480 L192 480 L204 460 L36 460 Z"/>
-          <path class="f-white" d="M40 460 L200 460 L196 454 L44 454 Z"/>
-          <path class="f-white" d="M108 454 L132 454 L127.5 262 L112.5 262 Z"/>
-          <path class="f-grey" d="M120 454 L132 454 L127.5 262 L120 262 Z" opacity=".6"/>
-          <path class="f-white" d="M103 262 L137 262 L133 254 L107 254 Z"/>
-          <path class="f-flame" d="M120 254 C 108 246 112 236 116 230 C 117 236 120 238 121 236 C 119 230 122 222 127 218 C 124 228 132 236 128 246 C 127 250 124 253 120 254 Z"/>
-          <path d="M120 252 C 115 247 117 240 120 236 C 121 241 125 244 123 249 Z" fill="#FFE7A8"/>
+        <!-- Monas: the cawan (bowl) on its plinth, the tapering shaft, the observation deck and the gold flame -->
+        <g data-label="Monas, Jakarta's golden flame" transform="translate(100 480) scale(1.12) translate(-100 -480)">
+          <circle class="flame-glow" cx="100" cy="196" r="22" fill="url(#flameGlow)"/>
+          <rect x="28" y="472" width="144" height="8" class="f-mon3"/>
+          <rect x="28" y="472" width="144" height="1.4" class="f-mon2"/>
+          <path class="f-mon2" d="M52 472 L148 472 L164 456.5 L36 456.5 Z"/>
+          <path d="M58 472 L44 456.5 M70 472 L60 456.5 M82 472 L77 456.5 M94 472 L93 456.5 M106 472 L107 456.5 M118 472 L123 456.5 M130 472 L140 456.5 M142 472 L156 456.5" stroke="var(--mon-3)" stroke-width=".7" opacity=".8"/>
+          <path d="M88 472 V464 a12 6 0 0 1 24 0 V472 Z" class="f-mon3"/>
+          <rect x="33" y="449" width="134" height="7.5" class="f-mon"/>
+          <rect x="33" y="455" width="134" height="1.5" class="f-mon2"/>
+          <path class="f-mon" d="M89 449 L111 449 L107.6 233 L92.4 233 Z"/>
+          <path class="f-mon2" d="M104.2 449 L111 449 L107.6 233 L105.4 233 Z"/>
+          <path d="M94.6 449 L95.8 233 M100 449 V233" stroke="var(--mon-2)" stroke-width=".6" opacity=".9"/>
+          <rect x="93" y="228" width="14" height="5" class="f-mon2"/>
+          <rect x="87" y="215" width="26" height="13" class="f-mon"/>
+          <rect x="88.5" y="219.2" width="23" height="3.4" fill="var(--mon-win)"/>
+          <path d="M92 219.2 v3.4 M96 219.2 v3.4 M100 219.2 v3.4 M104 219.2 v3.4 M108 219.2 v3.4" stroke="var(--mon)" stroke-width=".8"/>
+          <rect x="85.5" y="211.5" width="29" height="3.6" class="f-mon"/>
+          <rect x="85.5" y="214.2" width="29" height="1" class="f-mon2"/>
+          <path d="M94.2 211.5 L105.8 211.5 L104 206.5 L96 206.5 Z" fill="var(--cup)"/>
+          <path class="f-flame" d="M94.6 206.5 C 93.6 200 94.8 195.6 96 191.6 C 96.9 194.4 97.5 196.4 98.5 197.6 C 97.9 192.4 99 187.8 100 184.4 C 101 188.2 102.4 192.2 101.9 197.4 C 102.9 195.8 103.6 193.4 104 190.8 C 105.6 195.2 106.5 200.4 105.4 206.5 Z"/>
+          <path d="M97.2 206 C 96.6 202 97.2 199.6 98 198.2 C 98.8 200.4 99.6 201.4 100 202 C 99.8 198.4 100.6 195 101.2 193 C 102.4 196.6 103.2 200.6 102.6 206 Z" fill="#FFE7A8" opacity=".85"/>
         </g>
         <!-- Wisma 46 -->
         <g data-label="Wisma 46, the fountain-pen tower">
@@ -652,18 +693,32 @@
           <rect x="292" y="236" width="62" height="12" fill="#21366B"/><rect x="296" y="239" width="8" height="6" fill="#E3262E"/><path d="M308 242 h22" stroke="#fff" stroke-width="3"/>
           <rect x="292" y="250" width="62" height="228" fill="url(#lights)" class="lit"/>
         </g>
-        <!-- Menara BCA -->
+        <!-- Menara BCA: curved glass crown, BCA logo, louvred plant floors, the slimmer east slice and its lattice mast -->
         <g data-label="Menara BCA, home of my banking chapter">
-          <path class="f-bca" d="M398 480 V202 C 398 178 426 160 462 155 C 486 152 500 156 504 166 V480 Z"/>
-          <path class="f-bcatop" d="M398 214 V202 C 398 178 426 160 462 155 C 486 152 500 156 504 166 V214 Z"/>
-          <path fill="url(#mullV)" d="M398 480 V202 C 398 178 426 160 462 155 C 486 152 500 156 504 166 V480 Z"/>
-          <rect x="504" y="164" width="16" height="316" class="f-bca2"/>
-          <rect x="504" y="164" width="16" height="316" fill="url(#mullH)"/>
-          <rect x="398" y="276" width="106" height="4" fill="var(--mullion)"/><rect x="398" y="352" width="106" height="4" fill="var(--mullion)"/><rect x="398" y="424" width="106" height="4" fill="var(--mullion)"/>
-          <path d="M511 164 V124 M515 164 V132 M509 150 h8 M509 140 h8" stroke="var(--pylon)" stroke-width="1.6"/>
-          <circle cx="418" cy="194" r="6" fill="#fff"/><path d="M415 191 h5 a2.6 2.6 0 0 1 0 5.2 h-5 z" fill="var(--g-bca)"/>
-          <text x="428" y="200" font-family="DM Sans, sans-serif" font-weight="800" font-style="italic" font-size="17" fill="#fff" letter-spacing=".5">BCA</text>
-          <rect x="398" y="220" width="106" height="258" fill="url(#lights)" class="lit"/>
+          <path class="f-bca" d="M396 480 V216 C 396 187 424 166 463 161 C 479 159 488 160 490 164 V480 Z"/>
+          <g clip-path="url(#clipBca)">
+            <rect x="396" y="150" width="94" height="80" class="f-bcatop"/>
+            <path d="M396 171 H490 M396 177 H490 M396 183 H490 M396 189 H490 M396 195 H490 M396 201 H490 M396 207 H490 M396 213 H490 M396 219 H490 M396 225 H490" stroke="var(--mullion)" stroke-width=".9"/>
+            <rect x="396" y="230" width="94" height="250" fill="url(#bcaV)"/>
+            <path d="M396 480 V216 C 396 200 398 191 402 184 V480 Z" fill="var(--bca-side)" opacity=".55"/>
+            <rect x="396" y="229" width="94" height="6" fill="var(--bca-band)"/><rect x="396" y="229" width="94" height="6" fill="url(#bcaLouvre)"/>
+            <rect x="396" y="301" width="94" height="6" fill="var(--bca-band)"/><rect x="396" y="301" width="94" height="6" fill="url(#bcaLouvre)"/>
+            <rect x="396" y="373" width="94" height="6" fill="var(--bca-band)"/><rect x="396" y="373" width="94" height="6" fill="url(#bcaLouvre)"/>
+            <rect x="396" y="442" width="94" height="6" fill="var(--bca-band)"/><rect x="396" y="442" width="94" height="6" fill="url(#bcaLouvre)"/>
+            <rect x="396" y="236" width="94" height="204" fill="url(#lights3)" class="lit"/>
+          </g>
+          <path d="M396 216 C 396 187 424 166 463 161 C 479 159 488 160 490 164" fill="none" stroke="var(--mullion)" stroke-width="1.6"/>
+          <rect x="490" y="166" width="18" height="314" class="f-bca2"/>
+          <rect x="490" y="166" width="18" height="314" fill="url(#mullH)"/>
+          <rect x="490" y="166" width="1.6" height="314" fill="var(--mullion)"/>
+          <rect x="490" y="229" width="18" height="6" fill="var(--bca-band)"/><rect x="490" y="301" width="18" height="6" fill="var(--bca-band)"/><rect x="490" y="373" width="18" height="6" fill="var(--bca-band)"/><rect x="490" y="442" width="18" height="6" fill="var(--bca-band)"/>
+          <rect x="492" y="159" width="14" height="7" fill="var(--grey-b)"/>
+          <path class="s-steel" stroke-width="1.2" d="M495.5 159 V124 M502.5 159 V124 M495.5 159 L502.5 152 L495.5 145 L502.5 138 L495.5 131 L502.5 124 M502.5 159 L495.5 152 L502.5 145 L495.5 138 L502.5 131 L495.5 124 M493 142 H505 M494 128 H504"/>
+          <path d="M499 124 V113" stroke="var(--steel)" stroke-width="1.4"/>
+          <circle class="blink" cx="499" cy="113" r="1.6" fill="#FF5A5A"/>
+          <circle cx="414" cy="197" r="7.2" fill="#fff"/>
+          <path d="M410.6 193 h4.4 a2.4 2.4 0 0 1 0 4.4 h-1.6 h2.2 a2.4 2.4 0 0 1 0 4.4 h-5 z" fill="var(--g-bca)"/>
+          <text x="425" y="203.6" font-family="DM Sans, sans-serif" font-weight="800" font-style="italic" font-size="17" fill="#fff" letter-spacing=".4">BCA</text>
         </g>
         <!-- Hotel Indonesia Kempinski and Bundaran HI -->
         <g data-label="Hotel Indonesia Kempinski">
@@ -679,39 +734,81 @@
           <path class="f-pale2" d="M1196 480 V448 L1212 436 L1226 446 L1244 430 L1262 444 L1280 434 L1296 450 V480 Z"/>
           <path d="M1196 462 L1220 448 L1244 466 L1268 446 L1296 466" stroke="var(--g-blue)" stroke-width="3" fill="none"/>
         </g>
-        <g data-label="Brookfield Place">
-          <rect x="1300" y="194" width="62" height="286" class="f-dark"/>
-          <rect x="1300" y="194" width="62" height="286" fill="url(#mullG)"/>
-          <path d="M1302 194 V162 M1360 194 V162 M1300 164 H1362" stroke="var(--g-dark)" stroke-width="5"/>
-          <path d="M1320 194 V480 M1342 194 V480" stroke="var(--g-pale-2)" stroke-width="2.4" opacity=".7"/>
-          <rect x="1300" y="210" width="62" height="268" fill="url(#lights)" class="lit"/>
+        <!-- BHP Tower, Brookfield Place: twin glass slabs split by a slot, an open steel ladder crown on each, the BHP sign, and the braced side frame -->
+        <g data-label="BHP Tower at Brookfield Place">
+          <rect x="1296" y="204" width="40" height="276" class="f-bhp"/>
+          <rect x="1342" y="192" width="42" height="288" class="f-bhp2"/>
+          <rect x="1336" y="196" width="6" height="284" fill="var(--bhp-slot)"/>
+          <path d="M1339 196 V480" stroke="var(--bhp-band)" stroke-width=".7"/>
+          <rect x="1296" y="204" width="40" height="252" fill="url(#bhpG)"/>
+          <rect x="1342" y="192" width="42" height="264" fill="url(#bhpG)"/>
+          <rect x="1296" y="456" width="88" height="24" fill="var(--bhp-lobby)" opacity=".85"/>
+          <path d="M1302 456 V480 M1310 456 V480 M1318 456 V480 M1326 456 V480 M1334 456 V480 M1342 456 V480 M1350 456 V480 M1358 456 V480 M1366 456 V480 M1374 456 V480 M1296 466 H1384" stroke="var(--bhp-2)" stroke-width=".9" opacity=".7"/>
+          <rect x="1296" y="214" width="40" height="240" fill="url(#lights3)" class="lit"/>
+          <rect x="1342" y="202" width="42" height="252" fill="url(#lights3)" class="lit"/>
+          <path class="s-steel" stroke-width="2.6" d="M1297.3 204 V176 M1334.7 204 V176 M1343.3 192 V158 M1382.7 192 V158"/>
+          <path class="s-steel" stroke-width="1.8" d="M1297 177 H1335 M1297 184 H1335 M1297 191 H1335 M1297 198 H1335 M1343 159 H1383 M1343 174 H1383 M1343 181 H1383 M1343 188 H1383"/>
+          <path class="s-steel" stroke-width="1.2" d="M1297 204 L1304 197 M1335 204 L1328 197 M1343 192 L1350 185 M1383 192 L1376 185"/>
+          <rect x="1346" y="161.5" width="34" height="11" fill="var(--steel)"/>
+          <text x="1363" y="170.6" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="9.4" fill="var(--bhp-sign)" letter-spacing=".6">BHP</text>
+          <rect x="1384" y="192" width="9" height="288" fill="var(--bhp-slot)" opacity=".55"/>
+          <path class="s-steel" stroke-width="1.3" d="M1384.6 158 V480 M1392.4 172 V480 M1384.6 192 L1392.4 206 L1384.6 220 L1392.4 234 L1384.6 248 L1392.4 262 L1384.6 276 L1392.4 290 L1384.6 304 L1392.4 318 L1384.6 332 L1392.4 346 L1384.6 360 L1392.4 374 L1384.6 388 L1392.4 402 L1384.6 416 L1392.4 430 L1384.6 444 L1392.4 458 L1384.6 472 M1384.6 172 L1392.4 172 L1384.6 186"/>
         </g>
-        <g data-label="Central Park, Perth's tallest">
-          <path class="f-white" d="M1372 480 V222 H1378 V208 H1386 V196 H1402 V208 H1410 V222 H1416 V480 Z"/>
-          <path fill="url(#mullH)" d="M1372 480 V222 H1416 V480 Z"/>
-          <path d="M1394 196 V142" stroke="var(--pylon)" stroke-width="2.4"/><path d="M1391 172 h6 M1391 160 h6" stroke="var(--pylon)" stroke-width="1.4"/>
-          <rect x="1372" y="230" width="44" height="248" fill="url(#lights2)" class="lit"/>
+        <!-- Central Park, the Rio Tinto tower: pinstriped white shaft, braced setbacks, chamfered crown with the Rio Tinto band, open steel crown and mast -->
+        <g data-label="Central Park, the Rio Tinto tower and Perth's tallest">
+          <rect x="1398" y="318" width="74" height="162" class="f-cp2"/>
+          <rect x="1398" y="318" width="74" height="162" fill="url(#cpPin)"/>
+          <path class="f-cp2" d="M1398 318 L1408 300 V318 Z M1472 318 L1462 300 V318 Z"/>
+          <path class="s-steel" stroke-width="1.8" d="M1398 318 L1408 300 M1472 318 L1462 300 M1398 318 H1408 M1462 318 H1472"/>
+          <rect x="1408" y="196" width="54" height="284" class="f-cp"/>
+          <rect x="1408" y="196" width="54" height="284" fill="url(#cpPin)"/>
+          <rect x="1408" y="196" width="4" height="284" class="f-cp2"/>
+          <rect x="1458" y="196" width="4" height="284" class="f-cp2"/>
+          <rect x="1440" y="196" width="22" height="284" fill="var(--cp-2)" opacity=".35"/>
+          <rect x="1408" y="250" width="54" height="1.6" class="f-cp2"/><rect x="1408" y="318" width="54" height="1.6" class="f-cp2"/><rect x="1408" y="388" width="54" height="1.6" class="f-cp2"/>
+          <rect x="1413" y="206" width="44" height="270" fill="url(#lights3)" class="lit"/>
+          <path class="f-cp2" d="M1408 196 L1414 188 L1456 188 L1462 196 Z"/>
+          <rect x="1414" y="177" width="42" height="11" class="f-cp"/>
+          <text x="1435" y="185.4" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="7.4" fill="var(--rio)" letter-spacing=".1">RioTinto</text>
+          <rect x="1420" y="170" width="30" height="7" class="f-cp2"/>
+          <path d="M1414 177 L1435 150 L1456 177 Z" fill="var(--cp)" opacity=".55"/>
+          <path class="s-steel" stroke-width="1.8" d="M1414 177 L1435 150 L1456 177 M1424 177 L1435 163 L1446 177 M1420 170 H1450"/>
+          <rect x="1431.5" y="146" width="7" height="6" class="f-cp2"/>
+          <path class="s-steel" stroke-width="1.1" d="M1433 146 V122 M1437 146 V122 M1433 146 L1437 140 L1433 134 L1437 128 L1433 122 M1430 136 H1440 M1431 126 H1439"/>
+          <path d="M1435 122 V114" stroke="var(--steel)" stroke-width="1.2"/>
+          <circle class="blink" cx="1435" cy="114" r="1.6" fill="#FF5A5A"/>
         </g>
-        <g data-label="108 St Georges Terrace">
-          <path class="f-teal" d="M1434 480 V236 L1472 190 L1488 206 V480 Z"/>
-          <path fill="url(#mullV)" d="M1434 480 V236 L1472 190 L1488 206 V480 Z"/>
-          <path d="M1472 190 V480" stroke="var(--mullion)" stroke-width="2"/>
-          <path d="M1472 190 V164" stroke="var(--pylon)" stroke-width="2"/>
-          <rect x="1434" y="250" width="54" height="228" fill="url(#lights)" class="lit"/>
+        <!-- The Palace Tower, 108 St Georges Terrace: dark green glass face, white cladding at the corner, the wedge top and its mast -->
+        <g data-label="The Palace Tower, 108 St Georges Terrace">
+          <path class="f-pal" d="M1482 480 V262 L1522 212 L1528 219 V480 Z"/>
+          <g clip-path="url(#clipPal)">
+            <rect x="1482" y="200" width="46" height="280" fill="url(#palG)"/>
+            <rect x="1482" y="200" width="9" height="280" class="f-pal2"/>
+            <path d="M1482 274 L1522 224 M1482 286 L1522 236" stroke="var(--pal-line)" stroke-width="1.2"/>
+            <rect x="1491" y="268" width="31" height="210" fill="url(#lights3)" class="lit"/>
+          </g>
+          <rect x="1522" y="212" width="6" height="268" fill="var(--pal-clad)"/>
+          <path d="M1522 220 V480" stroke="var(--cp-2)" stroke-width=".8"/>
+          <path d="M1481 263 L1522 211.5 L1528.5 219" fill="none" stroke="var(--pal-clad)" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="M1518.5 214 l3.5 -6 l3.5 6 z" fill="var(--pal-clad)"/>
+          <path d="M1522 208 V166" stroke="var(--steel)" stroke-width="1.8"/>
+          <path d="M1519.5 192 h5 M1520 180 h4" stroke="var(--steel)" stroke-width="1.2"/>
+          <path d="M1522 166 V156" stroke="var(--steel)" stroke-width="1"/>
+          <circle class="blink" cx="1522" cy="156" r="1.5" fill="#FF5A5A"/>
         </g>
         <g data-label="Capital Square">
-          <rect x="1500" y="262" width="54" height="218" class="f-blue"/><rect x="1500" y="262" width="54" height="218" fill="url(#mullG)"/>
-          <rect x="1500" y="270" width="54" height="208" fill="url(#lights2)" class="lit"/>
+          <rect x="1542" y="262" width="50" height="218" class="f-blue"/><rect x="1542" y="262" width="50" height="218" fill="url(#mullG)"/>
+          <rect x="1542" y="270" width="50" height="208" fill="url(#lights2)" class="lit"/>
         </g>
         <g>
-          <rect x="1562" y="300" width="40" height="180" class="f-grey"/><rect x="1562" y="300" width="40" height="180" fill="url(#mullH)"/>
-          <rect x="1612" y="248" width="44" height="232" class="f-dark"/><rect x="1612" y="248" width="44" height="232" fill="url(#mullV)"/>
-          <rect x="1612" y="258" width="44" height="220" fill="url(#lights)" class="lit"/>
+          <rect x="1600" y="300" width="38" height="180" class="f-grey"/><rect x="1600" y="300" width="38" height="180" fill="url(#mullH)"/>
+          <rect x="1646" y="248" width="42" height="232" class="f-dark"/><rect x="1646" y="248" width="42" height="232" fill="url(#mullV)"/>
+          <rect x="1646" y="258" width="42" height="220" fill="url(#lights)" class="lit"/>
         </g>
         <g data-label="The Ritz-Carlton tower at Elizabeth Quay">
-          <path class="f-cream" d="M1668 480 V300 C 1668 280 1684 268 1694 268 C 1704 268 1720 280 1720 300 V480 Z"/>
-          <path d="M1676 290 V480 M1686 274 V480 M1696 270 V480 M1706 276 V480 M1714 288 V480" stroke="var(--cream-2)" stroke-width="3"/>
-          <rect x="1668" y="300" width="52" height="178" fill="url(#lights2)" class="lit"/>
+          <path class="f-cream" d="M1698 480 V300 C 1698 280 1714 268 1724 268 C 1734 268 1750 280 1750 300 V480 Z"/>
+          <path d="M1706 290 V480 M1716 274 V480 M1726 270 V480 M1736 276 V480 M1744 288 V480" stroke="var(--cream-2)" stroke-width="3"/>
+          <rect x="1698" y="300" width="52" height="178" fill="url(#lights2)" class="lit"/>
         </g>
         <!-- The Swan River in front of the city -->
         <rect x="1180" y="478" width="740" height="26" class="f-water"/>

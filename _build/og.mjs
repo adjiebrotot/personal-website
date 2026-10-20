@@ -13,16 +13,16 @@ await page.goto(base + '/', { waitUntil: 'load' });
 await page.addStyleTag({ content: `
   .top, .lede, .hub, .socials, .formal, .ground, .sky .cloud { display: none !important; }
   .stage { min-height: 630px !important; height: 630px; }
-  .hello { padding-top: 70px !important; }
-  .title { font-size: 112px !important; }
-  .roles { font-size: 34px !important; margin-top: 22px !important; }
+  .hello { padding-top: 34px !important; }
+  .title { font-size: 92px !important; }
+  .roles { font-size: 25px !important; margin-top: 14px !important; white-space: nowrap; }
   .roles li { position: static !important; display: inline !important; }
   .roles li + li::before { content: '·'; padding: 0 .35em; color: var(--muted); }
   .roles ul { display: block !important; }
-  .wave { font-size: 34px !important; }
-  .scene-wrap { --h: 300px !important; }
-  .sun { top: 90px !important; left: 70px !important; width: 80px !important; }
-  .plane { transform: translate(380px, 12px) !important; }
+  .wave { font-size: 28px !important; }
+  .scene-wrap { --h: 340px !important; }
+  .sun { top: 60px !important; left: 80px !important; width: 70px !important; }
+  .plane { transform: translate(700px, -14px) !important; }
   .train { transform: translateX(760px) !important; }
   .bus { transform: translateX(1480px) !important; }
   .roo { transform: translateX(1010px) !important; }
