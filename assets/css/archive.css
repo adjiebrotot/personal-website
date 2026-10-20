@@ -1,0 +1,71 @@
+/* The old Blogger posts, kept at their old addresses (see _build/archive.py).
+   Same tokens as the homepage, quieter: these pages are for reading. */
+@font-face { font-family: 'DM Sans'; src: url('/assets/fonts/dm-sans.woff2') format('woff2'); font-weight: 400 800; font-display: swap; }
+
+:root {
+  color-scheme: light;
+  --bg: #F3F7FF; --card: #FFFFFF; --ink: #14203A; --muted: #4C5B76; --rule: #D9E2F1;
+  --brand: #0052CC; --accent: #3A71C8; --note: #FFF4DE; --note-ink: #7A4A00;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0F1728; --card: #162033; --ink: #EAF1FF; --muted: #A8B6CF; --rule: #2C3A52;
+    --brand: #8DBBFF; --accent: #8DBBFF; --note: #2A2414; --note-ink: #FFD28C;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0F1728; --card: #162033; --ink: #EAF1FF; --muted: #A8B6CF; --rule: #2C3A52;
+  --brand: #8DBBFF; --accent: #8DBBFF; --note: #2A2414; --note-ink: #FFD28C;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif; line-height: 1.7; overflow-x: hidden; }
+a { color: var(--brand); text-underline-offset: 3px; }
+
+.bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .6rem 1rem; width: min(100% - 32px, 760px); margin: 0 auto; padding: 18px 0 8px; }
+.brand { display: inline-flex; align-items: center; gap: .5rem; color: var(--ink); text-decoration: none; font-weight: 800; }
+.brand b { color: var(--brand); }
+.bar nav { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-weight: 700; font-size: .92rem; }
+.bar nav a { color: var(--ink); text-decoration: none; }
+.bar nav a:hover { text-decoration: underline; }
+
+.post { width: min(100% - 32px, 760px); margin: 0 auto; padding: 12px 0 48px; }
+.note { margin: 10px 0 26px; padding: .7rem 1rem; border-radius: 12px; background: var(--note); color: var(--note-ink); font-size: .92rem; }
+.note a { color: inherit; font-weight: 700; }
+.meta { margin: 0; color: var(--muted); font-size: .9rem; }
+.meta a { color: var(--accent); text-decoration: none; font-weight: 700; }
+h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.12; letter-spacing: -.03em; margin: .2rem 0 1.2rem; }
+
+.body { font-size: 1.05rem; overflow-wrap: anywhere; }
+.body img { max-width: 100%; height: auto; border-radius: 8px; }
+.body iframe { max-width: 100%; }
+.body table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+.body td, .body th { border: 1px solid var(--rule); padding: .35rem .6rem; }
+.body blockquote { margin: 1rem 0; padding: .2rem 1rem; border-left: 4px solid var(--rule); color: var(--muted); }
+.body h2, .body h3, .body h4 { line-height: 1.25; letter-spacing: -.02em; }
+.body .separator a { display: inline-block; margin: 0 !important; }
+.body [style*="float"] { max-width: 50%; }
+@media (max-width: 560px) { .body [style*="float"] { float: none !important; max-width: 100%; margin: .5rem auto !important; } }
+
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px; padding-top: 22px; border-top: 2px dashed var(--rule); }
+.pager a { display: block; padding: .8rem 1rem; border-radius: 12px; background: var(--card); border: 1px solid var(--rule); text-decoration: none; color: var(--ink); font-weight: 700; line-height: 1.35; }
+.pager a.older { grid-column: 2; text-align: right; }
+.pager small { display: block; color: var(--muted); font-weight: 500; font-size: .8rem; }
+
+.archive .lede { color: var(--muted); }
+.archive .labels { display: flex; flex-wrap: wrap; gap: .4rem; }
+.archive .labels span { padding: .2rem .7rem; border-radius: 999px; background: var(--card); border: 1px solid var(--rule); font-size: .85rem; font-weight: 700; }
+.archive h2 { margin: 2rem 0 .4rem; font-size: 1.4rem; }
+.archive ul { margin: 0; padding: 0; list-style: none; }
+.archive li { padding: .5rem 0; border-bottom: 1px solid var(--rule); }
+.archive li a { font-weight: 700; text-decoration: none; }
+.archive li a:hover { text-decoration: underline; }
+.archive li span { display: block; color: var(--muted); font-size: .86rem; }
+
+footer { border-top: 2px dashed var(--rule); padding: 18px 16px 26px; text-align: center; font-size: .88rem; color: var(--muted); }
+footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem 1.2rem; margin-bottom: .3rem; font-weight: 700; }
+footer nav a { color: var(--ink); text-decoration: none; }
+footer p { margin: 0; }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wrong stop | Adjie Brotosukmono</title>
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg">
+  <script>
+    /* Addresses from the old Blogger blog that were never single posts.
+       Posts themselves still exist at their old paths (see /archive/). */
+    (function () {
+      var p = location.pathname, m;
+      if (/^\/search\/label\//.test(p)) {
+        var label = decodeURIComponent(p.split('/')[3] || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        return location.replace('/archive/' + (label ? '#' + label : ''));
+      }
+      if ((m = p.match(/^\/(20\d\d)(?:\/\d\d)?\/?$/))) return location.replace('/archive/#y' + m[1]);
+      if (/^\/(search|feeds)(\/|$)/.test(p)) return location.replace('/archive/');
+      if (/^\/p\//.test(p)) return location.replace('/about/');
+      if (/\.html\/+$/.test(p)) return location.replace(p.replace(/\/+$/, ''));
+    })();
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('www-theme'); } catch (e) {}
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <style>
+    @font-face { font-family: 'DM Sans'; src: url('/assets/fonts/dm-sans.woff2') format('woff2'); font-weight: 400 800; font-display: swap; }
+    @font-face { font-family: 'Caveat'; src: url('/assets/fonts/caveat.woff2') format('woff2'); font-weight: 500 700; font-display: swap; }
+    :root { color-scheme: light; --bg-a: #BCD5FF; --bg-b: #F3F7FF; --ink: #14203A; --muted: #4C5B76; --line: #14203A; --card: #fff; --brand: #0052CC; --gold: #B45309; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark; --bg-a: #040914; --bg-b: #0F1728; --ink: #EAF1FF; --muted: #A8B6CF; --line: #8DBBFF; --card: #162033; --brand: #8DBBFF; --gold: #FFD28C; } }
+    :root[data-theme="dark"] { color-scheme: dark; --bg-a: #040914; --bg-b: #0F1728; --ink: #EAF1FF; --muted: #A8B6CF; --line: #8DBBFF; --card: #162033; --brand: #8DBBFF; --gold: #FFD28C; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px 16px; text-align: center; color: var(--ink); background: linear-gradient(180deg, var(--bg-a), var(--bg-b)); font-family: 'DM Sans', system-ui, sans-serif; }
+    .hand { font-family: 'Caveat', cursive; font-weight: 600; color: var(--gold); font-size: 1.6rem; margin: 0; transform: rotate(-3deg); }
+    h1 { font-size: clamp(2.2rem, 7vw, 4rem); letter-spacing: -.04em; line-height: 1.05; margin: .3rem 0 .8rem; }
+    p { color: var(--muted); max-width: 44ch; margin: 0 auto 1.4rem; font-size: 1.05rem; }
+    svg { width: min(320px, 80vw); height: auto; margin-bottom: 8px; }
+    nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+    nav a { padding: .65rem 1.05rem; border-radius: 14px; background: var(--card); color: var(--ink); border: 2px solid var(--line); box-shadow: 4px 4px 0 var(--line); text-decoration: none; font-weight: 800; }
+    nav a:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--line); }
+  </style>
+</head>
+<body>
+  <main>
+    <svg viewBox="0 0 320 120" aria-hidden="true">
+      <path d="M0 104 H320" stroke="#6E7B96" stroke-width="3"/>
+      <path d="M0 110 H320" stroke="#6E7B96" stroke-width="1.4" stroke-dasharray="3 9"/>
+      <g transform="translate(40 66)">
+        <rect width="190" height="32" rx="4" fill="#F7F8FA" stroke="#14203A" stroke-width="2"/>
+        <rect y="7" width="190" height="10" fill="#1B1F27"/><rect y="20" width="190" height="4" fill="#0F9D58"/>
+        <rect x="30" y="4" width="12" height="26" rx="1" fill="#F2C200"/><rect x="130" y="4" width="12" height="26" rx="1" fill="#F2C200"/>
+        <circle cx="24" cy="36" r="5" fill="#2A303B"/><circle cx="40" cy="36" r="5" fill="#2A303B"/><circle cx="150" cy="36" r="5" fill="#2A303B"/><circle cx="166" cy="36" r="5" fill="#2A303B"/>
+      </g>
+      <g transform="translate(262 30)"><rect x="-2" y="0" width="4" height="74" fill="#6E7B96"/><rect x="-26" y="-10" width="52" height="24" rx="5" fill="#0052CC"/><text x="0" y="7" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="12" fill="#fff">404</text></g>
+    </svg>
+    <p class="hand">oops, wrong stop</p>
+    <h1>This page took a different train.</h1>
+    <p>The address doesn't exist, or it moved. Hop back on at one of these:</p>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about/">About me</a>
+      <a href="https://blog.adjiebrotots.com/">Blog</a>
+      <a href="https://tool.adjiebrotots.com/">Tools</a>
+      <a href="/archive/">Old posts</a>
+    </nav>
+  </main>
+</body>
+</html>

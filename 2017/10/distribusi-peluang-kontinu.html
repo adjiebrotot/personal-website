@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Distribusi Peluang Kontinu | Arsip Blog Adjie Brotot</title>
+  <meta name="description" content="Berbeda dengan sebaran peluang diskrit, sebaran peluang kontinu memiliki peubah acak bilangan riil sehingga kita tidak bisa menentukan peluang dari nilai…">
+  <meta name="author" content="Adjie Brotosukmono">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.adjiebrotots.com/2017/10/distribusi-peluang-kontinu.html">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Adjie Brotosukmono">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:title" content="Distribusi Peluang Kontinu">
+  <meta property="og:description" content="Berbeda dengan sebaran peluang diskrit, sebaran peluang kontinu memiliki peubah acak bilangan riil sehingga kita tidak bisa menentukan peluang dari nilai…">
+  <meta property="og:url" content="https://www.adjiebrotots.com/2017/10/distribusi-peluang-kontinu.html">
+  <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-Z2iinX4uoMnRt0IGM4mF_Fbxd55rEy1bb3xStr3sn_XClWXRM2pN4qfo02EiCbYYlE6fDXn1tjovJXfNY4I1sjRRygwakf2bkph6OIvEFW_p9uAISGOT9S_qdNx5bhFEFCMZQTCeSBw/w1200/Sebaran+Peluang+Kontinu+Adjie+Brotot+Blog.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>(function(){var t=null;try{t=localStorage.getItem('www-theme')}catch(e){}if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="stylesheet" href="/assets/css/archive.css">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://www.adjiebrotots.com/2017/10/distribusi-peluang-kontinu.html#article", "mainEntityOfPage": "https://www.adjiebrotots.com/2017/10/distribusi-peluang-kontinu.html", "url": "https://www.adjiebrotots.com/2017/10/distribusi-peluang-kontinu.html", "headline": "Distribusi Peluang Kontinu", "description": "Berbeda dengan sebaran peluang diskrit, sebaran peluang kontinu memiliki peubah acak bilangan riil sehingga kita tidak bisa menentukan peluang dari nilai…", "inLanguage": "id", "datePublished": "2017-10-22T20:19:00.002+07:00", "dateModified": "2020-01-16T23:31:50.391+07:00", "author": {"@id": "https://www.adjiebrotots.com/#person"}, "publisher": {"@id": "https://www.adjiebrotots.com/#person"}, "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-Z2iinX4uoMnRt0IGM4mF_Fbxd55rEy1bb3xStr3sn_XClWXRM2pN4qfo02EiCbYYlE6fDXn1tjovJXfNY4I1sjRRygwakf2bkph6OIvEFW_p9uAISGOT9S_qdNx5bhFEFCMZQTCeSBw/w1200/Sebaran+Peluang+Kontinu+Adjie+Brotot+Blog.jpg", "articleSection": "Sains dan Rekayasa", "keywords": ["Sains dan Rekayasa"], "isPartOf": {"@type": "CollectionPage", "@id": "https://www.adjiebrotots.com/archive/", "name": "Arsip Blog Adjie Brotot"}}</script>
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="/" aria-label="Adjie Brotosukmono, beranda"><img src="/assets/img/logo.svg" alt="" width="28" height="28"><span>Adjie <b>Brotot</b></span></a>
+    <nav aria-label="Utama"><a href="/archive/">Arsip</a><a href="https://blog.adjiebrotots.com/id/">Blog baru</a><a href="/about/">Tentang saya</a></nav>
+  </header>
+  <main class="post">
+    <p class="note">Ini tulisan arsip dari blog lama saya, saya simpan apa adanya supaya tautannya tetap hidup. Tulisan baru ada di <a href="https://blog.adjiebrotots.com/id/">blog.adjiebrotots.com</a>.</p>
+    <article>
+      <p class="meta"><a href="/archive/#sains-dan-rekayasa">Sains dan Rekayasa</a> · <time datetime="2017-10-22">22 Oktober 2017</time></p>
+      <h1>Distribusi Peluang Kontinu</h1>
+      <div class="body">
+<div class="separator" style="clear: both; text-align: center">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-Z2iinX4uoMnRt0IGM4mF_Fbxd55rEy1bb3xStr3sn_XClWXRM2pN4qfo02EiCbYYlE6fDXn1tjovJXfNY4I1sjRRygwakf2bkph6OIvEFW_p9uAISGOT9S_qdNx5bhFEFCMZQTCeSBw/s1600/Sebaran+Peluang+Kontinu+Adjie+Brotot+Blog.jpg" style="margin-left: 1em; margin-right: 1em"><img loading="lazy" decoding="async" data-original-height="720" data-original-width="1280" height="225" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-Z2iinX4uoMnRt0IGM4mF_Fbxd55rEy1bb3xStr3sn_XClWXRM2pN4qfo02EiCbYYlE6fDXn1tjovJXfNY4I1sjRRygwakf2bkph6OIvEFW_p9uAISGOT9S_qdNx5bhFEFCMZQTCeSBw/s400/Sebaran+Peluang+Kontinu+Adjie+Brotot+Blog.jpg" width="400" /></a></div>
+<br />
+Berbeda dengan sebaran peluang diskrit, sebaran peluang kontinu memiliki peubah acak bilangan riil sehingga kita tidak bisa menentukan peluang dari nilai spesifik suatu peubah acak melainkan rentang dari antara dua nilai peubah acak. Karena itu, sebaran peluang kontinu menggunakan <i>probability density function </i>(pdf). Selain itu di sini juga akan dikenal yang namanya <i>cumulative distribution function. </i>Pada ranah ini, operator integral lazim digunakan.<br />
+<i><br /></i>
+Beberapa sebaran umum yang ada di ranah peubah acak kontinu ada sebaran normal, sebaran gamma, sebaran eksponensial, dan sebaran weibull. Sebenarnya ada beberapa sebaran lain seperti log-normal dan sebaran chi-squared namun karena pada aplikasinya hanya penurunan dari sebaran-sebaran dasar yang ada, tidak akan dibahas pada tulisan ini.<br />
+<br />
+<a name='more'></a><br /><br />
+<h2>
+Sebaran Normal</h2>
+<div>
+Sebaran normal merupakan <i>probability density function</i>&nbsp;yang berpuncak di rata-rata&nbsp;μ dan tingkat keruncingan (kurtosis) sebesar&nbsp;σ. Sebaran normal merupakan sebaran paling umum untuk menggambarkan kondisi di dunia nyata karena sebagian besar persebaran berdistribusi normal. Misalnya persebaran umur, persebaran jumlah kendaraan di jalan, persebaran kepadatan jam terbang pesawat, dll.</div>
+<div>
+<br /></div>
+<div>
+Besarnya peluang x dalam suatu sebaran normal yang memiliki rata-rata sebesar μ dan standar deviasi sebesar σ adalah</div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?f%28x%29%3D%5Cfrac%7B1%7D%7B%5Csqrt%7B2%20%5Cpi%20%5Csigma%5E%7B2%7D%7D%7D%20e%5E%7B-%5Cfrac%7B%28x-%5Cmu%29%5E%7B2%7D%7D%7B2%5Csigma%5E%7B2%7D%7D%7D" /></div>
+<div>
+<br /></div>
+<div>
+Untuk menghitung besarnya peluang x &lt; X dapat kita lakukan dengan mengintegralkan f(x) dari -∞ sampai X. Dari proses integral ini didapatkan <i>cumulative distribution function </i>yang nilainya:</div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?F_%7Bc%7D%28X%29%3D%5Cfrac%7B1%7D%7B2%7D%5Cleft%20%5B%201&amp;plus;%5Ctextup%7Berf%7D%5Cleft%20%28%20%5Cfrac%7BX-%5Cmu%7D%7B%5Csigma%5Csqrt%7B2%7D%7D%20%5Cright%20%29%20%5Cright%20%5D" /></div>
+<div>
+<br /></div>
+<div>
+dengan erf(E) merupakan error function, hasil integrasi dari exp(-t²). Untuk mempermudah perhitungan, biasanya digunakan tabel sebaran normal terstandar (<i>standardized normal distribution function</i>, Z) yang memiliki μ = 0 dan σ = 1. Konversi X ke Z dapat dilakukan dengan cara mengubah parameter x dengan rumus:</div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?Z%20%3D%20%5Cfrac%7BX-%5Cmu%7D%7B%5Csigma%7D" /></div>
+<div>
+<br /></div>
+<div>
+sehingga didapatkan nilai Fc(Z) yang nilainya bisa dicari dari tabel distribusi normal terstandar.&nbsp;</div>
+<div>
+<br />
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center"><tbody>
+<tr><td style="text-align: center"><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Normal_Distribution_PDF.svg/720px-Normal_Distribution_PDF.svg.png" style="margin-left: auto; margin-right: auto"><img loading="lazy" decoding="async" data-original-height="460" data-original-width="720" height="204" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Normal_Distribution_PDF.svg/720px-Normal_Distribution_PDF.svg.png" width="320" /></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center">Sebaran normal dengan berbagai variasi parameter μ dan&nbsp;σ&nbsp;</td></tr>
+</tbody></table>
+<br /></div>
+<div>
+<b>contoh soal</b></div>
+<div>
+Lamanya waktu penerbangan dari Jakarta ke Bangkok rata-rata 2 jam dengan simpangan baku 1 jam. Hitunglah peluang mendapatkan lama waktu penerbangan sekitar 3-4 jam!</div>
+<div>
+<br /></div>
+<div>
+Dari soal dapat diekstrak nilai μ = 2 dan σ = 1. Untuk mencari nilai f(3 &lt; x &lt; 4) dapat dilakukan dengan cara mencari f(3 &lt; x &lt; 4) = Fc(4) - Fc(3) dengan terlebih dahulu mengubahnya ke dalam distribusi normal terstandar Z.</div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?Z_%7B1%7D%20%3D%20%5Cfrac%7B3-2%7D%7B1%7D%3D1" /></div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?Z_%7B2%7D%20%3D%20%5Cfrac%7B4-2%7D%7B1%7D%3D2" /></div>
+<div>
+<br /></div>
+<div>
+Maka akan dicari f(1 &lt; Z &lt; 2) = Fc(2) - Fc(1) setelah dilihat dari tabel distrubusi normal terstandar Z, nilai Fc(2) = 0,9772 dan Fc(1) = 0,8413 maka didapat f(1 &lt; Z &lt; 2) = 0,1359</div>
+<div>
+<br /></div>
+<div>
+Cara lain yang bisa dilakukan sebenarnya bisa dengan mengintegralkan <i>probability density function</i>&nbsp;dari 3 hingga 4, namun terlalu sulit.</div>
+<div>
+<br /></div>
+<h2>
+Sebaran Gamma</h2>
+<div>
+Sebaran gamma erat hubungannya dengan fungsi gamma. Fungsi gamma merupakan ekspansi dari fungsi faktorial di ranah bilangan riil. Jadi, nilai 3,2!, 1,5!, 0,5! bisa didefinisikan dengan mudah menggunakan fungsi gamma yang bernilai:</div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?%5CGamma%28z%29%20%3D%20%28z-1%29%21%20%3D%20%5Cint_%7B0%7D%5E%7B%5Cinfty%20%7Dx%5E%7Bz-1%7De%5E%7B-x%7D%5C%3A%20%5Ctextup%7Bd%7Dx" /></div>
+<div>
+<br /></div>
+<div>
+Dari definisi fungsi gamma tersebut bisa kita rangkai menjadi sebaran gamma dengan parameter bentuk&nbsp;α (<i>shape parameter</i>) dan parameter ukuran&nbsp;β (<i>scale parameter</i>) yang memiliki <i>probability density function</i>&nbsp;:</div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?f%28x%29%3D%5Cfrac%7B%5Cbeta%5E%7Ba%7D%7D%7B%5CGamma%28a%29%7Dx%5E%7B%5Calpha-1%7De%5E%7B-%5Cbeta%20x%7D" /><br />
+<br />
+Untuk menghitung besarnya peluang x &lt; X dapat kita lakukan dengan mengintegralkan f(x) dari 0 sampai X. Dari proses integral ini didapatkan&nbsp;<i>cumulative distribution function&nbsp;</i>yang nilainya:<br />
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?F_%7Bc%7D%28x%29%3D%5Cfrac%7B%5Cgamma%20%28%5Calpha.%5Cbeta%20x%29%7D%7B%5CGamma%20%28%5Calpha%29%7D" /><br />
+<br />
+dengan&nbsp;γ(z,a) merupakan <i>incomplete gamma function</i>&nbsp;yang mirip fungsi gamma namun integralnya dilakukan dari 0 hingga a saja.<br />
+<br />
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center"><tbody>
+<tr><td style="text-align: center"><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Inv_gamma_pdf.svg/488px-Inv_gamma_pdf.svg.png" style="margin-left: auto; margin-right: auto"><img loading="lazy" decoding="async" data-original-height="390" data-original-width="488" height="255" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Inv_gamma_pdf.svg/488px-Inv_gamma_pdf.svg.png" width="320" /></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center">Sebaran gamma dengan berbagai variasi parameter α dan&nbsp;β&nbsp;</td></tr>
+</tbody></table>
+<br />
+<b>contoh soal</b><br />
+Variabel acak kontinu x yang menyatakan ketahanan suatu bantalan peluru (dalam ribaun jam) yang diberi pembebanan dinamis pada suatu putaran kerja tertentu mengikuti suatu distribusi gamma dengan α&nbsp;= 8 dan β = 15, Tentukan, probabilitas sebuah bantalan peluru dapat digunakan selama 60 ribu-120 ribu jam dengan pembebanan dinamik pada putaran kerja tersebut!<br />
+<br />
+Langsung saja cari dengan integrasi <i>probability density function</i>&nbsp;dari 60 hingga 120<br />
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?f%2860%20%3C%20x%20%3C%20120%29%20%3D%20%5Cint_%7B60%7D%5E%7B120%7D%5Cfrac%7B15%5E%7B8%7D%7D%7B%5CGamma%20%288%29%7Dx%5E%7B8-1%7D%5C%2C%20e%5E%7B-x%7D%20%5C%3A%20%5Ctextup%7Bd%7Dx" /><br />
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?f%2860%20%3C%20x%20%3C%20120%29%20%3D%200%2C4959" /><br />
+<br />
+<h2>
+Sebaran Eksponensial</h2>
+</div>
+<div>
+Sebaran eksponen sebenarnya didapat dari penurunan sebaran gamma dengan nilai α = 1 sehingga fungsi&nbsp;Γ(1) = 1. Maka&nbsp;<i>probability density function</i>&nbsp;dari fungsi eksponensial berparameter ukuran&nbsp;λ adalah:</div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?f%28x%29%3D%5Clambda%20e%5E%7B-%5Clambda%20x%7D" /></div>
+<div>
+<br /></div>
+<div>
+Nilai kumulatif untuk x &lt; X dapat dicari dengan melakukan integrasi dari 0 hingga X, didapatkan <i>cumulative distribution function </i>dari sebaran eksponen yaitu:</div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?F_%7Bc%7D%28X%29%3D1-e%5E%7B-%5Clambda%20x%7D" /></div>
+<div>
+<br /></div>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center"><tbody>
+<tr><td style="text-align: center"><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Exponential_pdf.svg/360px-Exponential_pdf.svg.png" style="margin-left: auto; margin-right: auto"><img loading="lazy" decoding="async" data-original-height="288" data-original-width="360" height="256" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Exponential_pdf.svg/360px-Exponential_pdf.svg.png" width="320" /></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center">Sebaran eksponensial dengan berbagai variasi λ</td></tr>
+</tbody></table>
+<div>
+<br /></div>
+<div>
+<b>contoh soal</b></div>
+<div>
+Suatu wattmeter digital akan rusak menurut distribusi eksponensial dengan parameter waktu 5 tahun. Berapakah peluang wattmeter akan rusak kurang dari 1 tahun?</div>
+<div>
+<br /></div>
+<div>
+Langsung saja gunakan <i>cumulative distribution function</i>&nbsp;dengan mencari Fc(4) yaitu</div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?F_%7Bc%7D%284%29%3D1-e%5E%7B-5.1%7D" /></div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?F_%7Bc%7D%284%29%3D0%2C9932" /></div>
+<div>
+<br /></div>
+<h2>
+Sebaran Weibull</h2>
+<div>
+Orang sering salah membedakan sebaran weibull dengan sebaran gamma. Hal ini wajar karena kedua parameter yang dipakai sama-sama parameter α dan β. Namun sebenarnya sebaran gamma dan weibull berbeda. Sebaran weibull sering digunakan untuk menghitung peluang sebuah benda berfungsi benar dalam selang waktu t. Sebaran weibull dirumuskan dengan:</div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?f%28t%29%3D%5Calpha%20%5Cbeta%20t%5E%7B%5Cbeta%20-%201%7De%5E%7B-%5Calpha%20t%5E%7B%5Cbeta%7D%7D" /></div>
+<div>
+<br /></div>
+<div>
+secara kumulatif dirumuskan dalam</div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?F_%7Bc%7D%28T%29%3D1-e%5E%7B%5Calpha%20T%5E%7B%5Cbeta%7D%7D" /></div>
+<div>
+<br /></div>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center"><tbody>
+<tr><td style="text-align: center"><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Weibull_PDF.svg/540px-Weibull_PDF.svg.png" style="margin-left: auto; margin-right: auto"><img loading="lazy" decoding="async" data-original-height="540" data-original-width="540" height="320" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Weibull_PDF.svg/540px-Weibull_PDF.svg.png" width="320" /></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center">Sebaran weibull dengan berbagai variasi parameter.<br />
+Gambar ini menggunakan parameter pengganti λ dan k yang memiliki hubungan λ = 1/α dan k = β</td></tr>
+</tbody></table>
+<div>
+<br /></div>
+<div>
+<b>contoh soal</b></div>
+<div>
+Sebuah mesn fotokopi mempunyai masa hidup berdistribusi weibull dengan α = 0,8 dan β =3. Berapa peluang mesin fotokopi tersebut menyala lebih dari 1 tahun?</div>
+<div>
+<br /></div>
+<div>
+Langsung saja gunakan&nbsp;<i>cumulative distribution function</i>&nbsp;dan aturan kejadian komplementer</div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?f%28t%20%3E%201%29%20%3D%201-F_%7Bc%7D%281%29" /></div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?f%28t%20%3E%201%29%20%3D%201-%5Cleft%20%28%201-e%5E%7B-0%2C8.1%5E%7B3%7D%7D%20%5Cright%20%29" /></div>
+<div>
+<img loading="lazy" decoding="async" src="https://latex.codecogs.com/gif.latex?f%28t%20%3E%201%29%20%3D%200%2C4493" /></div>
+
+      </div>
+    </article>
+    <nav class="pager" aria-label="Tulisan lain"><a rel="prev" href="/2018/06/jalan-tol-siapa-yang-diuntungkan.html"><small>Lebih baru</small>Jalan Tol – Siapa yang Diuntungkan?</a><a rel="next" class="older" href="/2017/10/distribusi-peluang-diskrit.html"><small>Lebih lama</small>Distribusi Peluang Diskrit</a></nav>
+  </main>
+  <footer>
+    <nav aria-label="Lainnya"><a href="/">Beranda</a><a href="/about/">Tentang saya</a><a href="https://blog.adjiebrotots.com/">Blog</a><a href="https://tool.adjiebrotots.com/">Tools</a></nav>
+    <p>© Adjie Brotosukmono</p>
+  </footer>
+</body>
+</html>
