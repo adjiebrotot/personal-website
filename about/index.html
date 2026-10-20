@@ -156,20 +156,25 @@
     .pass-route small { display: block; color: var(--muted); font-size: .8rem; }
     .pass-route .fly { flex: 1; height: 2px; background: repeating-linear-gradient(90deg, var(--muted) 0 6px, transparent 6px 11px); position: relative; margin: 0 .3rem; }
     .pass-route .fly svg { position: absolute; left: 50%; top: 50%; width: 26px; height: 26px; transform: translate(-50%, -50%); color: var(--brand); }
-    .pass-body { display: grid; grid-template-columns: auto 1fr; gap: .9rem; padding: .5rem 1.1rem 1rem; align-items: start; }
-    .pass-body img { width: 84px; height: 84px; border-radius: 12px; border: 2px solid var(--line); object-fit: cover; }
-    .pass dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .45rem .9rem; }
-    .pass dt { font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
-    .pass dd { margin: 0; font-weight: 700; font-size: .92rem; line-height: 1.25; }
+    .pass-body { display: grid; grid-template-columns: 84px 1fr; gap: .8rem 1rem; padding: .55rem 1.1rem 1rem; align-items: start; }
+    .pass-body img { width: 84px; height: 84px; border-radius: 12px; border: 2px solid var(--line); object-fit: cover; transform: rotate(-3deg); }
+    .pass dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .6rem 1rem; }
+    .pass dl.more { grid-column: 1 / -1; padding-top: .7rem; border-top: 2px solid var(--rule); }
+    .pass dt { font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; line-height: 1.3; }
+    .pass dd { margin: 0; font-weight: 700; font-size: .92rem; line-height: 1.28; }
+    .pass dd.seat { display: inline; padding: 0 .2em; background: linear-gradient(180deg, transparent 52%, var(--hl) 52%, var(--hl) 94%, transparent 94%); }
     .pass dl .wide { grid-column: 1 / -1; }
-    .pass-foot { border-top: 2px dashed var(--rule); padding: .55rem 1.1rem .7rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .pass-foot { position: relative; border-top: 2px dashed var(--rule); padding: .55rem 1.1rem .7rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .pass-foot::before, .pass-foot::after { content: ''; position: absolute; top: -12px; width: 22px; height: 22px; border-radius: 50%; background: var(--bg); border: 2px solid var(--line); }
+    .pass-foot::before { left: -13px; } .pass-foot::after { right: -13px; }
     .pass-foot .hand { font-size: 1.15rem; color: var(--muted); }
     .barcode { height: 26px; width: 120px; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 5px, transparent 5px 8px, var(--ink) 8px 11px, transparent 11px 12px); opacity: .85; }
 
     .breath {
-      margin: 0 0 clamp(36px, 6vh, 64px); padding: 1rem 1.2rem; border-radius: 16px; background: var(--card);
-      border: 2px dashed var(--rule); color: var(--muted); font-size: .98rem;
+      position: relative; max-width: 860px; margin: 8px auto clamp(40px, 7vh, 72px); padding: 1.15rem 1.4rem 1.2rem; border-radius: 16px; background: var(--paper);
+      border: 2px solid var(--line); box-shadow: 4px 4px 0 var(--line); color: var(--muted); font-size: 1rem;
     }
+    .breath::before { content: ''; position: absolute; left: 50%; top: -13px; width: 104px; height: 24px; background: var(--gold-soft); opacity: .8; border-radius: 3px; transform: translateX(-50%) rotate(-2.5deg); }
     .breath strong { color: var(--ink); }
     .breath .hand { color: var(--gold); font-size: 1.3rem; display: block; margin-bottom: .1rem; }
 
@@ -193,7 +198,8 @@
     .stop h2 { margin: 0 0 .7rem; font-size: clamp(1.6rem, 3vw, 2.25rem); line-height: 1.1; letter-spacing: -.03em; }
     .stop h2 .mark { background: linear-gradient(180deg, transparent 58%, var(--hl) 58%, var(--hl) 94%, transparent 94%); padding: 0 .1em; }
     .story p { margin: 0 0 .8rem; font-size: 1.05rem; }
-    .aside { margin: 1rem 0; padding: .9rem 1rem; border-radius: 14px; background: var(--card); border: 2px solid var(--line); box-shadow: 4px 4px 0 var(--line); transform: rotate(-.6deg); }
+    .aside { position: relative; margin: 1.3rem 0 1.1rem; padding: 1rem 1.1rem; border-radius: 14px; background: var(--paper); border: 2px solid var(--line); box-shadow: 4px 4px 0 var(--line); }
+    .aside::before { content: ''; position: absolute; right: 22px; top: -12px; width: 78px; height: 22px; background: #C9EEDF; opacity: .9; border-radius: 3px; transform: rotate(4deg); }
     .aside .hand { display: block; font-size: 1.35rem; color: var(--gold); line-height: 1.1; margin-bottom: .2rem; }
     .aside p { margin: 0 0 .5rem; font-size: 1rem; }
     .aside p:last-child { margin: 0; }
@@ -212,13 +218,17 @@
     .snaps.one { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
 
     /* Passport stamps: the side trips at uni */
-    .trips { position: relative; z-index: 1; margin: -30px 0 clamp(56px, 10vh, 110px); }
-    .trips h3 { margin: 0 auto .2rem; font-size: 1.35rem; letter-spacing: -.02em; text-align: center; width: fit-content; padding: 0 .6rem; background: var(--bg); }
-    .trips > p { text-align: center; color: var(--muted); margin: 0 auto 1.4rem; max-width: 52ch; padding: .1rem .6rem; background: var(--bg); }
-    .stamps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; align-items: start; }
-    .stamp { --c: var(--accent); position: relative; background: var(--card); border-radius: 16px; padding: 14px 14px 16px; border: 2px solid var(--line); box-shadow: 4px 4px 0 var(--line); transform: rotate(var(--r, 0deg)); }
+    .trips {
+      position: relative; z-index: 1; margin: -30px 0 clamp(56px, 10vh, 110px); padding: clamp(22px, 3.4vw, 40px) clamp(16px, 3vw, 36px) clamp(10px, 2vw, 22px);
+      background: var(--card-2); border: 2px dashed var(--trail); border-radius: 28px;
+    }
+    .trips .kicker { display: block; text-align: center; font-size: 1.35rem; color: var(--gold); transform: rotate(-2deg); margin-bottom: .1rem; }
+    .trips h3 { margin: 0 auto .3rem; font-size: clamp(1.35rem, 2.4vw, 1.7rem); line-height: 1.2; letter-spacing: -.025em; text-align: center; }
+    .trips > p { text-align: center; color: var(--muted); margin: 0 auto 1.6rem; max-width: 52ch; }
+    .stamps { list-style: none; margin: 0; padding: 0; columns: 3 250px; column-gap: 24px; }
+    .stamp { --c: var(--accent); display: inline-block; width: 100%; margin: 0 0 24px; break-inside: avoid; position: relative; background: var(--card); border-radius: 16px; padding: 14px 14px 16px; border: 2px solid var(--line); box-shadow: 4px 4px 0 var(--line); transform: rotate(var(--r, 0deg)); }
     .stamp:nth-child(3n+1) { --r: -1.2deg; } .stamp:nth-child(3n+2) { --r: .9deg; --c: var(--teal); } .stamp:nth-child(3n) { --r: -.4deg; --c: var(--gold); }
-    .stamp .country { display: inline-block; font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.35rem; line-height: 1; color: var(--c); border: 2px solid currentColor; border-radius: 999px; padding: .2rem .7rem .3rem; transform: rotate(-4deg); margin-bottom: .45rem; }
+    .stamp .country { display: inline-block; font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.4rem; line-height: 1; color: var(--c); border: 4px double currentColor; border-radius: 10px; padding: .2rem .65rem .3rem; transform: rotate(-5deg); margin-bottom: .5rem; }
     .stamp h4 { margin: 0 0 .25rem; font-size: 1.02rem; line-height: 1.25; }
     .stamp p { margin: 0; color: var(--muted); font-size: .93rem; }
     .stamp .snap { margin: 12px 4px 4px; }
@@ -259,13 +269,16 @@
     .cta a:hover, .cta a:focus-visible { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--line); }
     .cta li:nth-child(1) a { background: var(--gold-soft); color: #14203A; }
     .cta li:nth-child(2) a { background: #C9EEDF; color: #14203A; }
+    .cta li:nth-child(3) a { transform: rotate(-1deg); } .cta li:nth-child(2) a { transform: rotate(1deg); }
+    .cta li:nth-child(n) a:hover, .cta li:nth-child(n) a:focus-visible { transform: translate(-2px, -2px); }
 
     .faq { position: relative; z-index: 1; max-width: 820px; margin: 0 auto clamp(48px, 8vh, 90px); }
     .faq h2 { text-align: center; font-size: 1.5rem; letter-spacing: -.02em; margin: 0 0 1rem; }
-    .faq details { background: var(--card); border: 2px solid var(--rule); border-radius: 14px; margin-bottom: 10px; padding: .2rem 1rem; }
+    .faq details { background: var(--card); border: 2px solid var(--rule); border-radius: 14px; margin-bottom: 12px; padding: .2rem 1rem; transition: border-color .15s, box-shadow .15s; }
+    .faq details[open], .faq details:hover { border-color: var(--line); box-shadow: 3px 3px 0 var(--line); }
     .faq summary { cursor: pointer; font-weight: 700; padding: .65rem 0; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
     .faq summary::-webkit-details-marker { display: none; }
-    .faq summary::after { content: '+'; font-weight: 800; color: var(--accent); transition: transform .2s; }
+    .faq summary::after { content: '+'; flex: none; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: var(--gold-soft); color: #14203A; font-weight: 800; line-height: 1; transition: transform .2s; }
     .faq details[open] summary::after { transform: rotate(45deg); }
     .faq details p { margin: 0 0 .8rem; color: var(--muted); }
 
@@ -286,15 +299,16 @@
       .stop .story, .stop.flip .story { grid-column: 2; grid-row: 1; }
       .stop .art, .stop.flip .art { grid-column: 2; grid-row: 2; margin-top: 18px; }
       .trail::before { left: 22px; }
-      .trips { margin-top: -20px; padding-left: 62px; }
-      .trips h3, .trips > p { text-align: left; margin-left: 0; }
+      .trips { margin-top: -12px; }
     }
     @media (max-width: 480px) {
       .snaps { grid-template-columns: 1fr; }
-      .pass dl { grid-template-columns: 1fr; }
+      .cta { flex-direction: column; align-items: stretch; max-width: 300px; margin-left: auto; margin-right: auto; }
+      .cta a { justify-content: space-between; }
       .pass-route b { font-size: 1.7rem; }
-      .trips { padding-left: 0; }
-      .stamps { grid-template-columns: 1fr; }
+      .pass-body { grid-template-columns: 64px 1fr; }
+      .pass-body img { width: 64px; height: 64px; }
+      .pass dl:not(.more) { grid-template-columns: 1fr; gap: .45rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -419,13 +433,15 @@
         <div class="pass-body">
           <img src="/assets/img/adjie-160.webp" width="84" height="84" alt="Adjie Brotosukmono, smiling, in a batik shirt">
           <dl>
-            <dt>Passenger</dt><dd>Adjie Brotosukmono</dd>
-            <dt>From</dt><dd>Indonesia</dd>
-            <dt>Seat</dt><dd>Energy Economics Consultant</dd>
-            <dt>Operator</dt><dd>Mott MacDonald, Perth</dd>
-            <dt class="wide">Trained at</dt><dd class="wide">Institut Teknologi Bandung (ITB), Bachelor's and Master's in Electrical Power Engineering</dd>
-            <dt>Speaks</dt><dd>Bahasa Indonesia, English</dd>
-            <dt>Baggage</dt><dd>Banking, edtech, a lot of spreadsheets</dd>
+            <div class="wide"><dt>Passenger</dt><dd>Adjie Brotosukmono</dd></div>
+            <div><dt>From</dt><dd>Indonesia</dd></div>
+            <div><dt>Operator</dt><dd>Mott MacDonald, Perth</dd></div>
+            <div class="wide"><dt>Seat</dt><dd class="seat">Energy Economics Consultant</dd></div>
+          </dl>
+          <dl class="more">
+            <div class="wide"><dt>Trained at</dt><dd>Institut Teknologi Bandung (ITB), Bachelor's and Master's in Electrical Power Engineering</dd></div>
+            <div><dt>Speaks</dt><dd>Bahasa Indonesia, English</dd></div>
+            <div><dt>Baggage</dt><dd>Banking, edtech, a lot of spreadsheets</dd></div>
           </dl>
         </div>
         <div class="pass-foot"><span class="hand">no Vegemite on board</span><span class="barcode" aria-hidden="true"></span></div>
@@ -496,6 +512,7 @@
 
       <!-- Side trips at uni -->
       <section class="trips rise" aria-labelledby="trips">
+        <span class="kicker hand" aria-hidden="true">passport, page one</span>
         <h3 id="trips">Side quests: saying yes to everything abroad</h3>
         <p>At uni I joined almost every exchange and youth conference I could. Free travel, new friends, and a nicer CV. Hehe.</p>
         <ul class="stamps">
@@ -558,8 +575,8 @@
               <rect width="400" height="300" fill="var(--sea)"/>
               <g class="hand" font-family="Caveat, cursive" font-weight="700" fill="var(--muted)">
                 <text x="26" y="46" font-size="26" transform="rotate(-8 26 46)">v = s / t</text>
-                <text x="286" y="40" font-size="24" transform="rotate(6 286 40)">E = mc²</text>
-                <text x="30" y="262" font-size="22" transform="rotate(-4 30 262)">Σ F = 0</text>
+                <text x="40" y="286" font-size="23" transform="rotate(-4 40 286)">P = V × I</text>
+                <text x="236" y="288" font-size="23" transform="rotate(3 236 288)">V = I × R</text>
               </g>
               <path d="M60 228 L340 228 L364 252 H36 Z" fill="var(--steel)"/>
               <rect x="80" y="70" width="240" height="160" rx="10" fill="var(--ink)"/>
@@ -581,7 +598,7 @@
                 <path d="M30 0 V-34" stroke="var(--ink)" stroke-width="3"/>
               </g>
               <path d="M380 42 l-28 7 l28 7 z" fill="#E66A6A" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
-              <text x="318" y="98" font-family="Caveat, cursive" font-weight="700" font-size="18" fill="var(--muted)" transform="rotate(-10 318 98)">lead!</text>
+              <text x="328" y="70" font-family="Caveat, cursive" font-weight="700" font-size="19" fill="var(--gold)" transform="rotate(-12 328 70)">lead!</text>
             </svg>
           </div>
           <p class="ill-cap hand">Fun fact: “paham” means “got it” in Indonesian.</p>
@@ -669,13 +686,14 @@
                 <path d="M-8 52 h86" stroke="var(--ink)" stroke-width="2"/>
               </g>
               <path d="M196 196 v-60 M310 196 v-60 M196 140 h114" stroke="var(--steel)" stroke-width="1.6" stroke-dasharray="4 4" fill="none"/>
-              <g transform="translate(250 250)">
+              <g transform="translate(262 252)">
+                <ellipse cx="6" cy="20" rx="92" ry="7" fill="#14203A" opacity=".18"/>
                 <path d="M-62 4 C -62 -44 62 -44 62 4 Z" fill="#FFC531" stroke="#14203A" stroke-width="3"/>
                 <path d="M-80 4 H80 a6 6 0 0 1 0 12 H-80 a6 6 0 0 1 0 -12 Z" fill="#F2B10F" stroke="#14203A" stroke-width="3"/>
                 <path d="M0 -38 V2" stroke="#14203A" stroke-width="3"/>
                 <rect x="-16" y="-34" width="32" height="20" rx="8" fill="#EAF1FF" stroke="#14203A" stroke-width="3"/>
                 <circle cx="0" cy="-24" r="6" fill="#FFF3B0"/>
-                <path d="M-16 -30 L-120 -70 L-120 10 Z" fill="#FFF3B0" opacity=".35"/>
+                <path d="M-26 -40 l-10 -8 M0 -46 v-12 M26 -40 l10 -8" stroke="#FFD28C" stroke-width="3" stroke-linecap="round"/>
               </g>
             </svg>
           </div>
@@ -705,9 +723,9 @@
               <path class="nb" d="M150 -130 142 -124 137 -125 138 -122 130 -113 126 -103 135 -92 134 -90 158 -65 164 -40 162 -28 160 -24 150 -17 143 -14 140 -17 139 -14 136 -15 138 -13 135 -13 138 -11 136 -9 131 -12 135 -6 128 -10 132 -4 121 4 118 4 121 -10 114 -14 118 -16 120 -19 132 -18 129 -27 134 -27 134 -30 145 -34 146 -45 143 -52 147 -64 142 -70 144 -72 137 -77 135 -82 122 -96 121 -100 109 -106 110 -110 116 -110 119 -114 114 -119 116 -121 111 -124 106 -121 101 -123 99 -127 99 -132 97 -132 91 -139 95 -143 100 -140 103 -144 109 -141 123 -150 128 -145 138 -144 136 -141 137 -135 150 -130ZM321 186 321 181 319 180 322 177 336 175 342 174 341 177 321 186ZM71 -117 75 -116 75 -109 82 -109 80 -88 91 -95 97 -91 103 -97 109 -96 117 -87 118 -77 126 -68 125 -57 121 -53 118 -55 102 -54 93 -46 99 -28 96 -33 88 -37 79 -37 80 -45 76 -47 70 -44 70 -32 62 -13 62 -7 63 -3 68 -3 72 6 75 18 73 13 72 14 74 18 85 22 91 28 89 32 81 34 81 28 73 23 71 26 66 17 52 6 58 -17 66 -28 61 -41 61 -48 52 -61 59 -75 57 -75 44 -98 47 -99 50 -111 59 -111 61 -115 65 -115 65 -118 71 -117ZM648 173 648 177 644 173 645 170 648 173ZM669 176 655 166 664 171 669 176ZM645 164 641 164 635 157 645 164ZM243 6 243 3 262 -15 265 -24 265 -21 267 -15 243 6ZM295 -27 302 -26 301 -23 298 -19 291 -15 291 -27 289 -29 295 -27ZM301 -1 294 -7 295 -10 299 -11 300 -19 303 -20 306 -18 302 -9 303 -3 301 -1ZM316 -24 320 -22 323 -13 320 -14 320 -11 318 -12 317 -19 314 -20 313 -25 316 -24ZM330 -3 333 0 331 4 335 8 336 18 332 22 332 27 327 18 324 23 327 28 325 34 323 34 322 30 320 32 312 28 310 21 312 16 305 13 304 16 296 13 290 21 289 18 293 10 299 9 304 3 309 6 308 10 312 8 314 4 317 4 319 0 325 0 325 -8 330 -3ZM304 -5 304 -10 310 -23 310 -14 304 -5ZM316 -8 309 -6 309 -9 313 -12 316 -8ZM600 138 593 126 577 118 578 116 590 123 600 131 600 138ZM589 133 594 134 594 139 590 141 591 145 585 146 575 153 567 153 553 147 554 145 568 146 571 141 572 146 577 146 587 139 586 132 589 133ZM480 182 481 117 515 129 528 139 527 144 546 151 548 157 540 159 542 164 551 172 556 181 562 181 563 186 570 187 568 190 574 193 579 193 574 194 576 196 573 198 568 194 548 192 530 171 515 166 511 168 507 165 509 170 505 171 506 173 492 173 501 175 504 180 496 184 480 182ZM541 110 544 111 539 112 535 112 536 111 541 110ZM630 157 627 159 623 158 617 148 617 145 620 146 630 157ZM71 26 73 23 81 28 81 34 93 29 104 42 104 58 112 73 112 77 110 74 105 77 83 62 83 58 77 51 71 26ZM246 49 228 47 225 60 221 61 222 65 218 68 215 76 206 78 195 75 188 80 173 80 167 74 166 70 182 76 180 75 182 67 187 62 200 59 210 45 217 50 217 43 220 41 221 46 223 47 221 41 226 39 224 36 229 34 238 20 238 24 241 21 246 25 245 31 250 30 250 33 254 32 263 37 261 39 253 40 255 47 246 49ZM145 -58 143 -52 146 -45 145 -35 134 -30 134 -27 129 -27 132 -18 120 -19 118 -16 114 -14 106 -16 107 -19 105 -22 104 -20 102 -19 93 -44 100 -54 118 -55 131 -50 130 -55 132 -56 135 -57 139 -54 145 -58ZM71 -117 65 -118 65 -115 61 -115 59 -111 50 -111 47 -99 44 -98 57 -75 59 -75 52 -61 61 -48 61 -41 66 -28 56 -10 55 -17 59 -28 56 -28 56 -42 52 -50 51 -48 48 -60 46 -72 47 -78 44 -77 38 -86 38 -79 34 -77 32 -80 33 -76 24 -69 23 -73 22 -70 19 -70 19 -74 17 -71 17 -77 12 -72 16 -88 10 -106 9 -102 5 -107 8 -106 10 -108 6 -113 2 -115 1 -112 1 -118 -2 -116 -8 -128 -7 -129 -4 -127 -4 -135 2 -138 3 -158 11 -156 17 -169 16 -171 21 -179 21 -186 32 -193 37 -194 41 -192 39 -197 46 -207 51 -203 53 -196 56 -197 57 -187 57 -178 48 -171 46 -165 46 -156 58 -158 57 -156 59 -148 65 -146 62 -137 69 -136 72 -129 81 -132 71 -117ZM220 41 217 43 217 49 214 48 211 44 220 41Z"/>
               <path class="id" d="M45 76 49 81 48 85 47 84 46 82 41 76 44 75 45 76ZM62 108 59 107 56 102 57 100 59 100 60 101 63 107 62 108ZM236 177 235 179 236 180 230 179 229 179 230 178 231 175 234 173 237 174 236 177ZM224 172 227 175 223 177 222 179 221 179 221 178 220 176 216 174 215 172 224 172ZM130 107 134 115 138 116 136 119 137 121 130 119 128 113 127 112 123 112 121 110 126 106 127 108 128 105 130 107ZM302 136 302 139 301 138 300 142 302 144 299 146 298 147 296 147 296 145 299 135 301 134 302 136ZM296 143 296 144 293 144 294 141 294 138 297 137 298 140 296 143ZM153 53 151 53 152 52 150 51 152 48 154 50 153 53ZM152 120 151 123 149 121 146 122 146 121 147 116 148 116 152 117 152 120ZM424 97 429 98 434 101 431 103 429 102 427 99 426 99 424 97ZM425 106 438 108 436 109 432 109 425 106ZM378 90 383 92 383 93 380 94 377 91 378 93 379 95 378 95 377 93 375 94 372 92 374 91 378 90ZM355 70 353 70 352 67 356 64 357 66 355 70ZM352 107 346 108 344 106 346 104 352 107ZM331 115 329 111 330 110 331 115ZM330 108 333 109 324 110 324 108 330 108ZM320 107 323 108 321 109 314 110 313 109 314 107 320 107ZM383 171 381 171 381 169 383 165 385 163 387 162 387 165 383 171ZM338 167 335 170 330 169 328 170 330 167 336 166 338 167ZM316 172 321 173 321 174 314 175 314 173 316 172ZM380 104 378 104 377 100 380 100 380 104ZM35 38 45 38 52 46 53 49 67 59 75 68 79 71 78 68 80 68 85 73 88 74 91 77 94 82 99 84 100 86 95 88 105 86 108 90 104 92 104 96 107 99 114 101 115 109 118 111 117 116 120 114 124 114 129 119 131 123 128 127 129 141 127 149 123 146 121 148 116 146 117 149 116 150 108 141 95 132 79 114 73 99 67 90 62 87 56 72 47 67 46 62 40 55 34 52 25 43 22 37 23 34 27 34 31 37 35 38ZM298 177 287 180 284 179 280 180 271 178 269 179 268 178 269 175 276 173 284 176 290 175 293 177 298 174 299 173 298 173 299 172 300 174 298 177ZM270 185 278 191 274 194 270 191 266 189 261 188 260 186 263 184 270 185ZM252 174 256 173 257 175 259 174 261 178 254 179 254 177 252 179 244 181 241 182 238 181 238 176 242 174 246 175 248 178 250 178 252 177 248 174 248 172 251 172 252 174ZM319 80 314 86 308 87 303 87 300 85 280 86 276 85 273 86 271 90 270 95 277 104 282 104 286 99 290 100 293 98 299 98 298 97 302 96 304 98 304 100 299 99 293 106 287 109 284 109 293 119 294 122 293 127 297 131 298 131 299 134 291 136 290 139 286 138 285 136 286 131 279 126 281 120 280 117 277 117 273 120 274 127 274 137 273 142 274 146 270 146 267 147 264 144 266 135 265 126 264 125 260 126 258 122 258 118 261 115 263 110 264 103 267 97 268 99 267 91 273 81 276 82 279 78 281 77 286 80 294 80 298 82 301 81 308 82 313 80 320 73 322 75 319 80ZM144 151 147 153 153 153 157 158 174 160 178 155 182 157 185 157 191 159 195 160 198 164 198 166 200 167 211 167 214 169 214 175 216 178 213 177 203 174 197 175 185 174 176 172 163 168 152 168 143 165 135 164 135 161 129 159 123 159 123 158 124 157 125 158 131 150 138 151 140 150 144 151ZM166 70 165 71 167 74 175 82 181 80 188 80 191 79 192 76 195 75 199 75 200 76 206 78 209 76 215 76 218 71 218 68 222 65 221 61 225 60 227 48 229 47 241 47 246 49 245 50 248 53 241 54 243 56 244 58 246 60 246 61 251 67 248 70 260 81 255 82 252 82 249 79 249 82 247 83 245 88 246 98 239 103 237 101 238 104 233 108 234 108 233 112 235 112 235 114 233 116 233 119 232 120 233 122 230 126 217 132 215 124 213 125 213 123 212 124 211 123 207 125 206 122 203 123 200 120 200 122 198 124 193 124 189 126 188 121 187 119 179 121 178 120 179 119 177 121 176 119 173 120 171 110 170 109 170 103 168 100 163 98 164 97 161 94 163 90 159 87 159 81 160 79 161 78 160 78 161 75 164 71 166 70ZM347 82 349 82 352 76 357 75 357 79 353 82 353 83 359 88 350 86 349 87 350 93 354 99 350 97 347 93 347 87 345 84 346 82 344 79 346 72 350 68 349 72 350 73 350 77 347 80 347 82ZM368 119 376 122 379 126 378 129 368 124 365 124 365 125 359 123 357 123 355 125 351 122 349 125 349 123 352 119 368 119ZM339 121 342 124 342 127 337 129 332 126 330 122 339 121ZM319 180 319 181 321 181 320 183 321 186 320 187 314 192 306 194 307 192 306 191 307 187 310 184 313 185 314 183 319 180ZM417 148 418 152 416 154 414 154 412 151 413 151 413 149 412 148 413 148 415 145 416 145 417 148ZM415 155 412 160 411 158 412 155 412 152 415 155ZM455 173 453 175 446 175 450 167 453 165 458 164 460 166 458 171 455 173ZM480 116 480 154 479 158 480 160 480 182 470 172 471 170 469 172 464 173 462 170 459 173 461 166 457 163 462 162 458 162 456 160 459 159 454 154 453 150 454 149 452 149 453 147 451 148 451 145 448 143 443 140 430 136 422 135 417 131 417 130 419 130 413 130 411 128 410 129 407 125 408 121 407 121 407 124 405 125 404 129 402 131 399 131 398 127 399 126 398 123 390 118 392 117 397 118 402 115 407 117 409 114 408 113 409 111 400 113 393 113 390 110 389 106 380 105 383 99 388 97 394 94 411 99 411 100 413 104 411 108 412 113 415 119 415 116 416 116 417 120 418 119 419 122 421 124 425 124 432 116 434 113 441 111 442 111 441 109 448 105 468 114 476 115 477 116 480 116ZM459 175 456 174 456 173 458 172 459 175ZM87 70 87 72 85 73 84 70 87 70ZM94 80 93 80 93 76 94 78 94 80ZM95 76 95 77 91 75 90 74 95 76ZM100 83 95 82 95 81 95 79 100 83ZM102 82 97 80 98 79 102 82ZM110 79 111 79 110 80 110 79ZM116 78 116 82 114 81 113 79 116 78ZM118 92 120 93 119 94 116 93 114 92 115 90 118 92ZM115 94 116 95 114 97 113 95 115 94ZM107 94 105 94 105 93 107 94ZM167 102 164 103 165 100 166 100 167 101 167 102ZM208 162 205 163 198 162 199 160 201 159 210 159 211 160 208 162ZM420 102 418 101 419 100 420 102ZM342 95 341 96 342 93 343 93 342 95ZM346 94 347 95 346 96 349 98 345 98 343 95 343 94 346 94ZM399 149 401 144 401 146 399 149ZM398 149 397 150 396 147 398 149ZM353 127 349 127 353 126 353 127ZM338 50 337 50 338 48 337 46 338 45 339 47 338 50ZM327 56 325 56 325 54 327 56ZM368 170 367 171 366 169 368 169 368 170ZM348 172 351 172 350 173 348 172ZM374 107 374 110 372 111 367 109 374 107ZM94 145 92 143 94 144 94 145ZM74 122 75 124 73 123 72 119 75 120 74 122ZM72 118 70 119 70 116 70 115 72 118ZM68 114 66 113 66 111 67 111 68 114ZM55 96 53 96 54 93 53 90 55 93 55 96ZM35 67 28 64 28 62 29 61 34 65 35 67ZM290 145 288 143 289 141 290 142 290 145ZM302 102 302 104 304 103 305 104 304 105 303 105 302 106 301 106 302 103 299 106 298 105 299 102 302 102ZM275 153 275 155 275 151 275 148 275 150 275 153ZM224 160 222 160 224 159 225 160 224 160ZM233 129 231 131 230 127 231 124 233 123 233 129ZM300 200 298 200 298 199 304 196 304 198 300 200ZM313 174 311 176 309 175 310 174 311 174 313 173 313 174ZM309 173 306 176 302 176 305 174 304 173 308 173 309 173ZM303 174 300 175 301 173 303 173 303 174ZM302 132 301 133 300 131 302 130 302 132ZM265 178 264 177 265 175 265 178ZM246 49 249 48 249 50 247 50 246 49ZM246 174 245 172 247 172 246 174ZM289 197 287 197 289 195 290 195 289 197Z"/>
               <path class="au" d="M502 211 501 214 504 218 508 235 510 237 515 234 523 242 524 257 529 262 531 270 530 276 533 279 534 284 544 288 547 292 558 298 559 300 557 301 562 307 567 321 570 322 570 318 575 322 576 320 578 332 588 339 599 353 602 359 601 373 606 385 606 392 603 397 599 422 595 434 588 439 583 447 578 465 572 475 569 496 565 499 549 501 539 510 532 511 535 512 534 516 532 513 529 513 528 510 524 509 525 505 520 508 517 506 521 503 519 500 514 503 517 504 505 512 495 507 484 506 474 500 468 492 467 481 460 472 463 472 463 469 452 472 455 465 451 454 447 466 439 467 440 463 444 463 445 454 449 447 450 441 448 435 442 448 434 453 429 460 430 464 426 464 421 459 424 459 422 452 417 443 413 442 411 437 412 435 407 431 398 428 392 429 381 423 359 425 343 432 329 432 312 440 306 450 302 452 284 450 269 452 265 457 246 466 230 462 226 457 220 455 220 446 224 448 227 443 227 425 221 412 219 395 203 362 204 361 206 366 208 365 204 355 207 361 209 360 210 363 212 363 212 358 204 342 210 315 211 314 211 321 217 314 237 302 244 302 261 295 266 295 280 290 288 278 293 275 291 267 293 264 300 257 306 268 306 263 308 264 309 262 305 258 306 255 318 257 314 256 316 251 315 252 314 250 314 247 317 245 321 247 318 244 320 242 324 243 322 239 326 234 327 237 330 237 331 232 336 233 339 229 345 232 352 239 351 246 356 240 361 241 362 244 363 241 366 244 366 241 368 240 364 236 368 227 373 225 372 221 376 218 376 216 379 217 383 212 384 214 394 214 397 213 397 208 391 206 388 204 390 203 420 213 429 209 427 213 429 213 431 216 433 216 433 213 435 211 439 215 435 219 435 224 429 225 430 231 425 241 438 251 447 255 452 260 460 262 462 266 472 270 478 267 484 253 486 243 485 230 486 221 489 219 487 215 490 212 492 201 496 198 499 209 502 211ZM601 357 602 347 603 346 604 348 601 357ZM465 258 462 259 466 257 467 258 465 258ZM437 230 439 230 437 233 439 234 433 234 434 230 437 228 437 230ZM375 208 375 210 371 209 371 208 373 204 375 208ZM376 205 383 203 385 206 385 207 379 211 375 207 374 203 376 205ZM446 473 450 474 451 475 441 477 438 477 435 475 436 474 443 472 446 473ZM605 376 605 379 604 377 605 376ZM533 276 533 278 532 277 531 276 533 276ZM520 538 533 543 538 543 540 541 545 541 550 538 552 539 553 557 552 554 549 562 550 570 547 569 548 567 546 565 545 568 543 565 542 571 540 570 539 576 530 575 530 573 532 572 529 572 525 567 522 557 525 561 525 559 522 557 518 546 517 536 520 538ZM509 529 509 522 511 527 509 529ZM550 524 553 529 551 531 548 526 550 524ZM544 573 543 574 542 573 543 571 544 573ZM553 532 555 533 552 533 550 532 553 532Z"/>
-              <text class="cty" x="262" y="232">INDONESIA</text>
+              <text class="cty" x="300" y="158">INDONESIA</text>
               <text class="cty" x="330" y="330">AUSTRALIA</text>
-              <text class="sea-l" x="34" y="396" transform="rotate(-8 34 396)">Indian Ocean</text>
+              <text class="sea-l" x="36" y="452" transform="rotate(-8 36 452)">Indian Ocean</text>
               <path class="route" d="M138 152 C 40 230 90 420 226 426"/>
               <path class="route-on" d="M138 152 C 40 230 90 420 226 426"/>
               <circle class="city" cx="138.5" cy="152.5" r="6"/>
@@ -717,7 +735,7 @@
               <text class="lbl" x="158" y="184" font-size="20">Bandung</text>
               <text class="lbl" x="242" y="436">Perth</text>
               <path class="heart" d="M232 400 c -4 -6 -14 -4 -12 4 c 1 5 12 11 12 11 c 0 0 11 -6 12 -11 c 2 -8 -8 -10 -12 -4 z" fill="#E66A6A" stroke="var(--ink)" stroke-width="1.6"/>
-              <text class="sea-l" x="70" y="472" transform="rotate(-6 70 472)">about 3,000 km, one way</text>
+              <text class="sea-l" x="40" y="512" transform="rotate(-5 40 512)">about 3,000 km, one way</text>
               <g class="jet"><g transform="rotate(90) scale(1.25) translate(-12 -12)"><path d="M21 15.5v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V8.5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5l8 2.5z" fill="var(--ink)" stroke="var(--card)" stroke-width="1"/></g></g>
             </svg>
           </div>

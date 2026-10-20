@@ -227,17 +227,17 @@
     .roles li:nth-child(3) { animation-delay: 6s; }
     .roles ul { margin: 0; padding: 0; }
     .roles span { padding: 0 .3em; background: linear-gradient(180deg, transparent 56%, var(--hl) 56%, var(--hl) 92%, transparent 92%); }
-    @keyframes role { 0% { opacity: 0; transform: translateY(100%); } 5%, 30% { opacity: 1; transform: translateY(0); } 36%, 100% { opacity: 0; transform: translateY(-100%); } }
+    @keyframes role { 0% { opacity: 0; transform: translateY(100%); } 4%, 33.3% { opacity: 1; transform: translateY(0); } 37.3%, 100% { opacity: 0; transform: translateY(-100%); } }
     .lede { margin: 0 auto; max-width: 64ch; color: var(--muted); font-size: clamp(.98rem, 1.6vw, 1.08rem); }
     .lede strong { color: var(--ink); font-weight: 700; }
 
     /* ── Where to next: three stickers with a handwritten note each ──── */
     .hub { display: flex; justify-content: center; flex-wrap: wrap; gap: clamp(14px, 2.4vw, 28px); margin: clamp(18px, 3.4vh, 36px) 0 0; padding: 0; list-style: none; }
-    .hub li { position: relative; }
+    .hub li { position: relative; flex: 0 1 262px; }
     .stick {
       --tilt: -2deg; --dot: var(--accent-soft);
       position: relative; display: flex; align-items: center; gap: .8rem;
-      min-width: 220px; padding: .85rem 1.15rem .85rem .85rem;
+      width: 100%; padding: .85rem 1.15rem .85rem .85rem;
       text-decoration: none; text-align: left;
       background: var(--card); border: 2px solid var(--line); border-radius: 16px;
       box-shadow: var(--shadow); transform: rotate(var(--tilt));
@@ -296,9 +296,14 @@
     .scene-wrap { --h: clamp(240px, calc(100vw / 3.92), 54vh); position: relative; height: var(--h); overflow: hidden; margin-top: auto; }
     .scene { display: block; height: 100%; width: max(100%, calc(var(--h) * 3.92)); }
     @media (max-width: 940px) {
-      .scene { animation: pan 52s ease-in-out infinite alternate; }
+      .scene { animation: pan 40s cubic-bezier(.55, 0, .45, 1) infinite alternate; }
     }
-    @keyframes pan { from { transform: translateX(0); } to { transform: translateX(calc(100vw - 100%)); } }
+    /* Rests on Jakarta, then the wind and sun, then Perth, and back again. */
+    @keyframes pan {
+      0%, 16% { transform: translateX(0); }
+      38%, 62% { transform: translateX(calc((100vw - 100%) / 2)); }
+      84%, 100% { transform: translateX(calc(100vw - 100%)); }
+    }
 
     .scene .lit { opacity: var(--lit-on); transition: opacity .6s; }
     .scene .day { opacity: var(--sun-on); }
@@ -319,12 +324,13 @@
 
     .spin { animation: spin var(--spd, 5s) linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .plane { animation: fly 34s linear infinite; animation-delay: -6s; }
+    .plane { animation: fly 38s linear infinite; animation-delay: -8s; }
     @keyframes fly {
-      0% { transform: translate(-260px, 34px); }
-      70% { transform: translate(2100px, -6px); }
-      100% { transform: translate(2100px, -6px); }
+      0% { transform: translate(-260px, 30px); }
+      72% { transform: translate(2140px, 0); }
+      100% { transform: translate(2140px, 0); }
     }
+    .contrail { opacity: calc(.25 + .55 * var(--sun-on)); }
     .train { animation: rail 30s linear infinite; animation-delay: -9s; }
     @keyframes rail { 0% { transform: translateX(-420px); } 78%, 100% { transform: translateX(2000px); } }
     .bus { animation: road 38s linear infinite; animation-delay: -20s; }
@@ -349,7 +355,7 @@
       .roles li + li::before { content: '·'; padding: 0 .3em; color: var(--muted); }
       .roles ul { display: flex; flex-wrap: wrap; justify-content: center; }
       .title .name path { stroke-dashoffset: 0; }
-      .plane { transform: translate(560px, 10px); }
+      .plane { transform: translate(780px, 14px); }
       .train { transform: translateX(1240px); }
       .bus { transform: translateX(380px); }
       .roo { transform: translateX(980px); }
@@ -380,7 +386,7 @@
       .formal { position: static; transform: rotate(-2deg); margin: .5rem auto 0; text-align: center; font-size: 1.12rem; }
       .formal svg { display: none; }
       .hub { flex-direction: column; align-items: stretch; width: min(100%, 360px); margin-left: auto; margin-right: auto; }
-      .stick { min-width: 0; }
+      .hub li { flex: none; }
     }
   </style>
 
@@ -540,6 +546,7 @@
           <pattern id="mullH" width="10" height="7" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="1.4" class="f-mull"/></pattern>
           <pattern id="lights" width="24" height="27" patternUnits="userSpaceOnUse"><rect x="2" y="3" width="3" height="4" class="f-lit"/><rect x="14" y="12" width="3" height="4" class="f-lit"/><rect x="8" y="21" width="3" height="4" class="f-lit"/><rect x="19" y="3" width="3" height="4" class="f-lit"/></pattern>
           <pattern id="lights2" width="18" height="22" patternUnits="userSpaceOnUse"><rect x="3" y="2" width="4" height="3" class="f-lit"/><rect x="11" y="13" width="4" height="3" class="f-lit"/></pattern>
+          <linearGradient id="contrail" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".9"/></linearGradient>
           <g id="turbine">
             <path class="f-blade2" d="M-4.5 0 L4.5 0 L2 -160 L-2 -160 Z"/>
             <rect class="f-blade" x="-5" y="-165" width="16" height="9" rx="4"/>
@@ -570,6 +577,27 @@
         </g>
         <g class="f-far2">
           <rect x="566" y="276" width="20" height="204"/><path d="M640 480 V262 l14 -12 l14 12 V480 Z"/><rect x="1556" y="290" width="24" height="190"/><rect x="1662" y="300" width="26" height="180"/>
+        </g>
+
+        <!-- Singapore Airlines A380-800, Jakarta to Perth: far away, so it passes behind the towers -->
+        <g class="plane" data-label="Singapore Airlines A380-800, the double-decker">
+          <g transform="translate(0 150) scale(.72)">
+            <rect class="contrail" x="-230" y="15" width="290" height="3.2" rx="1.6" fill="url(#contrail)"/>
+            <rect class="contrail" x="-250" y="20.5" width="320" height="3.2" rx="1.6" fill="url(#contrail)"/>
+            <path d="M8 -11 L -2 -48 L 12 -48 L 36 -12 Z" fill="#14306B"/>
+            <path d="M6 -40 c 5 -3 11 -1 14 3 c -4 -1 -7 0 -10 2 c 2 2 3 5 1 8 c -1 -4 -4 -6 -7 -6 c 2 -2 3 -4 2 -7 z" fill="#F7A823"/>
+            <path d="M6 -8 C 10 -12 22 -13 34 -13 L 154 -13 C 166 -13 174 -7 176 0 C 177 6 171 11 160 11 L 44 11 C 30 11 16 4 6 -3 Z" fill="#FBFCFE"/>
+            <path d="M40 8 L 160 8 C 166 8 170 7 172 5" stroke="#14306B" stroke-width="1.6" fill="none"/>
+            <path d="M40 10 L 160 10" stroke="#F7A823" stroke-width="1.2"/>
+            <path d="M44 -6 H150 M44 1 H156" stroke="#14306B" stroke-width="1.7" stroke-dasharray="1.6 2.6"/>
+            <path d="M164 -6 C 168 -6 171 -4 172 -2 L 165 -2 Z" fill="#14306B"/>
+            <path d="M4 -5 L 30 -3 L 12 -1 Z" fill="#C9D2DF"/>
+            <path d="M118 3 L 86 3 L 48 24 L 60 24 Z" fill="#DCE3EC"/>
+            <rect x="86" y="13" width="16" height="7" rx="3.5" fill="#C3CCDA"/><rect x="99" y="14" width="3" height="5" rx="1.5" fill="#4A5568"/>
+            <rect x="66" y="19" width="15" height="6.5" rx="3.2" fill="#C3CCDA"/><rect x="78" y="20" width="3" height="4.5" rx="1.5" fill="#4A5568"/>
+            <path d="M60 -13 h4 v6 h-4z M120 -13 h4 v6 h-4z" fill="#E3E8EF"/>
+            <circle class="blink" cx="20" cy="-46" r="2.2" fill="#FF5A5A"/>
+          </g>
         </g>
 
         <!-- Middle: hills, wind farm, solar farm, transmission line -->
@@ -643,19 +671,6 @@
           <path d="M540 430 H708 M540 440 H708 M540 450 H708 M540 460 H708 M540 470 H708" stroke="var(--mullion)" stroke-width="3"/>
           <rect x="532" y="414" width="18" height="66" class="f-cream"/>
           <rect x="560" y="428" width="140" height="48" fill="url(#lights2)" class="lit"/>
-        </g>
-        <g data-label="Bundaran HI: Selamat Datang!">
-          <ellipse cx="618" cy="490" rx="74" ry="8" class="f-water"/>
-          <ellipse cx="618" cy="488" rx="62" ry="5" class="f-water-hi"/>
-          <path class="jet" d="M586 488 q 6 -22 14 0" fill="none" stroke="var(--water-hi)" stroke-width="2.4"/>
-          <path class="jet" d="M636 488 q 6 -22 14 0" fill="none" stroke="var(--water-hi)" stroke-width="2.4"/>
-          <path class="jet" d="M612 488 q 6 -30 12 0" fill="none" stroke="var(--water-hi)" stroke-width="2.4"/>
-          <rect x="612" y="408" width="12" height="80" class="f-cream2"/>
-          <rect x="609" y="404" width="18" height="6" class="f-cream"/>
-          <path class="f-bronze" d="M611 404 l1 -9 l-1 -7 c 0 -3 6 -3 6 0 l-1 7 l1 9 z M619 404 l1 -10 l-1 -7 c 0 -3 6 -3 6 0 l-1 7 l1 10 z"/>
-          <circle cx="614" cy="383.5" r="2.4" class="f-bronze"/><circle cx="622" cy="382.5" r="2.4" class="f-bronze"/>
-          <path d="M612 390 l-4 -12 M626 389 l4 -12 M616 391 l3 4" stroke="var(--bronze)" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="607.5" cy="377" r="2.2" fill="#E66A6A"/>
         </g>
         <use href="#palm" transform="translate(684 480)"/><use href="#palm" transform="translate(372 480) scale(.85)"/><use href="#tree" transform="translate(268 480)"/><use href="#tree" transform="translate(20 480) scale(.9)"/>
 
@@ -732,6 +747,21 @@
         <path d="M0 549 H1920" stroke="var(--rail)" stroke-width="1" stroke-dasharray="2 7" opacity=".7"/>
         <rect x="0" y="554" width="1920" height="46" class="f-grass2"/>
 
+        <!-- Bundaran HI sits on the plaza, in front of Hotel Indonesia -->
+        <g data-label="Bundaran HI: Selamat Datang!">
+          <ellipse cx="618" cy="490" rx="74" ry="8" class="f-water"/>
+          <ellipse cx="618" cy="488" rx="62" ry="5" class="f-water-hi"/>
+          <path class="jet" d="M586 488 q 6 -22 14 0" fill="none" stroke="var(--water-hi)" stroke-width="2.4"/>
+          <path class="jet" d="M636 488 q 6 -22 14 0" fill="none" stroke="var(--water-hi)" stroke-width="2.4"/>
+          <path class="jet" d="M612 488 q 6 -30 12 0" fill="none" stroke="var(--water-hi)" stroke-width="2.4"/>
+          <rect x="612" y="408" width="12" height="80" class="f-cream2"/>
+          <rect x="609" y="404" width="18" height="6" class="f-cream"/>
+          <path class="f-bronze" d="M611 404 l1 -9 l-1 -7 c 0 -3 6 -3 6 0 l-1 7 l1 9 z M619 404 l1 -10 l-1 -7 c 0 -3 6 -3 6 0 l-1 7 l1 10 z"/>
+          <circle cx="614" cy="383.5" r="2.4" class="f-bronze"/><circle cx="622" cy="382.5" r="2.4" class="f-bronze"/>
+          <path d="M612 390 l-4 -12 M626 389 l4 -12 M616 391 l3 4" stroke="var(--bronze)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="607.5" cy="377" r="2.2" fill="#E66A6A"/>
+        </g>
+
         <!-- Kangaroo, hopping across the farms now and then -->
         <g class="roo" data-label="G'day, mate!">
           <g>
@@ -747,6 +777,7 @@
             <path d="M0 18 H84 V21 a5 5 0 0 1 -5 5 H5 a5 5 0 0 1 -5 -5 Z" fill="#119A48"/>
             <path d="M52 26 C 62 12 74 10 84 12 V26 Z" fill="#119A48"/>
             <rect x="6" y="5" width="60" height="9" rx="1.5" fill="#1F2633"/>
+            <path class="lit" d="M8 9.5 H64" stroke="var(--lit)" stroke-width="6" stroke-dasharray="11 2.6"/>
             <path d="M0 4 a4 4 0 0 1 4 -4 h4 v16 H0 z" fill="#1F2633"/>
             <rect x="2" y="1.5" width="10" height="2.4" fill="#FFB020"/>
             <rect x="70" y="5" width="7" height="12" rx="1" fill="#1F2633"/>
@@ -761,6 +792,7 @@
             <g id="car">
               <rect x="0" y="0" width="112" height="26" rx="3" fill="#F7F8FA"/>
               <rect x="0" y="5" width="112" height="8" fill="#1B1F27"/>
+              <path class="lit" d="M2 9 H110" stroke="var(--lit)" stroke-width="5" stroke-dasharray="15 3"/>
               <rect x="0" y="15" width="112" height="3.4" fill="#0F9D58"/>
               <rect x="20" y="3" width="9" height="20" rx="1" fill="#F2C200"/><rect x="22" y="5" width="5" height="8" fill="#1B1F27"/>
               <rect x="80" y="3" width="9" height="20" rx="1" fill="#F2C200"/><rect x="82" y="5" width="5" height="8" fill="#1B1F27"/>
@@ -770,6 +802,7 @@
             <use href="#car" x="114"/>
             <path d="M228 -2 H330 C 338 -2 344 4 346 12 L 348 22 C 348 25 346 26 343 26 H228 Z" fill="#F7F8FA"/>
             <path d="M228 5 H331 L338 5 C 341 8 343 12 344 15 L 330 15 L 330 13 H228 Z" fill="#1B1F27"/>
+            <path class="lit" d="M230 9 H328" stroke="var(--lit)" stroke-width="5" stroke-dasharray="15 3"/>
             <rect x="228" y="15" width="118" height="3.4" fill="#0F9D58"/>
             <rect x="248" y="3" width="9" height="20" rx="1" fill="#F2C200"/><rect x="250" y="5" width="5" height="8" fill="#1B1F27"/>
             <rect x="306" y="3" width="9" height="20" rx="1" fill="#F2C200"/><rect x="308" y="5" width="5" height="8" fill="#1B1F27"/>
@@ -779,23 +812,6 @@
           </g>
         </g>
 
-        <!-- Singapore Airlines A380-800, Jakarta to Perth -->
-        <g class="plane" data-label="Singapore Airlines A380-800, the double-decker">
-          <g transform="translate(0 168)">
-            <path d="M8 -11 L -2 -48 L 12 -48 L 36 -12 Z" fill="#14306B"/>
-            <path d="M6 -40 c 5 -3 11 -1 14 3 c -4 -1 -7 0 -10 2 c 2 2 3 5 1 8 c -1 -4 -4 -6 -7 -6 c 2 -2 3 -4 2 -7 z" fill="#F7A823"/>
-            <path d="M6 -8 C 10 -12 22 -13 34 -13 L 154 -13 C 166 -13 174 -7 176 0 C 177 6 171 11 160 11 L 44 11 C 30 11 16 4 6 -3 Z" fill="#FBFCFE"/>
-            <path d="M40 8 L 160 8 C 166 8 170 7 172 5" stroke="#14306B" stroke-width="1.6" fill="none"/>
-            <path d="M40 10 L 160 10" stroke="#F7A823" stroke-width="1.2"/>
-            <path d="M44 -6 H150 M44 1 H156" stroke="#14306B" stroke-width="1.7" stroke-dasharray="1.6 2.6"/>
-            <path d="M164 -6 C 168 -6 171 -4 172 -2 L 165 -2 Z" fill="#14306B"/>
-            <path d="M4 -5 L 30 -3 L 12 -1 Z" fill="#C9D2DF"/>
-            <path d="M118 3 L 86 3 L 48 24 L 60 24 Z" fill="#DCE3EC"/>
-            <rect x="86" y="13" width="16" height="7" rx="3.5" fill="#C3CCDA"/><rect x="99" y="14" width="3" height="5" rx="1.5" fill="#4A5568"/>
-            <rect x="66" y="19" width="15" height="6.5" rx="3.2" fill="#C3CCDA"/><rect x="78" y="20" width="3" height="4.5" rx="1.5" fill="#4A5568"/>
-            <path d="M60 -13 h4 v6 h-4z M120 -13 h4 v6 h-4z" fill="#E3E8EF"/>
-          </g>
-        </g>
       </svg>
     </div>
   </div>
