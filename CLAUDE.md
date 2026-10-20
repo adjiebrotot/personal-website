@@ -6,10 +6,10 @@ Static personal site at www.adjiebrotots.com, published by GitHub Pages. Sister 
 
 ## Published URLs are permanent
 
-- `/`, `/about/`, `/archive/` and every archived Blogger post (`/YYYY/MM/slug.html`, listed in
-  `_build/archive-urls.txt`) are live and linked from elsewhere. Never delete or rename one.
-- `p/siapa-adjie.html` redirects to `/about/`; `404.html` forwards old Blogger label, year and
-  feed URLs. Keep both.
+- `/` and `/about/` are linked from the tool site, the blog and elsewhere. Never rename either;
+  a new page gets its own path and a line in `_build/sitemap.py`.
+- The old Blogger blog that used to live on this domain is retired on purpose. Don't bring its
+  posts back.
 
 ## One identity across www, tool and blog
 

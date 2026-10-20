@@ -32,7 +32,9 @@ await page.screenshot({ path: 'assets/img/og.png' });
 
 await page.goto(base + '/about/', { waitUntil: 'load' });
 await page.evaluate(() => {
-  const map = document.querySelector('.map-card').cloneNode(true);
+  const map = document.createElement('div');
+  map.className = 'map-card';
+  map.appendChild(document.getElementById('map').cloneNode(true));
   document.body.innerHTML = '';
   const wrap = document.createElement('div');
   wrap.className = 'og';
@@ -43,13 +45,13 @@ await page.evaluate(() => {
 });
 await page.addStyleTag({ content: `
   html, body { margin: 0; height: 630px; overflow: hidden; background: linear-gradient(135deg, #D6E6FF, #F3F7FF); }
-  .og { display: grid; grid-template-columns: 1fr 520px; gap: 48px; align-items: center; height: 630px; padding: 0 64px; }
+  .og { display: grid; grid-template-columns: 1fr 560px; gap: 48px; align-items: center; height: 630px; padding: 0 64px; }
   .og h1 { font-size: 84px; line-height: .98; letter-spacing: -.045em; margin: 0 0 22px; }
   .og h1 span { color: #0052CC; }
   .og-eyebrow { font-size: 40px; color: #B45309; margin: 0 0 6px; transform: rotate(-3deg); display: inline-block; }
   .og-name { font-size: 34px; font-weight: 800; margin: 0; }
   .og-sub { font-size: 24px; color: #4C5B76; margin: 4px 0 0; }
-  .map-card { width: 520px; border: 3px solid #14203A; border-radius: 22px; box-shadow: 8px 8px 0 #14203A; overflow: hidden; transform: rotate(1.5deg); }
+  .map-card { width: 560px; } .map-card svg { width: 100%; height: auto; display: block; -webkit-mask-image: radial-gradient(closest-side, #000 76%, transparent); mask-image: radial-gradient(closest-side, #000 76%, transparent); }
 `});
 await page.waitForTimeout(400);
 await page.screenshot({ path: 'assets/img/og-about.png' });

@@ -8,19 +8,6 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg">
   <script>
-    /* Addresses from the old Blogger blog that were never single posts.
-       Posts themselves still exist at their old paths (see /archive/). */
-    (function () {
-      var p = location.pathname, m;
-      if (/^\/search\/label\//.test(p)) {
-        var label = decodeURIComponent(p.split('/')[3] || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-        return location.replace('/archive/' + (label ? '#' + label : ''));
-      }
-      if ((m = p.match(/^\/(20\d\d)(?:\/\d\d)?\/?$/))) return location.replace('/archive/#y' + m[1]);
-      if (/^\/(search|feeds)(\/|$)/.test(p)) return location.replace('/archive/');
-      if (/^\/p\//.test(p)) return location.replace('/about/');
-      if (/\.html\/+$/.test(p)) return location.replace(p.replace(/\/+$/, ''));
-    })();
     (function () {
       var t = null;
       try { t = localStorage.getItem('www-theme'); } catch (e) {}
@@ -70,7 +57,6 @@
       <a href="/about/">About me</a>
       <a href="https://blog.adjiebrotots.com/">Blog</a>
       <a href="https://tool.adjiebrotots.com/">Tools</a>
-      <a href="/archive/">Old posts</a>
     </nav>
   </main>
 </body>

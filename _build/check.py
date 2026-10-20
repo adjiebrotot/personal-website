@@ -3,7 +3,7 @@
 
     python3 _build/check.py
 
-Fails (exit 1) on anything that would hurt a reader, a crawler or an old link.
+Fails (exit 1) on anything that would hurt a reader or a crawler.
 """
 import glob
 import gzip
@@ -16,7 +16,7 @@ from html.parser import HTMLParser
 
 SITE = 'https://www.adjiebrotots.com'
 PERSON = SITE + '/#person'
-MAIN = ['index.html', 'about/index.html', '404.html', 'archive/index.html']
+MAIN = ['index.html', 'about/index.html', '404.html']
 # Notes drawn from data-note attributes: never part of the page text.
 NOTES = ['not that important', 'as words', 'hope it can help you too']
 problems = []
@@ -87,13 +87,9 @@ def check_page(f):
             whole = m.group(0)
             if tag == 'link' and not re.search(r'rel="(stylesheet|preload|modulepreload)"', whole):
                 continue
-            if f.startswith(('20', 'archive')) and tag in ('img', 'iframe'):
-                continue  # old posts keep their original hotlinked images and videos
             bad(f, 'external %s: %s' % (tag, m.group(1)))
     for m in re.finditer(r'<img\b[^>]*>', s):
         tagtxt = m.group(0)
-        if f.startswith('20'):
-            continue
         if 'alt=' not in tagtxt:
             bad(f, 'img without alt: %s' % tagtxt[:80])
         if not ('width=' in tagtxt and 'height=' in tagtxt):
@@ -120,7 +116,7 @@ def check_page(f):
 
 
 def main():
-    pages = MAIN + ['p/siapa-adjie.html'] + sorted(glob.glob('20[0-9][0-9]/[0-9][0-9]/*.html'))
+    pages = list(MAIN)
     sizes = {}
     for f in pages:
         if not os.path.exists(f):
@@ -129,12 +125,6 @@ def main():
         s = check_page(f)
         if f in MAIN[:2]:
             sizes[f] = (len(s.encode()), len(gzip.compress(s.encode(), 9)))
-    # Old Blogger addresses: every one of them must still exist.
-    with open('_build/archive-urls.txt', encoding='utf-8') as fh:
-        for line in fh:
-            path = line.split('\t')[0]
-            if not os.path.exists(path.lstrip('/')):
-                bad(path, 'archived post is missing')
     # Sitemap: every URL is a real page.
     sm = open('sitemap.xml', encoding='utf-8').read()
     for loc in re.findall(r'<loc>([^<]+)</loc>', sm):
