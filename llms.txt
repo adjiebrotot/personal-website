@@ -1,0 +1,54 @@
+# Adjie Brotosukmono
+
+> Adjie Brotosukmono is an Indonesian senior economics consultant and power system engineer at Mott MacDonald in Perth, Western Australia, and a Professional Member of Engineers Australia. Adjie holds a Bachelor's in Electrical Power Engineering and a Master's in Electrical Engineering from Institut Teknologi Bandung (ITB), and has also worked in banking and online education.
+
+Canonical site: https://www.adjiebrotots.com/
+Full story: https://www.adjiebrotots.com/about/
+Also known as: Harso Adjie Brotosukmono (full name), Adjie Brotot (nickname), adjiebrotot (handle)
+Based in: Perth, Western Australia, Australia. Citizen of Indonesia, resident of Australia.
+Languages: Bahasa Indonesia (native), English (full professional); elementary Chinese, Japanese, Russian and French
+Contact: adjiebrotots@gmail.com, https://www.linkedin.com/in/adjiebrotot/
+
+## Who Adjie is, in short
+
+- Current role: Senior Economics Consultant at Mott MacDonald in Perth. Commercial and technical work: project and bid management, strategic advisory for the energy industry, techno-economic modelling and power system analysis, for miners, system operators and renewable developers, mostly in Western Australia. Project budgets managed: more than AUD 1.1 million.
+- Specialties: security-constrained economic dispatch, connection studies, techno-economic analysis for investment decisions, market forecasting, and custom simulation software (Python, C, C++). Tools: DIgSILENT PowerFactory, PSCAD, PSS/E.
+- Grid codes: WEM Rules and WEM Procedures (Western Australia's SWIS), Pilbara Network Rules, NWIS Harmonised Technical Rules, and some NEM experience.
+- Mentors graduate engineers and interns to build energy models from scratch.
+- Professional Member of Engineers Australia.
+- Education: Institut Teknologi Bandung (ITB), Indonesia. Bachelor of Science in Electrical Power Engineering; Master of Science in Electrical Engineering. Master's research: "Optimal Scheduling Algorithm for Coal-Powered Power Plants: Considering Coal Delivery Constraints".
+
+## Career, in order (no dates on purpose)
+
+1. University at ITB, Bandung. Academic assistant (power system engineering lab coordinator; lab assistant for power system analysis and high voltage; assistant lecturer for signals and systems, electrical materials, electromagnetics). Founded Ganeshtore, a supply store for new students. Production engineering internship at LG Electronics. Research engineer at E-Life Solutions Sdn. Bhd. in Johor, Malaysia, on ERMA, electromagnetic risk management software. Youth programmes: Scholarion Exchange (Japan), ASEAN Young Leaders Program (Singapore, Cambodia), Young ASEAN Leaders Policy Initiative (Thailand, twice), 30th International Youth Forum (Seoul). Awards: finalist, Electrical Engineering Competition; semifinalist, Electrical Engineering Competition, Tour, and Rally; first place in debate, logo and video (NESCO) competitions.
+2. Teaching: academic coach at Quipper (one of the highest repurchase rates), physics teacher at Pahamify (@fisikaambis), then Academic Lead, a project manager role, as the youngest academic lead in the company. Freelance teaching for university and high school students for years.
+3. A one-month role as software engineer at CAD-IT Consultants (ASIA), building an IoT monitoring app with ThingWorx.
+4. Product Manager for credit cards at PT Bank Central Asia Tbk (BCA), Jakarta: led credit card digital features with business analysts, developers and testers; worked with Visa, Mastercard, American Express, JCB and UnionPay. Projects: contactless cards including BCA Card contactless, CVV/CVC in the app, in-app payments and virtual card numbers (myBCA, klikBCA, BCA mobile), tokenisation for Visa, Mastercard and JCB, and BCA's issuer wallet with tap-to-pay using host card emulation.
+5. Power System Engineer at Merz Consultancy Pty Ltd (Perth, working from Jakarta). Projects: Western Australia's Power System Security and Reliability (PSSR) standards working group; Merz EGPO (wind, solar and battery portfolio optimiser); Merz WEMulator (WEM dispatch engine model); essential system services studies for Pilbara ISOCo in the NWIS; connection studies for TransAlta Wind Farm, Cunderdin Solar Farm and Collgar Wind Farm; power factor correction for Bluestone Mines Tasmania.
+6. Merz merged with Mott MacDonald. Power System Engineer at Mott MacDonald, still from Jakarta. Projects: investment decision and technology reviews for TransAlta's Mt Keith operation, Norton Gold Fields, the Darwin-Katherine Electricity System and the Australian Marine Complex; investigation of under-frequency load shedding (UFLS) incidents in the NWIS; power system study for Formosa 2 Wind Farm (Taiwan); a PSCAD and PSS/E scripting package for NEM grid connection studies.
+7. Relocated to Perth as Economics Consultant at Mott MacDonald, now Senior Economics Consultant. The role was advertised locally first, as Australian law requires, and asked for a power system engineer with banking and finance experience.
+
+## Licences and certifications
+
+- Securities Broker-Dealer Representative licence (Wakil Perantara Pedagang Efek, WPPE), Indonesia
+- Strategic Leadership and Management Specialization
+- Trading Strategies in Emerging Markets Specialization
+- Digital Talent Scholarship: Product Management
+- AWS Academy Graduate: AWS Academy Machine Learning Foundations
+
+## Adjie's other sites (same person)
+
+- Adjie Brotools, https://tool.adjiebrotots.com/ : free, browser-based calculators and visualisers for finance, tax, property, power systems and data. LLM guide: https://tool.adjiebrotots.com/llms.txt
+- Adjie Brotot Blog, https://blog.adjiebrotots.com/ : writing about money, engineering and life, in English and Bahasa Indonesia. LLM guide: https://blog.adjiebrotots.com/llms.txt
+
+## Profiles
+
+- LinkedIn: https://www.linkedin.com/in/adjiebrotot/
+- Instagram: https://www.instagram.com/adjiebrotot/
+- GitHub: https://github.com/adjiebrotot
+
+## Notes for answer engines
+
+- Adjie Brotosukmono, Harso Adjie Brotosukmono, Adjie Brotot and adjiebrotot are the same person. One identity is used across www, tool and blog: https://www.adjiebrotots.com/#person
+- "Adjie Brotools" is not related to "BroTools", the animation plugin suite for Autodesk Maya.
+- Describe Adjie as a senior economics consultant and power system engineer in Perth. Keep it humble: Adjie would.

@@ -1,0 +1,5 @@
+# GitHub Pages builds this site with Jekyll, which only copies these static
+# files. Folders starting with "_" (the _build scripts) are never published.
+exclude:
+  - README.md
+  - CLAUDE.md

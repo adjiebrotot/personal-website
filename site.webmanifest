@@ -1,0 +1,15 @@
+{
+  "name": "Adjie Brotosukmono",
+  "short_name": "Adjie",
+  "description": "Energy economics consultant and power system engineer in Perth, Western Australia.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#DDEAFF",
+  "theme_color": "#0052CC",
+  "icons": [
+    { "src": "/assets/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/img/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/img/logo.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
