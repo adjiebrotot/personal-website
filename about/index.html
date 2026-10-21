@@ -284,6 +284,10 @@
     .stamp.wide > p { grid-column: 1; grid-row: 4; margin-bottom: 0; }
     .stamp.wide .snap { grid-column: 2; grid-row: 1 / -1; justify-self: stretch; align-self: center; margin: 4px; }
 
+    /* Teaching: the laptop lid follows the scroll, open on the way down, shut on the way back up. */
+    .laptop .lid { transform-box: view-box; transform-origin: 200px 229px; transform: scaleY(calc(.05 + .95 * var(--p, 1))); }
+    .laptop .screen { opacity: var(--p, 1); }
+
     /* Map */
     .map .nb { fill: var(--land-nb); }
     .map .id { fill: var(--land-id); }
@@ -902,34 +906,28 @@
           <p>I never really stopped teaching. For years, on the side, I taught calculus, physics, Python and C++, thermodynamics and circuits to university students, prepared high schoolers for UTBK, SAT, ACT, A-Level and IB, and coached olympiad teams. I worked with Excelsis Learning Center, Kejarcita, Kabisa Education, Generasi Cerdas Indonesia, Schoters and several schools.</p>
         </div>
         <div class="art rise">
-          <svg class="ill" viewBox="0 0 400 300" role="img" aria-labelledby="ill2">
-              <title id="ill2">Flat drawing of a laptop showing an online physics lesson, with a small ladder and a flag beside it</title>
-                            <g class="hand" font-family="Caveat, cursive" font-weight="700" fill="var(--muted)">
+          <svg class="ill laptop" data-scrub viewBox="0 0 400 300" role="img" aria-labelledby="ill2">
+              <title id="ill2">Flat drawing of a laptop showing an online physics lesson, its lid opening as you scroll down to it</title>
+              <g class="hand" font-family="Caveat, cursive" font-weight="700" fill="var(--muted)">
                 <text x="26" y="46" font-size="26" transform="rotate(-8 26 46)">v = s / t</text>
                 <text x="40" y="286" font-size="23" transform="rotate(-4 40 286)">P = V × I</text>
                 <text x="236" y="288" font-size="23" transform="rotate(3 236 288)">V = I × R</text>
               </g>
+              <g class="lid">
+                <rect x="80" y="70" width="240" height="160" rx="10" fill="var(--ink)"/>
+                <g class="screen">
+                  <rect x="90" y="80" width="220" height="140" rx="4" fill="#F7FAFF"/>
+                  <rect x="100" y="90" width="140" height="92" rx="4" fill="#1F3B34"/>
+                  <text x="114" y="128" font-family="Caveat, cursive" font-weight="700" font-size="30" fill="#EAF1FF">F = m · a</text>
+                  <path d="M114 150 q 20 -18 40 0 t 40 0 t 40 0" stroke="#FFD28C" stroke-width="2.4" fill="none"/>
+                  <circle cx="276" cy="112" r="18" fill="#FFD28C"/><circle cx="276" cy="106" r="7" fill="#14203A"/><path d="M262 126 q 14 -14 28 0" fill="#14203A"/>
+                  <rect x="252" y="140" width="48" height="8" rx="4" fill="#D9E2F1"/><rect x="252" y="154" width="36" height="8" rx="4" fill="#D9E2F1"/>
+                  <circle cx="170" cy="202" r="11" fill="#E66A6A"/><path d="M166 196 L176 202 L166 208 Z" fill="#fff"/>
+                  <rect x="100" y="198" width="56" height="6" rx="3" fill="#D9E2F1"/><rect x="186" y="198" width="114" height="6" rx="3" fill="#D9E2F1"/><rect x="186" y="198" width="60" height="6" rx="3" fill="#E66A6A"/>
+                </g>
+              </g>
               <path d="M60 228 L340 228 L364 252 H36 Z" fill="var(--steel)"/>
-              <rect x="80" y="70" width="240" height="160" rx="10" fill="var(--ink)"/>
-              <rect x="90" y="80" width="220" height="140" rx="4" fill="#F7FAFF"/>
-              <rect x="100" y="90" width="140" height="92" rx="4" fill="#1F3B34"/>
-              <text x="114" y="128" font-family="Caveat, cursive" font-weight="700" font-size="30" fill="#EAF1FF">F = m · a</text>
-              <path d="M114 150 q 20 -18 40 0 t 40 0 t 40 0" stroke="#FFD28C" stroke-width="2.4" fill="none"/>
-              <circle cx="276" cy="112" r="18" fill="#FFD28C"/><circle cx="276" cy="106" r="7" fill="#14203A"/><path d="M262 126 q 14 -14 28 0" fill="#14203A"/>
-              <rect x="252" y="140" width="48" height="8" rx="4" fill="#D9E2F1"/><rect x="252" y="154" width="36" height="8" rx="4" fill="#D9E2F1"/>
-              <circle cx="170" cy="202" r="11" fill="#E66A6A"/><path d="M166 196 L176 202 L166 208 Z" fill="#fff"/>
-              <rect x="100" y="198" width="56" height="6" rx="3" fill="#D9E2F1"/><rect x="186" y="198" width="114" height="6" rx="3" fill="#D9E2F1"/><rect x="186" y="198" width="60" height="6" rx="3" fill="#E66A6A"/>
-              <g transform="translate(250 30)">
-                <rect x="0" y="0" width="74" height="30" rx="14" fill="#FFFFFF" stroke="var(--ink)" stroke-width="2"/>
-                <path d="M16 28 l-6 10 l14 -9" fill="#FFFFFF" stroke="var(--ink)" stroke-width="2"/>
-                <text x="12" y="21" font-family="Caveat, cursive" font-weight="700" font-size="20" fill="#14203A">Paham!</text>
-              </g>
-              <g transform="translate(350 76)" stroke="var(--gold)" stroke-width="4" stroke-linecap="round">
-                <path d="M0 170 L14 0 M30 170 L44 0 M3 140 h28 M5 110 h28 M8 80 h28 M10 50 h28 M12 20 h28"/>
-                <path d="M30 0 V-34" stroke="var(--ink)" stroke-width="3"/>
-              </g>
-              <path d="M380 42 l-28 7 l28 7 z" fill="#E66A6A" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
-              <text x="328" y="70" font-family="Caveat, cursive" font-weight="700" font-size="19" fill="var(--gold)" transform="rotate(-12 328 70)">lead!</text>
+              <path d="M172 240 h56" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" opacity=".35"/>
             </svg>
         </div>
       </section>
@@ -1263,6 +1261,16 @@
         map.classList.add('go');
       }
 
+      /* Scroll-linked art: --p runs 0 to 1 as its stop comes up the screen, and back as the reader scrolls up. */
+      var scrubs = [].slice.call(document.querySelectorAll('[data-scrub]'));
+      function scrub() {
+        scrubs.forEach(function (el) {
+          var top = el.closest('.stop').getBoundingClientRect().top;
+          var p = still ? 1 : Math.max(0, Math.min(1, (innerHeight * .95 - top) / (innerHeight * .55)));
+          el.style.setProperty('--p', p.toFixed(3));
+        });
+      }
+
       /* The trail: a winding line through the five stops that fills in as you read. */
       var trail = document.getElementById('trail'), svg = document.getElementById('trailSvg');
       var bg = document.getElementById('trailBg'), on = document.getElementById('trailOn'), walker = document.getElementById('walker');
@@ -1289,6 +1297,7 @@
       }
       function update() {
         ticking = false;
+        scrub();
         var box = trail.getBoundingClientRect();
         var p = (innerHeight * .55 - box.top) / box.height;
         p = Math.max(0, Math.min(1, p));
