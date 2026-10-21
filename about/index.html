@@ -43,7 +43,8 @@
       var d = document.documentElement, t = null;
       d.className += ' js';
       try { t = localStorage.getItem('www-theme'); } catch (e) {}
-      if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t);
+      if (t !== 'light' && t !== 'dark') { var h = new Date().getHours(); t = h >= 6 && h < 18 ? 'light' : 'dark'; }
+      d.setAttribute('data-theme', t);
     })();
   </script>
 

@@ -41,11 +41,12 @@
   <link rel="preload" href="/assets/fonts/caveat.woff2" as="font" type="font/woff2" crossorigin>
 
   <script>
-    /* Day or night before the first paint: the reader's own pick, else their system's. */
+    /* Day or night before the first paint: the reader's own pick, else their local clock (day from 6:00 to 18:00). */
     (function () {
       var t = null;
       try { t = localStorage.getItem('www-theme'); } catch (e) {}
-      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      if (t !== 'light' && t !== 'dark') { var h = new Date().getHours(); t = h >= 6 && h < 18 ? 'light' : 'dark'; }
+      document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
 
