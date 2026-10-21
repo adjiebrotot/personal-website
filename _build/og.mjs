@@ -11,7 +11,7 @@ const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, col
 
 await page.goto(base + '/', { waitUntil: 'load' });
 await page.addStyleTag({ content: `
-  .top, .lede, .hub, .socials, .formal, .ground, .sky .cloud { display: none !important; }
+  .top, .loc, .hub, .socials, .formal, .ground, .sky .cloud { display: none !important; }
   .stage { min-height: 630px !important; height: 630px; }
   .hello { padding-top: 34px !important; }
   .title { font-size: 92px !important; }

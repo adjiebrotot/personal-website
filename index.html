@@ -261,8 +261,8 @@
     .roles ul { margin: 0; padding: 0; }
     .roles span { padding: 0 .3em; background: linear-gradient(180deg, transparent 56%, var(--hl) 56%, var(--hl) 92%, transparent 92%); }
     @keyframes role { 0% { opacity: 0; transform: translateY(100%); } 4%, 33.3% { opacity: 1; transform: translateY(0); } 37.3%, 100% { opacity: 0; transform: translateY(-100%); } }
-    .lede { margin: 0 auto; max-width: 64ch; color: var(--muted); font-size: clamp(.98rem, 1.6vw, 1.08rem); }
-    .lede strong { color: var(--ink); font-weight: 700; }
+    .loc { display: flex; justify-content: center; align-items: center; gap: .3em; margin: 0 auto; color: var(--muted); font-size: clamp(.98rem, 1.6vw, 1.08rem); font-weight: 600; }
+    .loc svg { width: 1.05em; height: 1.05em; flex: none; color: var(--accent); }
 
     /* ── Where to next: three stickers with a handwritten note each ──── */
     .hub { display: flex; justify-content: center; flex-wrap: wrap; gap: clamp(14px, 2.4vw, 28px); margin: clamp(18px, 3.4vh, 36px) 0 0; padding: 0; list-style: none; }
@@ -556,28 +556,31 @@
           },
           {
             "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "certificate",
+            "name": "AWS Academy Graduate: AWS Academy Cloud Architecting",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Amazon Web Services"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "certificate",
+            "name": "AWS Academy Graduate: AWS Academy Machine Learning Foundations",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Amazon Web Services"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
             "credentialCategory": "license",
             "name": "Securities Broker-Dealer Representative (Wakil Perantara Pedagang Efek, WPPE)"
           },
           {
             "@type": "EducationalOccupationalCredential",
-            "credentialCategory": "certificate",
-            "name": "Strategic Leadership and Management Specialization"
-          },
-          {
-            "@type": "EducationalOccupationalCredential",
-            "credentialCategory": "certificate",
-            "name": "Trading Strategies in Emerging Markets Specialization"
-          },
-          {
-            "@type": "EducationalOccupationalCredential",
-            "credentialCategory": "certificate",
-            "name": "Digital Talent Scholarship: Product Management"
-          },
-          {
-            "@type": "EducationalOccupationalCredential",
-            "credentialCategory": "certificate",
-            "name": "AWS Academy Graduate: AWS Academy Machine Learning Foundations"
+            "credentialCategory": "license",
+            "name": "Investment Manager Representative (Wakil Manajer Investasi, WMI)"
           }
         ],
         "hasOccupation": [
@@ -749,7 +752,7 @@
           <li><span>Project Manager</span><span class="vh">.</span></li>
         </ul>
       </div>
-      <p class="lede">An Indonesian engineer at <strong>Mott MacDonald</strong> in <strong>Perth</strong>, working out what energy projects are worth. Bandung trained, Jakarta seasoned, and still looking for a way to like Vegemite.</p>
+      <p class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9.5" r="2.6"/></svg>Perth, Australia</p>
 
       <ul class="hub">
         <li>
@@ -1358,25 +1361,6 @@
           'Smells like toastie.'
         ]
       };
-      var bags = { before: [], after: [] };
-      var LAP = 18000, lap = -1, plan = null, spoke = false;
-      // Shuffled bags, so no line comes round again until the rest have had a turn.
-      var draw = function (k) {
-        if (!bags[k].length) bags[k] = lines[k].slice().sort(function () { return Math.random() - .5; });
-        return bags[k].pop();
-      };
-      var newLap = function () {
-        plan = null;
-        // Quiet after it has spoken, chattier after a quiet lap: no fixed rhythm to it.
-        if (Math.random() < (spoke ? .2 : .55)) {
-          var k = Math.random() < .5 ? 'before' : 'after', text = draw(k);
-          var dur = k === 'before' ? Math.min(5000, 1800 + 40 * text.length) : Math.min(4000, 1800 + 45 * text.length);
-          var from = k === 'before' ? rand(400, 5600 - dur) : rand(7900, 12400 - dur);
-          plan = { text: text, from: from, to: from + dur };
-        }
-        spoke = !!plan;
-      };
-
       /* The towers: a window lights up on the floor Adjie works (or worked) on, overtime after dark. */
       var deskSay = bubble(document.getElementById('deskSay'));
       var desks = [
@@ -1384,32 +1368,57 @@
         { el: document.getElementById('deskBca'), text: function () { return 'Adjie was working here' + (isDark() ? ' (overtime)' : ''); } }
       ];
       var deskAt = function (d) { return function () { var r = d.el.getBoundingClientRect(); return { x: (r.left + r.right) / 2, y: r.top }; }; };
-      var desk = null, deskUntil = 0, deskNext = performance.now() + rand(5000, 20000);
+      var inFrame = function (d) { var w = wrap.getBoundingClientRect(), x = deskAt(d)().x - w.left; return x > 28 && x < w.width - 28; };
+
+      // Every callout, the roo's and the towers', goes in one shuffled bag, so each one comes round
+      // as often as any other and none again until the rest have had a turn. Without motion the roo
+      // stands still and keeps quiet, so only the towers talk.
+      var all = desks.map(function (d) { return { desk: d }; });
+      if (rooAnim) ['before', 'after'].forEach(function (k) { lines[k].forEach(function (t) { all.push({ k: k, text: t }); }); });
+      var bag = [];
+      var draw = function () {
+        if (!bag.length) bag = all.slice().sort(function () { return Math.random() - .5; });
+        return bag.pop();
+      };
+      // At most one callout a lap. Quiet after one has spoken, chattier after a quiet lap: no fixed rhythm to it.
+      var LAP = 18000, lap = -1, plan = null, spoke = false, clock = 0;
+      var newLap = function () {
+        plan = null;
+        if (Math.random() < (spoke ? .35 : .75)) {
+          var c = draw(), dur, from;
+          if (c.desk) { dur = rand(3200, 4800); from = rand(400, LAP - 5000); }
+          else {
+            dur = c.k === 'before' ? Math.min(5000, 1800 + 40 * c.text.length) : Math.min(4000, 1800 + 45 * c.text.length);
+            from = c.k === 'before' ? rand(400, 5600 - dur) : rand(7900, 12400 - dur);
+          }
+          plan = { c: c, from: from, to: from + dur };
+        }
+        spoke = !!plan;
+      };
+      var shown = null;
+      var stop = function () {
+        if (!shown) return;
+        if (shown.desk) { deskSay.hide(); shown.desk.el.classList.remove('on'); } else rooSay.hide();
+        shown = null;
+      };
 
       setInterval(function () {
         if (wrap.classList.contains('is-paused')) return;
-        var now = performance.now();
-        if (rooAnim) {
-          var t = rooAnim.currentTime || 0, n = Math.floor(t / LAP), at = t % LAP;
-          if (n !== lap) { lap = n; rooSay.hide(); newLap(); }
-          var live = plan && at >= plan.from && at < plan.to;
-          // One bubble at a time: a line that comes up while a tower is talking just goes unsaid.
-          if (live && !rooSay.busy() && !desk) { var said = plan.text; rooSay.show(rooAt, function () { return said; }); }
-          else if (!live && rooSay.busy()) rooSay.hide();
-        }
-        if (desk && now > deskUntil) {
-          deskSay.hide(); desk.el.classList.remove('on'); desk = null;
-          deskNext = now + rand(15000, 45000);
-        } else if (!desk && now > deskNext && !rooSay.busy()) {
-          // Only a tower that's in frame right now; on a phone the scene pans, so try again shortly.
-          var w = wrap.getBoundingClientRect();
-          var seen = desks.filter(function (d) { var x = deskAt(d)().x - w.left; return x > 28 && x < w.width - 28; });
-          if (!seen.length) { deskNext = now + rand(2000, 6000); return; }
-          desk = seen[Math.floor(Math.random() * seen.length)];
-          desk.el.classList.add('on');
-          deskSay.show(deskAt(desk), desk.text);
-          deskUntil = now + rand(3200, 4800);
-        }
+        // The roo's lines are timed off its own animation; without one, a plain clock keeps the laps.
+        clock += 150;
+        var t = rooAnim ? rooAnim.currentTime || 0 : clock, n = Math.floor(t / LAP), at = t % LAP;
+        if (n !== lap) { lap = n; stop(); newLap(); }
+        var live = plan && at >= plan.from && at < plan.to;
+        if (!live) { stop(); return; }
+        if (shown) return;
+        var c = plan.c;
+        if (c.desk) {
+          // On a phone the scene pans: a tower out of frame keeps its turn for later in the round.
+          if (!inFrame(c.desk)) { bag.unshift(c); plan = null; return; }
+          c.desk.el.classList.add('on');
+          deskSay.show(deskAt(c.desk), c.desk.text);
+        } else rooSay.show(rooAt, function () { return c.text; });
+        shown = c;
       }, 150);
     })();
   </script>
