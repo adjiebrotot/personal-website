@@ -10,10 +10,9 @@
   <link rel="canonical" href="https://www.adjiebrotots.com/">
   <meta name="theme-color" content="#DDEAFF" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0B1426" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="/logos/logo.svg">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="apple-touch-icon" href="/logos/apple-touch-icon.png">
   <link rel="alternate" type="text/markdown" href="https://www.adjiebrotots.com/llms.txt" title="Who is Adjie Brotosukmono, for language models">
   <link rel="sitemap" type="application/xml" href="https://www.adjiebrotots.com/sitemap.xml">
   <link rel="me" href="https://www.linkedin.com/in/adjiebrotot/">
@@ -447,12 +446,12 @@
     .scene .halt, .scene .halt * { animation-play-state: paused; }
     .dodge { transition: transform .7s cubic-bezier(.3, .7, .3, 1); }
     .dodge.up { transform: translateY(-34px); }
-    /* Room above the scene for that climb, where the scene shows its full height (it crops its top on very wide screens). */
+    /* Room above the scene for that climb: 36 scene units (the tail tops out 29 above the frame), at the
+       scene's own scale, so the tail stays whole at every window size. */
     @supports (overflow: clip) {
-      @media (max-aspect-ratio: 2/1) {
-        .scene-wrap { overflow: clip visible; }
-        .scene { overflow: visible; clip-path: inset(-44px 0 0 0); }
-      }
+      .scene-wrap { overflow: clip visible; }
+      .scene { overflow: visible; clip-path: inset(calc(-36 * max(var(--h) / 490, 100vw / 1920)) 0 0 0); }
+      .plane { pointer-events: none; }
     }
 
     .ground {
@@ -746,7 +745,7 @@
 
     <header class="top">
       <a class="brand" href="/" aria-label="Adjie Brotosukmono, home">
-        <img src="/assets/img/logo.svg" alt="" width="32" height="32">
+        <img src="/logos/logo.svg" alt="" width="32" height="32">
         <span>Adjie <b>Brotot</b></span>
       </a>
       <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch day and night" title="Day or night?">
@@ -990,7 +989,7 @@
         </g>
         <!-- Menara BCA: a convex, finned glass face carrying the BCA sign, a taller pale spine, a darker east face
              stepping down at its corner; above, the curved glass crown rising to a lattice frame and the mast -->
-        <g>
+        <g id="towerBca">
           <path class="f-bcacrown" d="M426 207 C 429 190 446 172.4 466 168.8 L 484.4 168 V 200 H 426 Z"/>
           <path fill="url(#bcaV)" d="M426 207 C 429 190 446 172.4 466 168.8 L 484.4 168 V 200 H 426 Z"/>
           <path d="M433 204 C 437 190 451 177.6 468 174.4 L 484 173.8 M442 202 C 446 192 456 183.6 470 180.6 L 484 180" stroke="#fff" stroke-width=".8" fill="none" opacity=".45"/>
@@ -1090,7 +1089,7 @@
         </g>
         <!-- The Palace Tower, 108 St Georges Terrace: green glass in a stepped front, each bay topping out a little
              higher, up to the pale aluminium core and the mast; the old Palace Hotel kept at its foot -->
-        <g>
+        <g id="towerPalace">
           <path class="f-pal" d="M1482 480 V266 L1489.2 260 V480 Z"/>
           <path class="f-pal3" d="M1489.2 480 V256 L1496.4 250 V480 Z"/>
           <path class="f-pal" d="M1496.4 480 V246 L1503.6 240 V480 Z"/>
@@ -1481,7 +1480,27 @@
           clearTimeout(pilot.timer); lift.classList.remove('up'); pilot.on = false; pilot.rest = now + 1500;
         }
       };
+      // Over a tower Adjie has worked in, its window lights up and says so, for as long as the pointer stays.
+      var towers = [];
+      var tower = function (d, el) {
+        var o = { on: false, since: 0 };
+        o.off = function () { o.on = false; d.el.classList.remove('on'); };
+        o.check = function (now, zone) {
+          var over = zone && near(el.getBoundingClientRect(), 0);
+          if (over && !o.on) {
+            stop(); towers.forEach(function (t) { if (t.on) t.off(); });
+            o.on = true; o.since = now;
+            d.el.classList.add('on'); deskSay.show(deskAt(d), d.text);
+          } else if (!over && o.on && now - o.since > 1500) {
+            o.off(); deskSay.hide();
+          }
+        };
+        towers.push(o);
+        return o;
+      };
       var actors = [
+        tower(desks[0], document.getElementById('towerPalace')),
+        tower(desks[1], document.getElementById('towerBca')),
         pilot,
         stopper(bus, bus, work),
         stopper(train, train, work),
