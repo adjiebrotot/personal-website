@@ -268,13 +268,21 @@
     .trips .kicker { display: block; text-align: center; font-size: 1.35rem; color: var(--gold); transform: rotate(-2deg); margin-bottom: .1rem; }
     .trips h3 { margin: 0 auto .3rem; font-size: clamp(1.35rem, 2.4vw, 1.7rem); line-height: 1.2; letter-spacing: -.025em; text-align: center; }
     .trips > p { text-align: center; color: var(--muted); margin: 0 auto 1.6rem; max-width: 52ch; }
-    .stamps { list-style: none; margin: 0; padding: 0; columns: 3 250px; column-gap: 24px; }
-    .stamp { --c: var(--accent); display: inline-block; width: 100%; margin: 0 0 24px; break-inside: avoid; position: relative; background: var(--card); border-radius: 16px; padding: 14px 14px 16px; border: 2px solid var(--line); box-shadow: 4px 4px 0 var(--line); transform: rotate(var(--r, 0deg)); }
+    /* A balanced page: the two short stamps side by side, a row of three with photos, then the internship, wide. */
+    .stamps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; }
+    .stamp { --c: var(--accent); grid-column: span 2; display: flex; flex-direction: column; align-items: flex-start; position: relative; background: var(--card); border-radius: 16px; padding: 14px 14px 16px; border: 2px solid var(--line); box-shadow: 4px 4px 0 var(--line); transform: rotate(var(--r, 0deg)); }
+    .stamp.half { grid-column: span 3; }
     .stamp:nth-child(3n+1) { --r: -1.2deg; } .stamp:nth-child(3n+2) { --r: .9deg; --c: var(--teal); } .stamp:nth-child(3n) { --r: -.4deg; --c: var(--gold); }
     .stamp .country { display: inline-block; font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.4rem; line-height: 1; color: var(--c); border: 4px double currentColor; border-radius: 10px; padding: .2rem .65rem .3rem; transform: rotate(-5deg); margin-bottom: .5rem; }
     .stamp h4 { margin: 0 0 .25rem; font-size: 1.02rem; line-height: 1.25; }
     .stamp p { margin: 0; color: var(--muted); font-size: .93rem; }
-    .stamp .snap { margin: 12px 4px 4px; }
+    .stamp .snap { align-self: stretch; margin: auto 4px 4px; }
+    .stamp > p:not(:last-child) { margin-bottom: 12px; }
+    .stamp.wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 270px); grid-template-rows: 1fr auto auto auto 1fr; column-gap: 32px; justify-items: start; }
+    .stamp.wide > .country { grid-column: 1; grid-row: 2; }
+    .stamp.wide > h4 { grid-column: 1; grid-row: 3; }
+    .stamp.wide > p { grid-column: 1; grid-row: 4; margin-bottom: 0; }
+    .stamp.wide .snap { grid-column: 2; grid-row: 1 / -1; justify-self: stretch; align-self: center; margin: 4px; }
 
     /* Map */
     .map .nb { fill: var(--land-nb); }
@@ -343,6 +351,10 @@
       .art svg.ill, .stop.flip .art svg.ill { width: 100%; max-height: 300px; margin: 0; }
       .trail::before { left: 22px; }
       .trips { margin-top: -12px; }
+      .stamps { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin: 0 auto; }
+      .stamp, .stamp.half, .stamp.wide { grid-column: auto; }
+      .stamp.wide { display: flex; }
+      .stamp.wide .snap { align-self: stretch; margin: 12px 4px 4px; }
     }
     @media (max-width: 480px) {
       .snaps { grid-template-columns: 1fr; }
@@ -840,10 +852,15 @@
         <h3 id="trips">Side quests: saying yes to everything abroad</h3>
         <p>At uni I joined almost every exchange and youth summit I could. Free travel, new friends, and a nicer CV. Hehe.</p>
         <ul class="stamps">
-          <li class="stamp">
+          <li class="stamp half">
             <span class="country">Japan</span>
             <h4>Scholarion Exchange</h4>
             <p>A student exchange in Japan. Trains on time, every time. I took notes.</p>
+          </li>
+          <li class="stamp half">
+            <span class="country">Cambodia</span>
+            <h4>ASEAN Young Leaders Program</h4>
+            <p>One more ASEAN Young Leaders Program, this time in Cambodia.</p>
           </li>
           <li class="stamp">
             <span class="country">Singapore</span>
@@ -852,9 +869,9 @@
             <figure class="snap"><img src="/assets/img/about/asean-young-leaders-singapore-480.webp" srcset="/assets/img/about/asean-young-leaders-singapore-480.webp 480w, /assets/img/about/asean-young-leaders-singapore-960.webp 960w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="314" loading="lazy" decoding="async" alt="Adjie speaking at a podium of the Singapore Institute of Technology"><figcaption>On stage at the Singapore Institute of Technology</figcaption></figure>
           </li>
           <li class="stamp">
-            <span class="country">Thailand</span>
+            <span class="country">Thailand (2x)</span>
             <h4>Young ASEAN Leaders Policy Initiative</h4>
-            <p>At Chulalongkorn University in Bangkok, our team handed over policy recommendations on environmental management.</p>
+            <p>At Chulalongkorn University in Bangkok, our team handed over policy recommendations on environmental management. I liked it so much that I went back for another round.</p>
             <figure class="snap"><img src="/assets/img/about/yalpi-bangkok-480.webp" srcset="/assets/img/about/yalpi-bangkok-480.webp 480w, /assets/img/about/yalpi-bangkok-800.webp 800w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="320" loading="lazy" decoding="async" alt="Adjie handing over a policy recommendations document at the Young ASEAN Leaders Policy Initiative"><figcaption>Handing over our policy recommendations</figcaption></figure>
           </li>
           <li class="stamp">
@@ -863,17 +880,7 @@
             <p>Seoul, with delegates, ambassadors and ministers, talking about inclusion and a shared global village.</p>
             <figure class="snap"><img src="/assets/img/about/international-youth-forum-seoul-480.webp" srcset="/assets/img/about/international-youth-forum-seoul-480.webp 480w, /assets/img/about/international-youth-forum-seoul-800.webp 800w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="265" loading="lazy" decoding="async" alt="Delegates and hosts on stage at the 30th International Youth Forum in Seoul"><figcaption>Opening day of the forum in Seoul</figcaption></figure>
           </li>
-          <li class="stamp">
-            <span class="country">Thailand, again</span>
-            <h4>Young ASEAN Leaders Policy Initiative</h4>
-            <p>I liked it so much that I went back for another round.</p>
-          </li>
-          <li class="stamp">
-            <span class="country">Cambodia</span>
-            <h4>ASEAN Young Leaders Program</h4>
-            <p>One more ASEAN Young Leaders Program, this time in Cambodia.</p>
-          </li>
-          <li class="stamp">
+          <li class="stamp wide">
             <span class="country">Malaysia</span>
             <h4>Research Engineer at E-Life Solutions Sdn. Bhd., Johor</h4>
             <p>I dug through IEEE and IEC standards for ERMA, software for managing electromagnetic risk, and turned the research into its product requirements, flowcharts and screens. I also joined high voltage experiments at UTM's high voltage lab.</p>
