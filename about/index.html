@@ -284,17 +284,14 @@
     .stamp p { margin: 0; color: var(--muted); font-size: .93rem; }
     .stamp .snap { align-self: stretch; margin: auto 4px 4px; }
     .stamp > p:not(:last-child) { margin-bottom: 12px; }
-    /* A card with its photo beside the words: South Korea over four columns, and Malaysia, wide, at the end. */
+    .stamp.half { grid-column: span 3; }
+    /* Malaysia, wide at the end, with its photo beside the words. */
     .stamp.side { grid-column: span 4; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 240px); grid-template-rows: 1fr auto auto auto 1fr; column-gap: 28px; justify-items: start; }
     .stamp.side.wide { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr) minmax(0, 270px); column-gap: 32px; }
     .stamp.side > .country { grid-column: 1; grid-row: 2; }
     .stamp.side > h4 { grid-column: 1; grid-row: 3; }
     .stamp.side > p { grid-column: 1; grid-row: 4; margin-bottom: 0; }
     .stamp.side .snap { grid-column: 2; grid-row: 1 / -1; justify-self: stretch; align-self: center; margin: 4px; }
-    /* Where a stamp has no photo, a passport ink stamp fills the page instead. */
-    .stamp .ink { display: block; width: 112px; height: 112px; margin: auto auto 6px; align-self: center; color: var(--c); opacity: .5; transform: rotate(-14deg); }
-    .stamp:nth-child(1) .ink { width: 150px; height: 150px; margin: auto; }
-    .stamp:nth-child(5) .ink { width: 92px; height: 92px; margin-top: 10px; transform: rotate(10deg); }
 
     /* Teaching: a laptop in CSS 3D, seen from above. The lid swings on its hinge with the scroll (--p, 0 shut
        to 1 open): open on the way down, shut on the way back up, the screen lighting up as it opens. */
@@ -394,10 +391,9 @@
       .trail::before { left: 22px; }
       .trips { margin-top: -12px; }
       .stamps { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin: 0 auto; }
-      .stamp, .stamp.side, .stamp.side.wide { grid-column: auto; }
+      .stamp, .stamp.half, .stamp.side, .stamp.side.wide { grid-column: auto; }
       .stamp.side { display: flex; }
       .stamp.side .snap { align-self: stretch; margin: 12px 4px 4px; }
-      .stamp .ink { display: none; }
     }
     @media (max-width: 480px) {
       .snaps { grid-template-columns: 1fr; }
@@ -899,8 +895,8 @@
           <li class="stamp">
             <span class="country">Japan</span>
             <h4>Scholarion Exchange</h4>
-            <p>A student exchange programme in Japan.</p>
-            <svg class="ink" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="60" cy="60" r="45" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="60" y="47" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="11" letter-spacing="2" fill="currentColor">ARRIVED</text><text x="60" y="70" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="16" letter-spacing="1" fill="currentColor">JAPAN</text><path d="M60 76 l3 7 h9 l2 3 h-11 l-3 6 h-3 l1 -6 h-6 l-2 3 h-2 l1 -4 -1 -4 h2 l2 3 h6 l-1 -6 z" transform="rotate(-90 60 84)" fill="currentColor"/></svg>
+            <p>A student exchange programme in Tokyo, Japan.</p>
+            <figure class="snap"><img src="/assets/img/about/scholarion-exchange-japan-480.webp" srcset="/assets/img/about/scholarion-exchange-japan-480.webp 480w, /assets/img/about/scholarion-exchange-japan-800.webp 800w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="320" loading="lazy" decoding="async" alt="Adjie with the Scholarion Exchange group in matching shirts, holding the programme banner outside a glass building in Tokyo"><figcaption>The exchange group in Tokyo</figcaption></figure>
           </li>
           <li class="stamp">
             <span class="country">Singapore</span>
@@ -914,17 +910,17 @@
             <p>Two rounds at Chulalongkorn University in Bangkok. Our team handed over policy recommendations on environmental management.</p>
             <figure class="snap"><img src="/assets/img/about/yalpi-bangkok-480.webp" srcset="/assets/img/about/yalpi-bangkok-480.webp 480w, /assets/img/about/yalpi-bangkok-800.webp 800w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="320" loading="lazy" decoding="async" alt="Adjie handing over a policy recommendations document at the Young ASEAN Leaders Policy Initiative"><figcaption>Handing over our policy recommendations</figcaption></figure>
           </li>
-          <li class="stamp side">
+          <li class="stamp half">
             <span class="country">South Korea</span>
             <h4>30th International Youth Forum</h4>
             <p>Seoul, with delegates, ambassadors and ministers, talking about inclusion and a shared global village.</p>
-            <figure class="snap"><img src="/assets/img/about/international-youth-forum-seoul-480.webp" srcset="/assets/img/about/international-youth-forum-seoul-480.webp 480w, /assets/img/about/international-youth-forum-seoul-800.webp 800w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="265" loading="lazy" decoding="async" alt="Delegates and hosts on stage at the 30th International Youth Forum in Seoul"><figcaption>Opening day of the forum in Seoul</figcaption></figure>
+            <figure class="snap"><img src="/assets/img/about/international-youth-forum-seoul-480.webp" srcset="/assets/img/about/international-youth-forum-seoul-480.webp 480w, /assets/img/about/international-youth-forum-seoul-800.webp 800w" sizes="(max-width: 480px) 90vw, 520px" width="480" height="265" loading="lazy" decoding="async" alt="Delegates and hosts on stage at the 30th International Youth Forum in Seoul"><figcaption>Opening day of the forum in Seoul</figcaption></figure>
           </li>
-          <li class="stamp">
+          <li class="stamp half">
             <span class="country">Cambodia</span>
             <h4>ASEAN Young Leaders Program</h4>
             <p>The ASEAN Young Leaders Program again, this time in Cambodia.</p>
-            <svg class="ink" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="60" cy="60" r="45" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="60" y="47" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="11" letter-spacing="2" fill="currentColor">ARRIVED</text><text x="60" y="70" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" letter-spacing="1" fill="currentColor">CAMBODIA</text><path d="M60 76 l3 7 h9 l2 3 h-11 l-3 6 h-3 l1 -6 h-6 l-2 3 h-2 l1 -4 -1 -4 h2 l2 3 h6 l-1 -6 z" transform="rotate(-90 60 84)" fill="currentColor"/></svg>
+            <figure class="snap"><img src="/assets/img/about/asean-young-leaders-cambodia-480.webp" srcset="/assets/img/about/asean-young-leaders-cambodia-480.webp 480w, /assets/img/about/asean-young-leaders-cambodia-800.webp 800w" sizes="(max-width: 480px) 90vw, 520px" width="480" height="320" loading="lazy" decoding="async" alt="Adjie and the ASEAN Young Leaders Program delegates with Sun Chanthol, Deputy Prime Minister of Cambodia, around a meeting table"><figcaption>With Sun Chanthol, Deputy Prime Minister of Cambodia</figcaption></figure>
           </li>
           <li class="stamp side wide">
             <span class="country">Malaysia</span>
