@@ -16,7 +16,7 @@ from html.parser import HTMLParser
 
 SITE = 'https://www.adjiebrotots.com'
 PERSON = SITE + '/#person'
-MAIN = ['index.html', 'about/index.html', '404.html']
+MAIN = ['index.html', 'about/index.html', 'projects/index.html', '404.html']
 # Notes drawn from data-note attributes: never part of the page text.
 NOTES = ['not that important', 'as words', 'hope it can help you too']
 problems = []

@@ -232,6 +232,7 @@
     /* Projects, a detour and other bits of the story */
     .story h3 { display: flex; align-items: center; gap: .55rem; margin: 1.6rem 0 .7rem; font-size: 1.12rem; letter-spacing: -.01em; }
     .story h3::before { content: ''; flex: none; width: 18px; height: 3px; border-radius: 2px; background: var(--gold); }
+    .story p.more { margin: .2rem 0 1rem; font-weight: 700; }
     .projects { list-style: none; margin: 0 0 .8rem; padding: 0; display: grid; gap: 10px; }
     .projects li { padding: .7rem .9rem .75rem; background: var(--card); border: 2px solid var(--rule); border-radius: 14px; transition: border-color .15s, box-shadow .15s, transform .15s; }
     .projects li:hover { border-color: var(--line); box-shadow: 3px 3px 0 var(--line); transform: translate(-1px, -1px); }
@@ -256,6 +257,11 @@
     .bi-logo svg { width: 24px; height: 24px; }
     .badges li:nth-child(odd) { transform: rotate(-1deg); }
     .badges li:nth-child(even) { transform: rotate(.8deg); }
+    /* Trips since: the photos share one height, each as wide as its own shape. */
+    .travels { display: flex; gap: 22px; align-items: flex-start; max-width: 940px; margin: 1.6rem auto .6rem; }
+    .travels .snap { flex: var(--w) 1 0; min-width: 0; }
+    .travels .snap img { aspect-ratio: auto; }
+    .travels .snap:nth-child(2) { --r: 1.6deg; } .travels .snap:nth-child(3) { --r: -2.6deg; }
     .finale h3 { margin: 2rem 0 0; font-size: 1.15rem; letter-spacing: -.01em; }
 
     /* Polaroids */
@@ -308,6 +314,7 @@
     .lap-on { opacity: calc(var(--p, 1) * 1.6 - .5); }
 
     /* Stop 4: arrows run along the diagram's branches the way the power goes, only while it's on screen. */
+    .sld { overflow: visible; }
     .sld .run { transition: opacity .3s; }
     .sld .blades { transform-box: view-box; transform-origin: 90px 40px; animation: spin 2.4s linear infinite paused; }
     .sld.live .blades { animation-play-state: running; }
@@ -394,6 +401,11 @@
       .stamp, .stamp.half, .stamp.side, .stamp.side.wide { grid-column: auto; }
       .stamp.side { display: flex; }
       .stamp.side .snap { align-self: stretch; margin: 12px 4px 4px; }
+    }
+    @media (max-width: 560px) {
+      .travels { flex-direction: column; align-items: center; gap: 18px; }
+      .travels .snap { flex: none; width: min(100%, 360px); }
+      .travels .snap:nth-child(3) { width: min(70%, 240px); }
     }
     @media (max-width: 480px) {
       .snaps { grid-template-columns: 1fr; }
@@ -686,7 +698,7 @@
             "name": "What projects has Adjie Brotosukmono worked on?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "In energy: connection studies for TransAlta Wind Farm, Cunderdin Solar Farm and Collgar Wind Farm; essential system services studies for Pilbara ISOCo; Western Australia's Power System Security and Reliability standards working group; the Merz EGPO portfolio optimiser and the Merz WEMulator dispatch model; investment decision reviews for TransAlta's Mt Keith operation, Norton Gold Fields, the Darwin-Katherine Electricity System and the Australian Marine Complex; a power system study for Formosa 2 Wind Farm in Taiwan; and a PSCAD and PSS/E scripting package for NEM connection studies. In banking, at BCA: contactless cards, card tokenisation, in-app card features and BCA's own mobile wallet."
+              "text": "In energy, as a power system engineer: essential system services headroom studies for Pilbara ISOCo; generation portfolio optimisation for the Darwin-Katherine Electricity System; power factor correction for Bluestone Mines Tasmania; harmonic filter design for TransAlta St Ives Wind Farm and Cunderdin Solar Farm; an energy balancing and settlement engine for Pilbara ISOCo; the EGPO portfolio optimiser and the WEMulator dispatch model; and studies for the Collgar, Quenda and Formosa 2 wind farms. As an economics consultant: synchronous condenser placement for PWR Hybrid's Mount Keith operations; connection studies for the Red Gully and Paterson batteries; the investigation of under-frequency load shedding incidents in the North West Interconnected System; the NWIS Access and Connection Guideline; and grid connection and solar advice for GreenWind and the Australian Marine Complex. The full list is at https://www.adjiebrotots.com/projects/. In banking, at BCA: contactless cards, card tokenisation, in-app card features and BCA's own mobile wallet."
             }
           },
           {
@@ -910,17 +922,23 @@
             <p>Two rounds at Chulalongkorn University in Bangkok. Our team handed over policy recommendations on environmental management.</p>
             <figure class="snap"><img src="/assets/img/about/yalpi-bangkok-480.webp" srcset="/assets/img/about/yalpi-bangkok-480.webp 480w, /assets/img/about/yalpi-bangkok-800.webp 800w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="320" loading="lazy" decoding="async" alt="Adjie handing over a policy recommendations document at the Young ASEAN Leaders Policy Initiative"><figcaption>Handing over our policy recommendations</figcaption></figure>
           </li>
-          <li class="stamp half">
+          <li class="stamp">
             <span class="country">South Korea</span>
             <h4>30th International Youth Forum</h4>
             <p>Seoul, with delegates, ambassadors and ministers, talking about inclusion and a shared global village.</p>
-            <figure class="snap"><img src="/assets/img/about/international-youth-forum-seoul-480.webp" srcset="/assets/img/about/international-youth-forum-seoul-480.webp 480w, /assets/img/about/international-youth-forum-seoul-800.webp 800w" sizes="(max-width: 480px) 90vw, 520px" width="480" height="265" loading="lazy" decoding="async" alt="Delegates and hosts on stage at the 30th International Youth Forum in Seoul"><figcaption>Opening day of the forum in Seoul</figcaption></figure>
+            <figure class="snap"><img src="/assets/img/about/international-youth-forum-seoul-480.webp" srcset="/assets/img/about/international-youth-forum-seoul-480.webp 480w, /assets/img/about/international-youth-forum-seoul-800.webp 800w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="265" loading="lazy" decoding="async" alt="Delegates and hosts on stage at the 30th International Youth Forum in Seoul"><figcaption>Opening day of the forum in Seoul</figcaption></figure>
           </li>
-          <li class="stamp half">
+          <li class="stamp">
             <span class="country">Cambodia</span>
             <h4>ASEAN Young Leaders Program</h4>
             <p>The ASEAN Young Leaders Program again, this time in Cambodia.</p>
-            <figure class="snap"><img src="/assets/img/about/asean-young-leaders-cambodia-480.webp" srcset="/assets/img/about/asean-young-leaders-cambodia-480.webp 480w, /assets/img/about/asean-young-leaders-cambodia-800.webp 800w" sizes="(max-width: 480px) 90vw, 520px" width="480" height="320" loading="lazy" decoding="async" alt="Adjie and the ASEAN Young Leaders Program delegates with Sun Chanthol, Deputy Prime Minister of Cambodia, around a meeting table"><figcaption>With Sun Chanthol, Deputy Prime Minister of Cambodia</figcaption></figure>
+            <figure class="snap"><img src="/assets/img/about/asean-young-leaders-cambodia-480.webp" srcset="/assets/img/about/asean-young-leaders-cambodia-480.webp 480w, /assets/img/about/asean-young-leaders-cambodia-800.webp 800w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="320" loading="lazy" decoding="async" alt="Adjie and the ASEAN Young Leaders Program delegates with Sun Chanthol, Deputy Prime Minister of Cambodia, around a meeting table"><figcaption>With Sun Chanthol, Deputy Prime Minister of Cambodia</figcaption></figure>
+          </li>
+          <li class="stamp">
+            <span class="country">Philippines</span>
+            <h4>Hult Prize</h4>
+            <p>Our team pitched a social enterprise at the Hult Prize Manila Regionals, the student startup competition run with the United Nations.</p>
+            <figure class="snap"><img src="/assets/img/about/hult-prize-manila-480.webp" srcset="/assets/img/about/hult-prize-manila-480.webp 480w, /assets/img/about/hult-prize-manila-960.webp 960w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="270" loading="lazy" decoding="async" alt="Adjie and three teammates in batik and black, posing in front of the Hult Prize Manila Regionals backdrop"><figcaption>Our team at the Manila Regionals</figcaption></figure>
           </li>
           <li class="stamp side wide">
             <span class="country">Malaysia</span>
@@ -1120,27 +1138,22 @@
           <h2 id="s4">Power System Engineer at <span class="mark">Merz, then Mott MacDonald</span></h2>
           <p>Then I missed the hard engineering. I joined <strong>Merz Consultancy</strong>, a Perth energy consultancy, as a <strong>Power System Engineer</strong>. I worked from Jakarta, alongside the managing director.</p>
           <p>It was my first exposure to Australia: its grid, its rules and its mine sites. I ran power system studies in steady state, RMS and EMT with DIgSILENT PowerFactory, and automated them through its API. I modelled dispatch, analysed energy market data, advised on renewable investments and optimised designs, sometimes deterministically, sometimes stochastically. When the software we had could not do what we needed, I helped write our own, in C, C++ and Python. And yes, I visited sites.</p>
-          <h3>Projects at Merz</h3>
+          <p>Then Merz merged with <strong>Mott MacDonald</strong>, a global engineering consultancy. Same desk in Jakarta, more project management, and bigger projects.</p>
+          <h3>Projects as a Power System Engineer</h3>
           <ul class="projects">
-            <li><span class="tag g">WA</span><strong>Power System Security and Reliability standards</strong><span class="d">Part of the working group for Western Australia's PSSR standards.</span></li>
-            <li><span class="tag t">Software</span><strong>Merz EGPO</strong><span class="d">An Energy Generation Portfolio Optimiser: finds the best mix of wind, solar and batteries to invest in.</span></li>
-            <li><span class="tag t">Software</span><strong>Merz WEMulator</strong><span class="d">Mimics how the WEM dispatch engine picks which generators run, from real-world data and constraint equations.</span></li>
-            <li><span class="tag g">WA</span><strong>Essential system services for Pilbara ISOCo</strong><span class="d">Studies for the North West Interconnected System.</span></li>
-            <li><span class="tag g">WA</span><strong>Grid connection studies</strong><span class="d">Preliminary and connection application studies for TransAlta Wind Farm, Cunderdin Solar Farm and Collgar Wind Farm.</span></li>
-            <li><span class="tag">TAS</span><strong>Bluestone Mines Tasmania</strong><span class="d">Sizing and placing power factor correction.</span></li>
+            <li><span class="tag g">WA</span><strong>Essential system services headroom study</strong><span class="d">For Pilbara ISOCo in the North West Interconnected System. I built and validated the dynamic model and scripted the search for the least headroom that holds the frequency. It showed the headroom they buy could drop from 200 MW to 60 MW.</span></li>
+            <li><span class="tag g">NT</span><strong>Darwin-Katherine generation portfolio optimisation</strong><span class="d">The least-cost mix of solar and batteries, from our own optimiser. It became the economic basis of the business case for the Darwin Renewable Energy Hub.</span></li>
+            <li><span class="tag">TAS</span><strong>Power factor correction at Bluestone Mines Tasmania</strong><span class="d">Sized and placed a capacitor bank for an underground tin mine, after a trip underground. It is now in operation.</span></li>
+            <li><span class="tag g">WA</span><strong>Harmonic filters and transformer energisation</strong><span class="d">Filter design for TransAlta St Ives Wind Farm and Cunderdin Solar Farm, and an EMT inrush study for St Ives.</span></li>
+            <li><span class="tag t">Software</span><strong>EGPO and WEMulator</strong><span class="d">Lead developer of both: a generation portfolio optimiser, and an emulator of the WEM dispatch engine that we used for the Collgar Wind Farms constraint study.</span></li>
+            <li><span class="tag g">WA</span><strong>Energy balancing and settlement engine</strong><span class="d">My first project as Project Manager, for Pilbara ISOCo. Delivered within budget and still in use.</span></li>
+            <li><span class="tag t">And more</span><strong>Other studies</strong><span class="d">Quenda Wind Farm, APA Wallumbilla in Queensland, Norton Gold Fields, TransAlta Mt Keith, a wind farm pre-feasibility for Blue Power Engineering, Formosa 2 Wind Farm in Taiwan, PSCAD and PSS®E scripting for the NEM, and support to Energy Policy WA on the power system security and reliability standards.</span></li>
           </ul>
           <div class="snaps one"><figure class="snap"><img src="/assets/img/about/merz-mine-site-480.webp" srcset="/assets/img/about/merz-mine-site-480.webp 480w, /assets/img/about/merz-mine-site-960.webp 960w" sizes="(max-width: 480px) 90vw, 400px" width="480" height="270" loading="lazy" decoding="async" alt="Adjie and a colleague in Merz hi-vis jackets, hard hats with cap lamps and safety glasses at a site office"><figcaption>Site visit: hard hat, cap lamp, hi-vis. All mandatory.</figcaption></figure></div>
-          <p>Then Merz merged with <strong>Mott MacDonald</strong>, a global engineering consultancy. Same desk in Jakarta, more project management, and bigger projects.</p>
-          <h3>Projects at Mott MacDonald, still from Jakarta</h3>
-          <ul class="projects">
-            <li><span class="tag g">WA · NT</span><strong>Investment decision and technology reviews</strong><span class="d">For TransAlta's Mt Keith operation, Norton Gold Fields, the Darwin-Katherine Electricity System and the Australian Marine Complex.</span></li>
-            <li><span class="tag g">WA</span><strong>Under-frequency load shedding investigation</strong><span class="d">Working out what happened in the UFLS incidents in the North West Interconnected System.</span></li>
-            <li><span class="tag">Taiwan</span><strong>Formosa 2 Wind Farm</strong><span class="d">A power system study for an offshore wind farm.</span></li>
-            <li><span class="tag t">NEM</span><strong>PSCAD and PSS®E scripting package</strong><span class="d">Automation for grid connection studies in the National Electricity Market.</span></li>
-          </ul>
+          <p class="more"><a href="/projects/">Every project, in more detail <span aria-hidden="true">→</span></a></p>
         </div>
         <div class="art rise">
-          <svg class="ill sld" data-scrub=".85 -.6" data-scrub-narrow=".85 0" viewBox="0 0 400 300" role="img" aria-labelledby="ill4">
+          <svg class="ill sld" data-scrub=".85 -.6" data-scrub-narrow=".85 0" viewBox="0 0 430 300" role="img" aria-labelledby="ill4">
               <title id="ill4">A simple single line diagram: a wind farm, a solar farm and a battery on a 132 kV bus, a transformer down to a 33 kV bus feeding a mine and a town. As you scroll, a day goes by: the arrows speed up, slow down and turn round as the power flows change, the battery charges at noon and discharges at night, and the wind farm trips for an afternoon</title>
               <defs>
                 <path id="gP" d="M3.9 0L-0.2 -3.1L-0.2 -1L-4 -1L-4 1L-0.2 1L-0.2 3.1Z" fill="var(--brand)" stroke="var(--brand)" stroke-width=".6" stroke-linejoin="round" transform="scale(1.2)"/>
@@ -1171,16 +1184,16 @@
               <path d="M300 43 h8 M304 39 v8 M313 43 h8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
               <path d="M110 254 h20 l-10 14 z M270 254 h20 l-10 14 z" fill="var(--ink)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
               <g font-family="Caveat, cursive" font-weight="700" fill="var(--muted)">
-                <text x="116" y="44" font-size="20">wind</text>
-                <text x="226" y="44" font-size="20">solar</text>
-                <text x="334" y="40" font-size="20">battery</text>
-                <text x="334" y="56" font-size="15" id="sldBat">charging</text>
-                <text x="46" y="140" font-size="18">132 kV</text>
-                <text x="302" y="208" font-size="18">33 kV</text>
-                <text x="140" y="268" font-size="20">mine</text>
-                <text x="300" y="268" font-size="20">town</text>
+                <text x="114" y="44" font-size="18">wind</text>
+                <text x="225" y="44" font-size="18">solar</text>
+                <text x="334" y="40" font-size="18">battery</text>
+                <text x="334" y="56" font-size="14" id="sldBat">charging</text>
+                <text x="46" y="140" font-size="16">132 kV</text>
+                <text x="326" y="208" font-size="16" text-anchor="end">33 kV</text>
+                <text x="138" y="268" font-size="18">mine</text>
+                <text x="298" y="268" font-size="18">town</text>
               </g>
-              <text class="clock" x="24" y="200" font-family="Caveat, cursive" font-weight="700" font-size="26" fill="var(--ink)" id="sldClock">12:00</text>
+              <text class="clock" x="14" y="198" font-family="Caveat, cursive" font-weight="700" font-size="23" fill="var(--ink)" id="sldClock">12:00</text>
               <!-- Flow lanes, filled in by the script: x1 y1 x2 y2 and which flow, positive the way it is drawn -->
               <g class="flows">
                 <g data-lane="99 60 99 112 wind"></g>
@@ -1206,7 +1219,22 @@
             <p>In Australia, an employer has to advertise a job locally before it can hire someone from overseas. My boss wrote the listing for exactly the person they wanted: a power system engineer who had also worked in finance and banking.</p>
             <p>Luckily, that sounded a lot like me. I'm still grateful they took the chance.</p>
           </div>
+          <h3>Projects as an Economics Consultant</h3>
+          <ul class="projects">
+            <li><span class="tag g">WA</span><strong>Essential system services headroom study, the next round</strong><span class="d">Acting Project Manager: I designed the study, wrote the scripts and trained junior engineers to run them. Pilbara ISOCo used the report for its procurement.</span></li>
+            <li><span class="tag g">WA</span><strong>Synchronous condenser placement and optimisation</strong><span class="d">An RMS study for PWR Hybrid's Mount Keith operations, as Project Manager.</span></li>
+            <li><span class="tag g">NT</span><strong>Darwin-Katherine generation portfolio optimisation</strong><span class="d">Carried the optimisation modelling through to the end.</span></li>
+          </ul>
           <p>Now I'm a <strong>Senior Economics Consultant</strong>. I do the commercial and the technical work: project and bid management, strategic advice for the energy industry, techno-economic modelling and power system analysis. Clients include miners, system operators and renewable developers, mostly in Western Australia.</p>
+          <h3>Now, as a Senior Economics Consultant</h3>
+          <ul class="projects">
+            <li><span class="tag g">WA</span><strong>Essential system services headroom study, round three</strong><span class="d">Project Manager this time: 1,435 credible scenarios, with junior engineers running the simulations.</span></li>
+            <li><span class="tag g">WA</span><strong>Red Gully and Paterson batteries</strong><span class="d">Technical advice, connection and cable studies for BLT Energy's Red Gully BESS, which passed development approval, then Western Power steady-state studies for it and TagEnergy's Paterson BESS.</span></li>
+            <li><span class="tag g">WA</span><strong>Under-frequency load shedding investigation</strong><span class="d">Finding the root cause of the UFLS incidents in the North West Interconnected System, from the data and interviews with the system operators.</span></li>
+            <li><span class="tag g">WA</span><strong>NWIS Access and Connection Guideline</strong><span class="d">A guideline, with templates, to make connecting easier for future applicants. Now out for public consultation.</span></li>
+            <li><span class="tag g">WA</span><strong>Grid connection strategy and solar advice</strong><span class="d">For GreenWind's Ambrosia and Mahogany Wind Farms, and solar benefits and tariffs for DevelopmentWA's Australian Marine Complex.</span></li>
+          </ul>
+          <p class="more"><a href="/projects/">Every project, in more detail <span aria-hidden="true">→</span></a></p>
           <p>I work with the rulebooks every day: the WEM Rules and WEM Procedures, the Pilbara Network Rules and the NWIS Harmonised Technical Rules, with some time in the NEM. I'm a Professional Member of Engineers Australia.</p>
           <p>My favourite part is the people. I help graduate engineers and interns build energy models from scratch in Python and C++: security-constrained economic dispatch, renewables and battery investment decisions, whole-of-life asset management. With a bit of vibe-coding with generative AI, of course.</p>
           <p>It has been years since then. I am a mate now. I still cannot eat Vegemite.</p>
@@ -1241,6 +1269,12 @@
       <h2 id="now">Outside the day job</h2>
       <p>I write about money, engineering and life on my blog, in English and Bahasa Indonesia. I build free tools for the sums I keep doing anyway, from renting versus buying a house to power system load flow.</p>
       <p>I love planes, trains and travelling. You might have guessed that from the homepage. I speak Bahasa Indonesia and English, and a little Chinese, Japanese, Russian and French.</p>
+      <h3>A few trips since</h3>
+      <div class="travels">
+        <figure class="snap" style="--w: 1.78"><img src="/assets/img/about/harbin-ice-festival-480.webp" srcset="/assets/img/about/harbin-ice-festival-480.webp 480w, /assets/img/about/harbin-ice-festival-960.webp 960w" sizes="(max-width: 560px) 90vw, 400px" width="480" height="270" loading="lazy" decoding="async" alt="Adjie in a fur hat and face mask, making a peace sign in front of the ice sculptures and the big wheel at the Harbin Ice and Snow World"><figcaption>Harbin, China</figcaption></figure>
+        <figure class="snap" style="--w: 1.5"><img src="/assets/img/about/pamukkale-hierapolis-theatre-480.webp" srcset="/assets/img/about/pamukkale-hierapolis-theatre-480.webp 480w, /assets/img/about/pamukkale-hierapolis-theatre-960.webp 960w" sizes="(max-width: 560px) 90vw, 340px" width="480" height="320" loading="lazy" decoding="async" alt="Adjie with arms wide open at the top of the ancient theatre of Hierapolis, above the stage ruins"><figcaption>Pamukkale, Turkiye</figcaption></figure>
+        <figure class="snap" style="--w: .56"><img src="/assets/img/about/hokkaido-ski-320.webp" srcset="/assets/img/about/hokkaido-ski-320.webp 320w, /assets/img/about/hokkaido-ski-534.webp 534w" sizes="(max-width: 560px) 70vw, 140px" width="320" height="568" loading="lazy" decoding="async" alt="Adjie on skis in falling snow, raising a ski pole with a thumbs up, chairlift behind"><figcaption>Hokkaido, Japan</figcaption></figure>
+      </div>
       <h3>Badges collected along the way</h3>
       <svg width="0" height="0" style="position:absolute" aria-hidden="true">
         <defs><radialGradient id="idxShade" cx=".32" cy=".28" r=".85"><stop offset="0" stop-color="#EF4A4F"/><stop offset=".6" stop-color="#C8202A"/><stop offset="1" stop-color="#8E1A1E"/></radialGradient></defs>
@@ -1274,7 +1308,7 @@
       </details>
       <details>
         <summary>What projects has Adjie Brotosukmono worked on?</summary>
-        <p>In energy: connection studies for TransAlta Wind Farm, Cunderdin Solar Farm and Collgar Wind Farm; essential system services studies for Pilbara ISOCo; Western Australia's Power System Security and Reliability standards working group; the Merz EGPO portfolio optimiser and the Merz WEMulator dispatch model; investment decision reviews for TransAlta's Mt Keith operation, Norton Gold Fields, the Darwin-Katherine Electricity System and the Australian Marine Complex; a power system study for Formosa 2 Wind Farm in Taiwan; and a PSCAD and PSS/E scripting package for NEM connection studies. In banking, at BCA: contactless cards, card tokenisation, in-app card features and BCA's own mobile wallet.</p>
+        <p>In energy, as a power system engineer: essential system services headroom studies for Pilbara ISOCo; generation portfolio optimisation for the Darwin-Katherine Electricity System; power factor correction for Bluestone Mines Tasmania; harmonic filter design for TransAlta St Ives Wind Farm and Cunderdin Solar Farm; an energy balancing and settlement engine for Pilbara ISOCo; the EGPO portfolio optimiser and the WEMulator dispatch model; and studies for the Collgar, Quenda and Formosa 2 wind farms. As an economics consultant: synchronous condenser placement for PWR Hybrid's Mount Keith operations; connection studies for the Red Gully and Paterson batteries; the investigation of under-frequency load shedding incidents in the North West Interconnected System; the NWIS Access and Connection Guideline; and grid connection and solar advice for GreenWind and the Australian Marine Complex. The full list is on the <a href="/projects/">projects page</a>. In banking, at BCA: contactless cards, card tokenisation, in-app card features and BCA's own mobile wallet.</p>
       </details>
       <details>
         <summary>Where did Adjie Brotosukmono study?</summary>
@@ -1294,6 +1328,7 @@
   <footer>
     <nav aria-label="Elsewhere">
       <a href="/">Home</a>
+      <a href="/projects/">Projects</a>
       <a href="https://blog.adjiebrotots.com/">Blog</a>
       <a href="https://tool.adjiebrotots.com/">Tools</a>
       <a href="https://www.instagram.com/adjiebrotot/" rel="me noopener">Instagram</a>
