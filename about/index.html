@@ -10,10 +10,9 @@
   <link rel="canonical" href="https://www.adjiebrotots.com/about/">
   <meta name="theme-color" content="#E4EEFF" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0B1426" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="/logos/logo.svg">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="apple-touch-icon" href="/logos/apple-touch-icon.png">
   <link rel="alternate" type="text/markdown" href="https://www.adjiebrotots.com/llms.txt" title="Who is Adjie Brotosukmono, for language models">
   <link rel="me" href="https://www.linkedin.com/in/adjiebrotot/">
   <link rel="me" href="https://www.instagram.com/adjiebrotot/">
@@ -242,6 +241,8 @@
     .tag.g { background: var(--chip-gold); color: var(--chip-gold-ink); }
     .tag.t { background: var(--chip-teal); color: var(--chip-teal-ink); }
     .tag.r { background: var(--chip-rose); color: var(--chip-rose-ink); }
+    .tag.in { float: none; display: inline-block; margin: 0; vertical-align: .08em; line-height: 1.3; }
+    .projects .snaps.one { margin: .8rem auto .3rem; max-width: 300px; }
     .detour { margin: 0 0 1.1rem; padding: .65rem .95rem; border-left: 4px solid var(--teal-soft); background: var(--card-2); border-radius: 0 12px 12px 0; color: var(--muted); font-size: .98rem; }
     .detour .hand { color: var(--teal); font-size: 1.25rem; margin-right: .25rem; }
     .paper { font-style: italic; color: var(--ink); }
@@ -701,7 +702,7 @@
             "name": "What projects has Adjie Brotosukmono worked on?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "In energy, as a power system engineer: essential system services headroom studies for Pilbara ISOCo; generation portfolio optimisation for the Darwin-Katherine Electricity System; power factor correction for Bluestone Mines Tasmania; harmonic filter design for TransAlta St Ives Wind Farm and Cunderdin Solar Farm; an energy balancing and settlement engine for Pilbara ISOCo; the EGPO portfolio optimiser and the WEMulator dispatch model; and studies for the Collgar, Quenda and Formosa 2 wind farms. As an economics consultant: synchronous condenser placement for PWR Hybrid's Mount Keith operations; connection studies for the Red Gully and Paterson batteries; the investigation of under-frequency load shedding incidents in the North West Interconnected System; the NWIS Access and Connection Guideline; and grid connection and solar advice for GreenWind and the Australian Marine Complex. The full list is at https://www.adjiebrotots.com/projects/. In banking, at BCA: contactless cards, card tokenisation, in-app card features and BCA's own mobile wallet."
+              "text": "In energy, as a power system engineer: essential system services headroom studies for Pilbara ISOCo; generation portfolio optimisation for the Darwin-Katherine Electricity System; power factor correction for Bluestone Mines Tasmania; harmonic filter design for TransAlta St Ives Wind Farm and Cunderdin Solar Farm; an energy balancing and settlement engine for Pilbara ISOCo; the EGPO portfolio optimiser and the WEMulator dispatch model; and studies for the Collgar, Quenda and Formosa 2 wind farms. As an economics consultant: synchronous condenser placement for PWR Hybrid's Mount Magnet operations; connection studies for the Red Gully and Paterson batteries; the investigation of under-frequency load shedding incidents in the North West Interconnected System; the NWIS Access and Connection Guideline; and grid connection and solar advice for GreenWind and the Australian Marine Complex. The full list is at https://www.adjiebrotots.com/projects/. In banking, at BCA: contactless cards, card tokenisation, in-app card features and BCA's own mobile wallet."
             }
           },
           {
@@ -737,7 +738,7 @@
 <body>
   <header class="wrap top">
     <a class="brand" href="/" aria-label="Adjie Brotosukmono, home">
-      <img src="/assets/img/logo.svg" alt="" width="32" height="32">
+      <img src="/logos/logo.svg" alt="" width="32" height="32">
       <span>Adjie <b>Brotot</b></span>
     </a>
     <nav class="nav" aria-label="Main">
@@ -806,13 +807,6 @@
           <p>My master's research asked a very practical question: how do you schedule coal power plants when coal deliveries are the bottleneck? It became a paper, <span class="paper">Optimal Scheduling Algorithm for Coal-Powered Power Plants, Considering Coal Delivery Constraints</span>.</p>
           <p>I lived in the labs too. I coordinated the assistants of the power system engineering lab, guided students through power system analysis and high voltage practicals, and helped teach signals and systems, electrical materials and electromagnetics.</p>
           <p>One thing at a time was never enough, so I also started a business. <strong>Ganeshtore</strong> sold books, tools and accessories to new students. We had a small team, a CFO included, and a cash flow and point-of-sale system I built on Google Sheets and Apps Script. It kept going, I learned a lot, and part of the profit went to charity.</p>
-          <h3>Also on the uni shelf</h3>
-          <ul class="projects">
-            <li><span class="tag t">Internship</span><strong>Production Engineer at LG Electronics</strong><span class="d">Kept the automated line running in Bekasi: autoscrew, tapping and banding machines, and conveyors.</span></li>
-            <li><span class="tag">Research</span><strong>Master's paper on coal plant scheduling</strong><span class="d">Optimal scheduling of coal-powered power plants under coal delivery constraints.</span></li>
-            <li><span class="tag r">Award</span><strong>Finalist, Electrical Engineering Competition</strong><span class="d">Plus semifinalist at the Electrical Engineering Competition, Tour and Rally.</span></li>
-            <li><span class="tag r">Award</span><strong>First place, three times</strong><span class="d">A debate competition, a logo competition, and the video competition at NESCO.</span></li>
-          </ul>
         </div>
         <div class="art rise">
           <svg class="ill" viewBox="0 92 640 272" role="img" aria-labelledby="ill1">
@@ -1024,13 +1018,6 @@
           <p>It was a quite unique blend of <strong>IT x Finance x Project Management</strong>. I led credit card digital features from idea to launch, with a team of business analysts, developers and testers, reporting to the VP.</p>
           <p>For every feature I ran the numbers first, financial projections and cost-benefit analysis, to win senior management's approval. Then I drew the system architecture, the data flows, the screens and the logic. Risk, compliance, legal, security and audit all had a say, and so did Bank Indonesia and the OJK, Indonesia's financial regulator. Outside the bank I worked with Visa, Mastercard, American Express, JCB, UnionPay and our technology partners.</p>
           <p>I learned how money actually moves, and how much careful work it takes to keep it moving safely.</p>
-          <h3>What we shipped</h3>
-          <ul class="projects">
-            <li><span class="tag">Cards</span><strong>Contactless cards</strong><span class="d">New contactless credit cards, including a contactless version of BCA Card, the bank's own card brand.</span></li>
-            <li><span class="tag t">App</span><strong>Cards inside the app</strong><span class="d">CVV/CVC shown in the app, in-app payments and virtual card numbers, on myBCA, klikBCA and BCA mobile.</span></li>
-            <li><span class="tag g">Payments</span><strong>Tokenisation</strong><span class="d">Card tokenisation for Visa, Mastercard and JCB.</span></li>
-            <li><span class="tag g">Wallet</span><strong>Issuer wallet</strong><span class="d">BCA's own mobile wallet with tap-to-pay, built on host card emulation.</span></li>
-          </ul>
           <div class="snaps">
             <figure class="snap"><img src="/assets/img/about/bca-mastercard-480.webp" srcset="/assets/img/about/bca-mastercard-480.webp 480w, /assets/img/about/bca-mastercard-960.webp 960w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="270" loading="lazy" decoding="async" alt="Adjie in a batik shirt next to the Mastercard logo"><figcaption>Visiting Mastercard</figcaption></figure>
             <figure class="snap"><img src="/assets/img/about/bca-visa-480.webp" srcset="/assets/img/about/bca-visa-480.webp 480w, /assets/img/about/bca-visa-960.webp 960w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="271" loading="lazy" decoding="async" alt="Adjie giving a thumbs up beside a large VISA sign"><figcaption>Thumbs up at Visa</figcaption></figure>
@@ -1144,15 +1131,14 @@
           <p>Then Merz merged with <strong>Mott MacDonald</strong>, a global engineering consultancy. Same desk in Jakarta, more project management, and bigger projects.</p>
           <h3>Projects as a Power System Engineer</h3>
           <ul class="projects">
-            <li><span class="tag g">WA</span><strong>Essential system services headroom study</strong><span class="d">For Pilbara ISOCo in the North West Interconnected System. I built and validated the dynamic model and scripted the search for the least headroom that holds the frequency. It showed the headroom they buy could drop from 200 MW to 60 MW.</span></li>
+            <li><span class="tag g">WA</span><strong>Essential system services headroom study</strong><span class="d">For Pilbara ISOCo in the North West Interconnected System. I built and validated the dynamic model and scripted the search for the least headroom that holds the frequency.</span></li>
             <li><span class="tag g">NT</span><strong>Darwin-Katherine generation portfolio optimisation</strong><span class="d">The least-cost mix of solar and batteries, from our own optimiser. It became the economic basis of the business case for the Darwin Renewable Energy Hub.</span></li>
-            <li><span class="tag">TAS</span><strong>Power factor correction at Bluestone Mines Tasmania</strong><span class="d">Sized and placed a capacitor bank for an underground tin mine, after a trip underground. It is now in operation.</span></li>
+            <li><span class="tag">TAS</span><strong>Power factor correction at Bluestone Mines Tasmania</strong><span class="d">Sized and placed a capacitor bank for an underground tin mine, after a trip underground. It is now in operation.</span><div class="snaps one"><figure class="snap"><img src="/assets/img/about/merz-mine-site-480.webp" srcset="/assets/img/about/merz-mine-site-480.webp 480w, /assets/img/about/merz-mine-site-960.webp 960w" sizes="(max-width: 480px) 80vw, 300px" width="480" height="270" loading="lazy" decoding="async" alt="Adjie and a colleague in Merz hi-vis jackets, hard hats with cap lamps and safety glasses at a site office"><figcaption>Site visit: hard hat, cap lamp, hi-vis. All mandatory.</figcaption></figure></div></li>
             <li><span class="tag g">WA</span><strong>Harmonic filters and transformer energisation</strong><span class="d">Filter design for TransAlta St Ives Wind Farm and Cunderdin Solar Farm, and an EMT inrush study for St Ives.</span></li>
             <li><span class="tag t">Software</span><strong>EGPO and WEMulator</strong><span class="d">Lead developer of both: a generation portfolio optimiser, and an emulator of the WEM dispatch engine that we used for the Collgar Wind Farms constraint study.</span></li>
             <li><span class="tag g">WA</span><strong>Energy balancing and settlement engine</strong><span class="d">My first project as Project Manager, for Pilbara ISOCo. Delivered within budget and still in use.</span></li>
-            <li><span class="tag t">And more</span><strong>Other studies</strong><span class="d">Quenda Wind Farm, APA Wallumbilla in Queensland, Norton Gold Fields, TransAlta Mt Keith, a wind farm pre-feasibility for Blue Power Engineering, Formosa 2 Wind Farm in Taiwan, PSCAD and PSS®E scripting for the NEM, and support to Energy Policy WA on the power system security and reliability standards.</span></li>
+            <li><strong>Other studies</strong><span class="d">Quenda Wind Farm <span class="tag in g">WA</span>, APA Wallumbilla in Queensland <span class="tag in">QLD</span>, Norton Gold Fields <span class="tag in g">WA</span>, TransAlta Mt Keith <span class="tag in g">WA</span>, a wind farm pre-feasibility for Blue Power Engineering <span class="tag in g">WA</span>, Formosa 2 Wind Farm in Taiwan <span class="tag in r">TW</span>, PSCAD and PSS®E scripting for the NEM <span class="tag in t">Software</span>, and support to Energy Policy WA on the power system security and reliability standards <span class="tag in g">WA</span>.</span></li>
           </ul>
-          <div class="snaps one"><figure class="snap"><img src="/assets/img/about/merz-mine-site-480.webp" srcset="/assets/img/about/merz-mine-site-480.webp 480w, /assets/img/about/merz-mine-site-960.webp 960w" sizes="(max-width: 480px) 90vw, 400px" width="480" height="270" loading="lazy" decoding="async" alt="Adjie and a colleague in Merz hi-vis jackets, hard hats with cap lamps and safety glasses at a site office"><figcaption>Site visit: hard hat, cap lamp, hi-vis. All mandatory.</figcaption></figure></div>
           <p class="more"><a href="/projects/">Every project, in more detail <span aria-hidden="true">→</span></a></p>
         </div>
         <div class="art rise">
@@ -1216,7 +1202,7 @@
         <div class="story rise">
           <p class="where hand">Stop 5 · Perth, Western Australia</p>
           <h2 id="s5">Senior Economics Consultant at <span class="mark">Mott MacDonald</span></h2>
-          <p>Then I relocated to <strong>Perth</strong> as an <strong>Economics Consultant</strong>.</p>
+          <p>Then I relocated to <strong>Perth</strong> as an <strong>Economics Consultant</strong>. Not the fiscal and monetary policy kind of economist: this is <strong>techno-economics</strong>, still very technical, where the power system and the money go into the same model.</p>
           <div class="aside">
             <span class="hand">how I got the job</span>
             <p>In Australia, an employer has to advertise a job locally before it can hire someone from overseas. My boss wrote the listing for exactly the person they wanted: a power system engineer who had also worked in finance and banking.</p>
@@ -1225,13 +1211,13 @@
           <h3>Projects as an Economics Consultant</h3>
           <ul class="projects">
             <li><span class="tag g">WA</span><strong>Essential system services headroom study, the next round</strong><span class="d">Acting Project Manager: I designed the study, wrote the scripts and trained junior engineers to run them. Pilbara ISOCo used the report for its procurement.</span></li>
-            <li><span class="tag g">WA</span><strong>Synchronous condenser placement and optimisation</strong><span class="d">An RMS study for PWR Hybrid's Mount Keith operations, as Project Manager.</span></li>
+            <li><span class="tag g">WA</span><strong>Synchronous condenser placement and optimisation</strong><span class="d">An RMS study for PWR Hybrid's Mount Magnet operations, as Project Manager.</span></li>
             <li><span class="tag g">NT</span><strong>Darwin-Katherine generation portfolio optimisation</strong><span class="d">Carried the optimisation modelling through to the end.</span></li>
           </ul>
           <p>Now I'm a <strong>Senior Economics Consultant</strong>. I do the commercial and the technical work: project and bid management, strategic advice for the energy industry, techno-economic modelling and power system analysis. Clients include miners, system operators and renewable developers, mostly in Western Australia.</p>
           <h3>Now, as a Senior Economics Consultant</h3>
           <ul class="projects">
-            <li><span class="tag g">WA</span><strong>Essential system services headroom study, round three</strong><span class="d">Project Manager this time: 1,435 credible scenarios, with junior engineers running the simulations.</span></li>
+            <li><span class="tag g">WA</span><strong>Essential system services headroom study, round three</strong><span class="d">Project Manager this time, with junior engineers running the simulations.</span></li>
             <li><span class="tag g">WA</span><strong>Red Gully and Paterson batteries</strong><span class="d">Technical advice, connection and cable studies for BLT Energy's Red Gully BESS, which passed development approval, then Western Power steady-state studies for it and TagEnergy's Paterson BESS.</span></li>
             <li><span class="tag g">WA</span><strong>Under-frequency load shedding investigation</strong><span class="d">Finding the root cause of the UFLS incidents in the North West Interconnected System, from the data and interviews with the system operators.</span></li>
             <li><span class="tag g">WA</span><strong>NWIS Access and Connection Guideline</strong><span class="d">A guideline, with templates, to make connecting easier for future applicants. Now out for public consultation.</span></li>
@@ -1319,7 +1305,7 @@
       </details>
       <details>
         <summary>What projects has Adjie Brotosukmono worked on?</summary>
-        <p>In energy, as a power system engineer: essential system services headroom studies for Pilbara ISOCo; generation portfolio optimisation for the Darwin-Katherine Electricity System; power factor correction for Bluestone Mines Tasmania; harmonic filter design for TransAlta St Ives Wind Farm and Cunderdin Solar Farm; an energy balancing and settlement engine for Pilbara ISOCo; the EGPO portfolio optimiser and the WEMulator dispatch model; and studies for the Collgar, Quenda and Formosa 2 wind farms. As an economics consultant: synchronous condenser placement for PWR Hybrid's Mount Keith operations; connection studies for the Red Gully and Paterson batteries; the investigation of under-frequency load shedding incidents in the North West Interconnected System; the NWIS Access and Connection Guideline; and grid connection and solar advice for GreenWind and the Australian Marine Complex. The full list is on the <a href="/projects/">projects page</a>. In banking, at BCA: contactless cards, card tokenisation, in-app card features and BCA's own mobile wallet.</p>
+        <p>In energy, as a power system engineer: essential system services headroom studies for Pilbara ISOCo; generation portfolio optimisation for the Darwin-Katherine Electricity System; power factor correction for Bluestone Mines Tasmania; harmonic filter design for TransAlta St Ives Wind Farm and Cunderdin Solar Farm; an energy balancing and settlement engine for Pilbara ISOCo; the EGPO portfolio optimiser and the WEMulator dispatch model; and studies for the Collgar, Quenda and Formosa 2 wind farms. As an economics consultant: synchronous condenser placement for PWR Hybrid's Mount Magnet operations; connection studies for the Red Gully and Paterson batteries; the investigation of under-frequency load shedding incidents in the North West Interconnected System; the NWIS Access and Connection Guideline; and grid connection and solar advice for GreenWind and the Australian Marine Complex. The full list is on the <a href="/projects/">projects page</a>. In banking, at BCA: contactless cards, card tokenisation, in-app card features and BCA's own mobile wallet.</p>
       </details>
       <details>
         <summary>Where did Adjie Brotosukmono study?</summary>

@@ -16,6 +16,7 @@ story at `/about/` and the projects at `/projects/`. Static files only, publishe
 | `llms.txt` | Who Adjie is, written for answer engines |
 | `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME` | Crawling, install and domain |
 | `assets/` | Fonts (DM Sans, Caveat, subset) and images |
+| `logos/` | The favicon (`logo.svg`), the app icons and the Apple touch icon, wired the way the tool site does it |
 | `_build/` | Checks, the sitemap and the social images (never published) |
 
 Everything a page needs to paint is inline in it (CSS, SVG, a few lines of JS), so each page
