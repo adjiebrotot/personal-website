@@ -419,16 +419,22 @@
       .cloud { transform: translateX(calc(var(--s) * 60vw)); }
     }
 
-    /* Handwritten labels for the landmarks, shown on hover or tap. */
-    [data-label] { cursor: help; }
-    .tag {
-      position: fixed; z-index: 9; left: 0; top: 0; pointer-events: none;
+    /* Now and then the kangaroo says something: a line as it hops in, or one after the jolt.
+       Drawn by script, aria-hidden and data-nosnippet, so the jokes never become facts. */
+    .roo-say { position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; }
+    .roo-say p {
+      position: relative; margin: 0; width: max-content; max-width: min(260px, calc(100vw - 48px));
       padding: .3rem .65rem .35rem; background: var(--card); color: var(--ink);
       border: 2px solid var(--line); border-radius: 12px; box-shadow: 3px 3px 0 var(--line);
-      font-family: 'Caveat', cursive; font-weight: 600; font-size: 1.25rem; line-height: 1.05; white-space: nowrap;
-      opacity: 0; transform: translate(-50%, -140%) rotate(-2deg); transition: opacity .12s;
+      font-family: 'Caveat', cursive; font-weight: 600; font-size: 1.2rem; line-height: 1.05; text-align: center;
+      opacity: 0; transform: translateY(6px) scale(.85) rotate(-2deg); transform-origin: var(--tail, 50%) 100%;
+      transition: opacity .2s, transform .25s cubic-bezier(.3, 1.6, .5, 1);
     }
-    .tag.on { opacity: 1; }
+    .roo-say p::after {
+      content: ''; position: absolute; left: var(--tail, 50%); bottom: -7px; width: 10px; height: 10px; margin-left: -6px;
+      background: var(--card); border: solid var(--line); border-width: 0 2px 2px 0; transform: rotate(45deg);
+    }
+    .roo-say.on p { opacity: 1; transform: rotate(-2deg); }
 
     .ground {
       background: var(--grass-2); color: var(--ink);
@@ -841,7 +847,7 @@
         </g>
 
         <!-- Singapore Airlines A380-800, Jakarta to Perth: far away, so it passes behind the towers -->
-        <g class="plane" data-label="Singapore Airlines A380-800, the double-decker">
+        <g class="plane">
           <g transform="translate(0 150) scale(.72)">
             <rect class="contrail" x="-230" y="15" width="290" height="3.2" rx="1.6" fill="url(#contrail)"/>
             <rect class="contrail" x="-250" y="20.5" width="320" height="3.2" rx="1.6" fill="url(#contrail)"/>
@@ -863,24 +869,24 @@
 
         <!-- Middle: hills, wind farm, solar farm, transmission line -->
         <path class="f-hill" d="M690 480 C 740 420 820 398 900 410 C 980 422 1030 384 1110 392 C 1170 398 1210 430 1240 480 Z"/>
-        <g data-label="Wind farm: my kind of fan">
+        <g>
           <use href="#turbine" x="0" y="0" transform="translate(830 420) scale(.78)" style="--spd:7s"/>
           <use href="#turbine" x="0" y="0" transform="translate(905 412) scale(.92)" style="--spd:5.6s"/>
           <use href="#turbine" x="0" y="0" transform="translate(1000 400) scale(1.04)" style="--spd:6.4s"/>
           <use href="#turbine" x="0" y="0" transform="translate(1090 396) scale(.86)" style="--spd:4.9s"/>
         </g>
         <path class="f-hill2" d="M700 480 C 760 452 840 440 920 446 C 1000 452 1060 438 1130 444 C 1180 448 1220 462 1240 480 Z"/>
-        <g data-label="Solar farm, soaking up the sun">
+        <g>
           <use href="#panel" transform="translate(860 472)"/><use href="#panel" transform="translate(922 472)"/><use href="#panel" transform="translate(984 472)"/><use href="#panel" transform="translate(1046 472)"/>
           <use href="#panel" transform="translate(890 458) scale(.86)"/><use href="#panel" transform="translate(944 458) scale(.86)"/><use href="#panel" transform="translate(998 458) scale(.86)"/><use href="#panel" transform="translate(1052 458) scale(.86)"/>
         </g>
-        <g data-label="Transmission lines, my bread and butter">
+        <g>
           <use href="#pylon" transform="translate(760 480)"/>
           <use href="#pylon" transform="translate(1150 480)"/>
           <path class="s-wire" d="M734 406 Q 955 452 1124 406 M786 406 Q 955 452 1176 406 M740 392 Q 955 436 1130 392 M780 392 Q 955 436 1170 392"/>
           <path class="s-wire" d="M734 406 Q 700 420 650 418 M1176 406 Q 1210 420 1250 418"/>
         </g>
-        <g data-label="Battery storage, the grid's power bank">
+        <g>
           <rect x="1100" y="462" width="38" height="16" rx="1.5" class="f-white"/><rect x="1140" y="462" width="38" height="16" rx="1.5" class="f-white"/>
           <path d="M1106 466 h26 M1106 470 h26 M1146 466 h26 M1146 470 h26" stroke="var(--grey-b)" stroke-width="1.2"/>
           <rect x="1104" y="473" width="4" height="3" fill="#3ECF8E"/><rect x="1144" y="473" width="4" height="3" fill="#3ECF8E"/>
@@ -889,7 +895,7 @@
         <!-- ═══ Jakarta ═══ -->
         <!-- Monas: the cawan (the lesung, a wide shallow cup) on its base, the slim marble shaft (the alu),
              the flared collar under the observation deck, the bronze holder and the gold-leaf flame -->
-        <g data-label="Monas, Jakarta's golden flame" transform="translate(100 480) scale(1.12) translate(-100 -480)">
+        <g transform="translate(100 480) scale(1.12) translate(-100 -480)">
           <circle class="flame-glow" cx="100" cy="190" r="22" fill="url(#flameGlow)"/>
           <rect x="24" y="475" width="152" height="5" class="f-mon3"/>
           <rect x="24" y="475" width="152" height="1.2" class="f-mon2"/>
@@ -921,7 +927,7 @@
         </g>
         <!-- Wisma 46: a cream stone shaft punched with small square windows, stepping in once; on top, a blue
              glass crown that rounds up into a white openwork nib and the spire, the fountain pen -->
-        <g data-label="Wisma 46, the fountain-pen tower">
+        <g>
           <path fill="var(--w46-glass)" d="M215.5 182 V158 C 215.5 147 225 140 237 139.6 C 245 139.4 251 140.4 256.5 142 V182 Z"/>
           <path fill="var(--w46-glass-2)" d="M244 182 V139.6 C 249 139.9 253 140.8 256.5 142 V182 Z"/>
           <path fill="url(#mullH)" d="M215.5 182 V158 C 215.5 147 225 140 237 139.6 C 245 139.4 251 140.4 256.5 142 V182 Z"/>
@@ -950,7 +956,7 @@
         </g>
         <!-- UOB Plaza -->
         <!-- UOB Plaza: blue glass, a darker return, the navy crown band with the UOB mark -->
-        <g data-label="UOB Plaza">
+        <g>
           <rect x="292" y="236" width="62" height="244" class="f-blue"/>
           <rect x="292" y="248" width="62" height="232" fill="url(#mullG)"/>
           <rect x="340" y="236" width="14" height="244" fill="var(--g-dark)" opacity=".4"/>
@@ -961,7 +967,7 @@
         </g>
         <!-- Menara BCA: a convex, finned glass face carrying the BCA sign, a taller pale spine, a darker east face
              stepping down at its corner; above, the curved glass crown rising to a lattice frame and the mast -->
-        <g data-label="Menara BCA, home of my banking chapter">
+        <g>
           <path class="f-bcacrown" d="M426 207 C 429 190 446 172.4 466 168.8 L 484.4 168 V 200 H 426 Z"/>
           <path fill="url(#bcaV)" d="M426 207 C 429 190 446 172.4 466 168.8 L 484.4 168 V 200 H 426 Z"/>
           <path d="M433 204 C 437 190 451 177.6 468 174.4 L 484 173.8 M442 202 C 446 192 456 183.6 470 180.6 L 484 180" stroke="#fff" stroke-width=".8" fill="none" opacity=".45"/>
@@ -990,7 +996,7 @@
         </g>
         <!-- Hotel Indonesia Kempinski and Bundaran HI -->
         <!-- Hotel Indonesia: the long green-glass slab with white floor bands, the scalloped parapet, the end wall -->
-        <g data-label="Hotel Indonesia Kempinski">
+        <g>
           <path class="f-teal" d="M544 480 V414 Q 554.25 403 564.5 414 Q 574.75 403 585 414 Q 595.25 403 605.5 414 Q 615.75 403 626 414 Q 636.25 403 646.5 414 Q 656.75 403 667 414 Q 677.25 403 687.5 414 Q 697.75 403 708 414 V480 Z"/>
           <rect x="544" y="414" width="164" height="54" fill="url(#hiG)"/>
           <path d="M544 414 Q 554.25 403 564.5 414 Q 574.75 403 585 414 Q 595.25 403 605.5 414 Q 615.75 403 626 414 Q 636.25 403 646.5 414 Q 656.75 403 667 414 Q 677.25 403 687.5 414 Q 697.75 403 708 414" fill="none" stroke="var(--hi-band)" stroke-width="1.8"/>
@@ -1006,7 +1012,7 @@
 
         <!-- ═══ Perth ═══ -->
         <!-- RAC Arena: an Escher-ish puzzle of angled panels in greys and blues -->
-        <g data-label="RAC Arena">
+        <g>
           <path class="f-pale2" d="M1196 480 V448 L1212 436 L1226 446 L1244 430 L1262 444 L1280 434 L1296 450 V480 Z"/>
           <path class="f-pale" d="M1212 436 L1226 446 L1216 468 L1202 458 Z M1244 430 L1262 444 L1252 462 L1236 452 Z"/>
           <path class="f-white" d="M1226 446 L1244 430 L1236 452 L1222 462 Z M1262 444 L1280 434 L1284 452 L1268 460 Z"/>
@@ -1015,7 +1021,7 @@
           <path d="M1196 448 L1212 436 L1226 446 L1244 430 L1262 444 L1280 434 L1296 450" stroke="var(--white-b)" stroke-width="1.4" fill="none"/>
         </g>
         <!-- BHP Tower, Brookfield Place: twin glass slabs split by a slot, an open steel ladder crown on each, the BHP sign, and the braced side frame -->
-        <g data-label="BHP Tower at Brookfield Place">
+        <g>
           <rect x="1296" y="204" width="40" height="276" class="f-bhp"/>
           <rect x="1342" y="192" width="42" height="288" class="f-bhp2"/>
           <rect x="1336" y="196" width="6" height="284" fill="var(--bhp-slot)"/>
@@ -1036,7 +1042,7 @@
         </g>
         <!-- Central Park, the Rio Tinto tower: a pale shaft of white spandrels and grey glass bands, lower wings tied
              back by steel outrigger trusses, the RioTinto band, a plant-room box with its tent of steel struts, the mast -->
-        <g data-label="Central Park, the Rio Tinto tower and Perth's tallest">
+        <g>
           <rect x="1396" y="300" width="16" height="180" class="f-cp"/>
           <rect x="1396" y="300" width="16" height="180" fill="url(#cpBand)"/>
           <rect x="1462" y="386" width="11" height="94" class="f-cp2"/>
@@ -1060,7 +1066,7 @@
         </g>
         <!-- The Palace Tower, 108 St Georges Terrace: green glass in a stepped front, each bay topping out a little
              higher, up to the pale aluminium core and the mast; the old Palace Hotel kept at its foot -->
-        <g data-label="The Palace Tower, 108 St Georges Terrace">
+        <g>
           <path class="f-pal" d="M1482 480 V266 L1489.2 260 V480 Z"/>
           <path class="f-pal3" d="M1489.2 480 V256 L1496.4 250 V480 Z"/>
           <path class="f-pal" d="M1496.4 480 V246 L1503.6 240 V480 Z"/>
@@ -1095,7 +1101,7 @@
           <rect x="1646" y="258" width="42" height="220" fill="url(#lights)" class="lit"/>
         </g>
         <!-- The Ritz-Carlton at Elizabeth Quay: two joined glass cylinders in a mosaic of sunset-tinted panes, on a stone podium -->
-        <g data-label="The Ritz-Carlton tower at Elizabeth Quay">
+        <g>
           <rect x="1727" y="330" width="26" height="150" fill="url(#ritzM)"/>
           <rect x="1743" y="330" width="10" height="150" fill="var(--ritz-b)" opacity=".6"/>
           <rect x="1727" y="328.6" width="26" height="2" fill="var(--ritz-c)"/>
@@ -1113,7 +1119,7 @@
         <rect x="1180" y="478" width="740" height="26" class="f-water"/>
         <path d="M1200 486 h40 M1290 494 h56 M1420 488 h30 M1700 494 h60 M1820 486 h44" stroke="var(--water-hi)" stroke-width="2" stroke-linecap="round"/>
         <!-- The Bell Tower: a glass spire on a steel axle, its lower third wrapped in two copper sails -->
-        <g data-label="The Bell Tower, ding dong">
+        <g>
           <path fill="var(--bell)" d="M1780.6 486 L1801.4 486 L1792.2 334 L1789.8 334 Z"/>
           <path fill="url(#bellG)" d="M1780.6 486 L1801.4 486 L1792.2 334 L1789.8 334 Z"/>
           <path fill="var(--bell-2)" opacity=".55" d="M1791 486 L1801.4 486 L1792.2 334 L1791 334 Z"/>
@@ -1124,12 +1130,12 @@
           <path d="M1769.6 440 C 1774 456 1780 470 1786 480 M1812.4 440 C 1808 456 1802 470 1796 480" stroke="var(--flame)" stroke-width=".9" fill="none" opacity=".55"/>
           <rect x="1770" y="485" width="42" height="3.4" class="f-plaza"/>
         </g>
-        <g data-label="Elizabeth Quay Bridge">
+        <g>
           <path class="s-white" stroke-width="3.4" d="M1556 488 C 1566 446 1606 440 1620 488 M1598 488 C 1610 456 1644 452 1654 488"/>
           <path class="s-white" stroke-width="2.6" d="M1546 490 C 1580 486 1620 492 1664 488"/>
         </g>
         <!-- Optus Stadium: bronze strata wrapped round the bowl, a band of glass, and the white fabric halo of a roof -->
-        <g data-label="Optus Stadium">
+        <g>
           <path fill="url(#optusS)" d="M1840 480 V463 C 1852 459 1880 457 1920 457 V480 Z"/>
           <path fill="var(--g-pale)" d="M1841 463.4 C 1854 457.4 1882 454 1920 454 V457.4 C 1882 457.4 1854 459.6 1841 464 Z"/>
           <path d="M1850 460.4 V456.6 M1860 459 V455.4 M1870 458.2 V454.8 M1880 457.8 V454.4 M1890 457.6 V454.2 M1900 457.4 V454 M1910 457.4 V454" stroke="var(--white-b)" stroke-width=".8"/>
@@ -1137,7 +1143,7 @@
           <path d="M1847 453.6 L1849.4 458.6 M1859 450.6 L1861 456.4 M1871 449.4 L1872.6 455.4 M1883 448.6 L1884 454.6 M1895 448 L1895.6 454.2 M1907 447.8 L1907.4 454" stroke="var(--halo)" stroke-width="1.3"/>
           <rect x="1840" y="476" width="80" height="4" fill="var(--optus-3)"/>
         </g>
-        <g class="swan" data-label="Black swans, WA's finest">
+        <g class="swan">
           <path d="M1286 496 c 6 -1 12 -1 16 -4 c -2 -2 -3 -7 -1 -11 c 2 -3 6 -2 6 0 l 4 1 l -4 1 c -2 -1 -3 0 -3 2 c 0 3 2 6 2 9 c -2 4 -10 5 -20 2 z" fill="#1A1A22"/><path d="M1310 483 l4 1 -4 1z" fill="#E63939"/>
           <path d="M1336 498 c 5 -1 10 -1 13 -3 c -2 -2 -3 -6 -1 -9 c 2 -2 5 -2 5 0 l 3 1 l -3 1 c -2 -1 -3 0 -3 2 c 0 2 2 5 2 7 c -2 3 -8 4 -16 1 z" fill="#1A1A22"/>
         </g>
@@ -1156,7 +1162,7 @@
         <!-- Bundaran HI sits on the plaza, in front of Hotel Indonesia -->
         <!-- Bundaran HI: the round pool with its ring of arching jets, the tall pedestal, and the Selamat Datang pair,
              a man and a woman waving, the woman holding up flowers -->
-        <g data-label="Bundaran HI: Selamat Datang!">
+        <g>
           <ellipse cx="618" cy="490" rx="76" ry="8.4" class="f-cream2"/>
           <ellipse cx="618" cy="489.6" rx="72" ry="7" class="f-water"/>
           <ellipse cx="618" cy="488.6" rx="60" ry="4.4" class="f-water-hi"/>
@@ -1183,7 +1189,7 @@
 
         <!-- Kangaroo: hops in under the line, jumps for it, gets a jolt, sits there sooty and seeing stars,
              shakes it off and hops on. One shape, worn three ways: fur, X-ray and soot. -->
-        <g class="roo" data-label="G'day, mate! Mind the power line">
+        <g class="roo">
           <g transform="translate(0 482)"><circle class="roo-flash" cx="19" cy="-56" r="20" fill="url(#zapGlow)"/></g>
           <g class="roo-y">
             <g transform="translate(0 482)">
@@ -1212,7 +1218,7 @@
         <path class="roo-wire" d="M734 406 Q 955 452 1124 406" stroke="#FFE14D" stroke-width="2.2" fill="none"/>
 
         <!-- Transperth bus, silver and green -->
-        <g class="bus" data-label="Transperth bus">
+        <g class="bus">
           <g transform="translate(0 480)">
             <rect x="0" y="0" width="84" height="26" rx="5" fill="#D5DBE3"/>
             <path d="M0 18 H84 V21 a5 5 0 0 1 -5 5 H5 a5 5 0 0 1 -5 -5 Z" fill="#119A48"/>
@@ -1228,7 +1234,7 @@
         </g>
 
         <!-- Transperth C-series train: white, green band, yellow doors -->
-        <g class="train" data-label="Transperth C-series train">
+        <g class="train">
           <g transform="translate(0 515)">
             <g id="car">
               <rect x="0" y="0" width="112" height="26" rx="3" fill="#F7F8FA"/>
@@ -1254,6 +1260,7 @@
         </g>
 
       </svg>
+      <div class="roo-say" id="rooSay" aria-hidden="true" data-nosnippet><p></p></div>
     </div>
   </div>
 
@@ -1266,8 +1273,6 @@
     </nav>
     <p>© Adjie Brotosukmono · drawn in Perth, powered by Indonesian coffee</p>
   </footer>
-
-  <div class="tag" id="tag" aria-hidden="true"></div>
 
   <script>
     (function () {
@@ -1289,23 +1294,78 @@
         }).observe(wrap);
       }
 
-      /* Handwritten labels on the landmarks */
-      var tag = document.getElementById('tag'), last = null;
-      function show(el, x, y) {
-        if (!el) { tag.classList.remove('on'); last = null; return; }
-        if (el !== last) { tag.textContent = el.getAttribute('data-label'); last = el; }
-        tag.style.left = x + 'px'; tag.style.top = y + 'px';
-        tag.classList.add('on');
+      /* The kangaroo talks, now and then. Lines are timed off its own 18 s animation:
+         "before" ones while it hops in (0.4 to 5.6 s), "after" ones once it's sooty (7.9 to 12.4 s). */
+      var say = document.getElementById('rooSay'), sayP = say.firstChild;
+      var roo = document.querySelector('.roo'), rooAnchor = roo.querySelector('.roo-flash');
+      var rooAnim = roo.getAnimations && roo.getAnimations()[0];
+      if (rooAnim && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var lines = {
+          before: [
+            'Adjie models power grids for a living. This roo just tests them.',
+            'Adjie has two degrees from ITB. None of them in kangaroo safety.',
+            'Adjie speaks Bahasa Indonesia, English, and a little Chinese, Japanese, Russian and French. Not Kangaroonese, yet.',
+            'Adjie once sold credit cards at BCA. Tap to pay, not tap the wire.',
+            'Adjie used to teach physics. Lesson one: don\'t touch the line.',
+            'Adjie flew Jakarta to Perth. This roo hopped.',
+            'Adjie still has no Vegemite on board.',
+            'Adjie said yes to almost every youth summit abroad. Japan, Singapore, Thailand (twice), Korea, Cambodia.',
+            'G\'day, mate! Mind the power line.',
+            'Is this what they call a load flow?',
+            'Just checking the frequency.'
+          ],
+          after: [
+            'Ouch. That was 132 kV of regret.',
+            'Totally meant to do that.',
+            'Hair: fully charged.',
+            'Note to self: wires are not snacks.',
+            'Roo 1, transmission line 0. Wait, no.',
+            'Smells like toastie.'
+          ]
+        };
+        var bags = { before: [], after: [] };
+        var LAP = 18000, lap = -1, plan = null, spoke = false, raf = 0;
+        var rand = function (lo, hi) { return lo + Math.random() * (hi - lo); };
+        // Shuffled bags, so no line comes round again until the rest have had a turn.
+        var draw = function (k) {
+          if (!bags[k].length) bags[k] = lines[k].slice().sort(function () { return Math.random() - .5; });
+          return bags[k].pop();
+        };
+        var newLap = function () {
+          plan = null;
+          // Quiet after it has spoken, chattier after a quiet lap: no fixed rhythm to it.
+          if (Math.random() < (spoke ? .2 : .55)) {
+            var k = Math.random() < .5 ? 'before' : 'after', text = draw(k);
+            var dur = k === 'before' ? Math.min(5000, 1800 + 40 * text.length) : Math.min(4000, 1800 + 45 * text.length);
+            var from = k === 'before' ? rand(400, 5600 - dur) : rand(7900, 12400 - dur);
+            plan = { text: text, from: from, to: from + dur };
+          }
+          spoke = !!plan;
+        };
+        // Follows the roo (and the scene's pan on narrow screens), and keeps the bubble inside the frame.
+        var place = function () {
+          var w = wrap.getBoundingClientRect(), r = rooAnchor.getBoundingClientRect();
+          var x = (r.left + r.right) / 2 - w.left, y = r.top + r.height * .6 - w.top;
+          if (x < 28 || x > w.width - 28) say.classList.remove('on');
+          else {
+            var bw = sayP.offsetWidth, bh = sayP.offsetHeight;
+            var left = Math.max(8, Math.min(w.width - bw - 8, x - bw / 2));
+            sayP.style.setProperty('--tail', Math.max(14, Math.min(bw - 14, x - left)) + 'px');
+            say.style.transform = 'translate(' + left + 'px,' + (y - bh - 10) + 'px)';
+            say.classList.add('on');
+          }
+          raf = requestAnimationFrame(place);
+        };
+        var hush = function () { cancelAnimationFrame(raf); raf = 0; say.classList.remove('on'); };
+        setInterval(function () {
+          if (wrap.classList.contains('is-paused')) return;
+          var t = rooAnim.currentTime || 0, n = Math.floor(t / LAP), at = t % LAP;
+          if (n !== lap) { lap = n; hush(); newLap(); }
+          var live = plan && at >= plan.from && at < plan.to;
+          if (live && !raf) { sayP.textContent = plan.text; place(); }
+          else if (!live && raf) hush();
+        }, 150);
       }
-      wrap.addEventListener('pointermove', function (e) { show(e.target.closest('[data-label]'), e.clientX, e.clientY); });
-      wrap.addEventListener('pointerleave', function () { show(null); });
-      wrap.addEventListener('pointerdown', function (e) {
-        if (e.pointerType !== 'mouse') {
-          var el = e.target.closest('[data-label]');
-          show(el, e.clientX, e.clientY);
-          clearTimeout(show.t); show.t = setTimeout(function () { show(null); }, 1800);
-        }
-      });
     })();
   </script>
 </body>
