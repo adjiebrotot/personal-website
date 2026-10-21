@@ -1,7 +1,7 @@
 # adjiebrotots.com
 
-The personal site of Adjie Brotosukmono at **https://www.adjiebrotots.com**: a homepage, the
-story at `/about/` and the projects at `/projects/`. Static files only, published by GitHub Pages. Sister sites:
+The personal site of Adjie Brotosukmono at **https://www.adjiebrotots.com**: a homepage and the
+story at `/about/`. Static files only, published by GitHub Pages. Sister sites:
 [Adjie Brotools](https://tool.adjiebrotots.com/) and the
 [Adjie Brotot Blog](https://blog.adjiebrotots.com/).
 
@@ -11,7 +11,6 @@ story at `/about/` and the projects at `/projects/`. Static files only, publishe
 | --- | --- |
 | `index.html` | Homepage: the Jakarta, energy and Perth skyline, links to about, blog and tools |
 | `about/index.html` | The story so far, as a five-stop trail with the projects at each stop |
-| `projects/index.html` | The power system and economics projects in detail, by role |
 | `404.html` | Not found |
 | `llms.txt` | Who Adjie is, written for answer engines |
 | `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME` | Crawling, install and domain |
