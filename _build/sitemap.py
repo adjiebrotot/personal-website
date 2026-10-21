@@ -7,8 +7,8 @@ Bump a page's date in PAGES when its content changes.
 """
 SITE = 'https://www.adjiebrotots.com'
 PAGES = [
-    ('/', '2026-10-20', '1.0'),
-    ('/about/', '2026-10-20', '0.9'),
+    ('/', '2026-10-21', '1.0'),
+    ('/about/', '2026-10-21', '0.9'),
 ]
 
 rows = ['<?xml version="1.0" encoding="UTF-8"?>',
