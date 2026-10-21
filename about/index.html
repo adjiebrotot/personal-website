@@ -60,6 +60,7 @@
       --hl: rgba(255, 210, 140, .7);
       --trail: #9DB8E6; --trail-on: #0052CC;
       --land-id: #5A91E8; --land-au: #F3C27A; --land-nb: #D3DDEC; --roo: #C8774A;
+      --lap-body: #B9C3D3; --lap-edge: #8C98AD; --lap-well: #9AA6BA; --lap-key: #EEF2F8; --lap-pad: #A9B4C6;
       --roof: #7A6C64; --roof-2: #65574F; --roof-4: #8E8078; --wall: #FFFFFF; --wall-2: #E7EBF2; --win: #2D3A4F; --strut: #B8394A;
       --lawn: #8CCB9F; --lawn-2: #6DB585; --path: #DCE1E8; --pool: #9CC6F5;
       --glass: #6D8FC2; --glass-2: #557AB2; --mull: rgba(255, 255, 255, .35);
@@ -79,6 +80,7 @@
         --hl: rgba(255, 210, 140, .26);
         --trail: #2C3A52; --trail-on: #8DBBFF;
         --land-id: #3A6BC0; --land-au: #9C7440; --land-nb: #26344F; --roo: #E0A070;
+        --lap-body: #56627A; --lap-edge: #3A4458; --lap-well: #444F65; --lap-key: #2A3346; --lap-pad: #4C586E;
         --roof: #5E544D; --roof-2: #4B433D; --roof-4: #6C6159; --wall: #C9D2E0; --wall-2: #9AA6BA; --win: #1A2233; --strut: #B8394A;
         --lawn: #24493E; --lawn-2: #1D3D34; --path: #34405A; --pool: #2B5291;
         --glass: #2A4372; --glass-2: #22375E; --mull: rgba(141, 187, 255, .14);
@@ -98,6 +100,7 @@
       --hl: rgba(255, 210, 140, .26);
       --trail: #2C3A52; --trail-on: #8DBBFF;
       --land-id: #3A6BC0; --land-au: #9C7440; --land-nb: #26344F; --roo: #E0A070;
+      --lap-body: #56627A; --lap-edge: #3A4458; --lap-well: #444F65; --lap-key: #2A3346; --lap-pad: #4C586E;
       --roof: #5E544D; --roof-2: #4B433D; --roof-4: #6C6159; --wall: #C9D2E0; --wall-2: #9AA6BA; --win: #1A2233; --strut: #B8394A;
       --lawn: #24493E; --lawn-2: #1D3D34; --path: #34405A; --pool: #2B5291;
       --glass: #2A4372; --glass-2: #22375E; --mull: rgba(141, 187, 255, .14);
@@ -275,22 +278,37 @@
     /* A balanced page: the two short stamps side by side, a row of three with photos, then the internship, wide. */
     .stamps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; }
     .stamp { --c: var(--accent); grid-column: span 2; display: flex; flex-direction: column; align-items: flex-start; position: relative; background: var(--card); border-radius: 16px; padding: 14px 14px 16px; border: 2px solid var(--line); box-shadow: 4px 4px 0 var(--line); transform: rotate(var(--r, 0deg)); }
-    .stamp.half { grid-column: span 3; }
     .stamp:nth-child(3n+1) { --r: -1.2deg; } .stamp:nth-child(3n+2) { --r: .9deg; --c: var(--teal); } .stamp:nth-child(3n) { --r: -.4deg; --c: var(--gold); }
     .stamp .country { display: inline-block; font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.4rem; line-height: 1; color: var(--c); border: 4px double currentColor; border-radius: 10px; padding: .2rem .65rem .3rem; transform: rotate(-5deg); margin-bottom: .5rem; }
     .stamp h4 { margin: 0 0 .25rem; font-size: 1.02rem; line-height: 1.25; }
     .stamp p { margin: 0; color: var(--muted); font-size: .93rem; }
     .stamp .snap { align-self: stretch; margin: auto 4px 4px; }
     .stamp > p:not(:last-child) { margin-bottom: 12px; }
-    .stamp.wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 270px); grid-template-rows: 1fr auto auto auto 1fr; column-gap: 32px; justify-items: start; }
-    .stamp.wide > .country { grid-column: 1; grid-row: 2; }
-    .stamp.wide > h4 { grid-column: 1; grid-row: 3; }
-    .stamp.wide > p { grid-column: 1; grid-row: 4; margin-bottom: 0; }
-    .stamp.wide .snap { grid-column: 2; grid-row: 1 / -1; justify-self: stretch; align-self: center; margin: 4px; }
+    /* A card with its photo beside the words: South Korea over four columns, and Malaysia, wide, at the end. */
+    .stamp.side { grid-column: span 4; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 240px); grid-template-rows: 1fr auto auto auto 1fr; column-gap: 28px; justify-items: start; }
+    .stamp.side.wide { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr) minmax(0, 270px); column-gap: 32px; }
+    .stamp.side > .country { grid-column: 1; grid-row: 2; }
+    .stamp.side > h4 { grid-column: 1; grid-row: 3; }
+    .stamp.side > p { grid-column: 1; grid-row: 4; margin-bottom: 0; }
+    .stamp.side .snap { grid-column: 2; grid-row: 1 / -1; justify-self: stretch; align-self: center; margin: 4px; }
+    /* Where a stamp has no photo, a passport ink stamp fills the page instead. */
+    .stamp .ink { display: block; width: 112px; height: 112px; margin: auto auto 6px; align-self: center; color: var(--c); opacity: .5; transform: rotate(-14deg); }
+    .stamp:nth-child(1) .ink { width: 150px; height: 150px; margin: auto; }
+    .stamp:nth-child(5) .ink { width: 92px; height: 92px; margin-top: 10px; transform: rotate(10deg); }
 
-    /* Teaching: the laptop lid follows the scroll, open on the way down, shut on the way back up. */
-    .laptop .lid { transform-box: view-box; transform-origin: 200px 229px; transform: scaleY(calc(.05 + .95 * var(--p, 1))); }
-    .laptop .screen { opacity: var(--p, 1); }
+    /* Teaching: a laptop in CSS 3D, seen from above. The lid swings on its hinge with the scroll (--p, 0 shut
+       to 1 open): open on the way down, shut on the way back up, the screen lighting up as it opens. */
+    .lap3d { position: relative; width: 100%; aspect-ratio: 4 / 3; perspective: 1000px; perspective-origin: 50% 0%; }
+    .lap-notes { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .lap-rig { position: absolute; left: 24%; width: 56%; top: 46%; height: 0; transform-style: preserve-3d; transform: rotateX(-26deg) rotateY(-18deg); }
+    .lap-deck, .lap-lid { position: absolute; left: 0; width: 100%; transform-style: preserve-3d; }
+    .lap-deck { top: 0; aspect-ratio: 160 / 110; transform-origin: 50% 0; transform: rotateX(90deg); }
+    .lap-deck svg { display: block; width: 100%; height: 100%; filter: drop-shadow(0 6px 0 var(--lap-edge)); }
+    .lap-lid { bottom: 0; aspect-ratio: 160 / 100; transform-origin: 50% 100%; transform: rotateX(calc(-90deg + 102deg * var(--p, 1))); }
+    .lap-screen, .lap-cover { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .lap-cover { transform: rotateX(180deg); }
+    .lap-screen svg, .lap-cover svg { display: block; width: 100%; height: 100%; }
+    .lap-on { opacity: calc(var(--p, 1) * 1.6 - .5); }
 
     /* Stop 4: arrows run along the diagram's branches the way the power goes, only while it's on screen. */
     .sld .run { transition: opacity .3s; }
@@ -372,12 +390,14 @@
       .stop .story, .stop.flip .story { grid-column: 2; grid-row: 2; }
       .stop .art, .stop.flip .art { grid-column: 1 / -1; grid-row: 1; position: relative; top: 0; margin: 0 0 8px; }
       .art svg.ill, .stop.flip .art svg.ill { width: 100%; max-height: 300px; margin: 0; }
+      .lap3d { max-width: 400px; margin: 0 auto; }
       .trail::before { left: 22px; }
       .trips { margin-top: -12px; }
       .stamps { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin: 0 auto; }
-      .stamp, .stamp.half, .stamp.wide { grid-column: auto; }
-      .stamp.wide { display: flex; }
-      .stamp.wide .snap { align-self: stretch; margin: 12px 4px 4px; }
+      .stamp, .stamp.side, .stamp.side.wide { grid-column: auto; }
+      .stamp.side { display: flex; }
+      .stamp.side .snap { align-self: stretch; margin: 12px 4px 4px; }
+      .stamp .ink { display: none; }
     }
     @media (max-width: 480px) {
       .snaps { grid-template-columns: 1fr; }
@@ -874,37 +894,39 @@
       <section class="trips rise" aria-labelledby="trips">
         <span class="kicker hand" aria-hidden="true">passport, page one</span>
         <h3 id="trips">Side quests: saying yes to everything abroad</h3>
-        <p>At uni I joined almost every exchange and youth summit I could. Free travel, new friends, and a nicer CV. Hehe.</p>
+        <p>At uni I joined almost every exchange and youth summit I could.</p>
         <ul class="stamps">
-          <li class="stamp half">
+          <li class="stamp">
             <span class="country">Japan</span>
             <h4>Scholarion Exchange</h4>
-            <p>A student exchange in Japan. Trains on time, every time. I took notes.</p>
-          </li>
-          <li class="stamp half">
-            <span class="country">Cambodia</span>
-            <h4>ASEAN Young Leaders Program</h4>
-            <p>One more ASEAN Young Leaders Program, this time in Cambodia.</p>
+            <p>A student exchange programme in Japan.</p>
+            <svg class="ink" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="60" cy="60" r="45" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="60" y="47" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="11" letter-spacing="2" fill="currentColor">ARRIVED</text><text x="60" y="70" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="16" letter-spacing="1" fill="currentColor">JAPAN</text><path d="M60 76 l3 7 h9 l2 3 h-11 l-3 6 h-3 l1 -6 h-6 l-2 3 h-2 l1 -4 -1 -4 h2 l2 3 h6 l-1 -6 z" transform="rotate(-90 60 84)" fill="currentColor"/></svg>
           </li>
           <li class="stamp">
             <span class="country">Singapore</span>
             <h4>ASEAN Young Leaders Program</h4>
-            <p>My first time speaking on stage to young leaders from across ASEAN. Nervous? Very.</p>
+            <p>Spoke on stage to young leaders from across ASEAN, at the Singapore Institute of Technology.</p>
             <figure class="snap"><img src="/assets/img/about/asean-young-leaders-singapore-480.webp" srcset="/assets/img/about/asean-young-leaders-singapore-480.webp 480w, /assets/img/about/asean-young-leaders-singapore-960.webp 960w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="314" loading="lazy" decoding="async" alt="Adjie speaking at a podium of the Singapore Institute of Technology"><figcaption>On stage at the Singapore Institute of Technology</figcaption></figure>
           </li>
           <li class="stamp">
             <span class="country">Thailand (2x)</span>
             <h4>Young ASEAN Leaders Policy Initiative</h4>
-            <p>At Chulalongkorn University in Bangkok, our team handed over policy recommendations on environmental management. I liked it so much that I went back for another round.</p>
+            <p>Two rounds at Chulalongkorn University in Bangkok. Our team handed over policy recommendations on environmental management.</p>
             <figure class="snap"><img src="/assets/img/about/yalpi-bangkok-480.webp" srcset="/assets/img/about/yalpi-bangkok-480.webp 480w, /assets/img/about/yalpi-bangkok-800.webp 800w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="320" loading="lazy" decoding="async" alt="Adjie handing over a policy recommendations document at the Young ASEAN Leaders Policy Initiative"><figcaption>Handing over our policy recommendations</figcaption></figure>
           </li>
-          <li class="stamp">
+          <li class="stamp side">
             <span class="country">South Korea</span>
             <h4>30th International Youth Forum</h4>
             <p>Seoul, with delegates, ambassadors and ministers, talking about inclusion and a shared global village.</p>
             <figure class="snap"><img src="/assets/img/about/international-youth-forum-seoul-480.webp" srcset="/assets/img/about/international-youth-forum-seoul-480.webp 480w, /assets/img/about/international-youth-forum-seoul-800.webp 800w" sizes="(max-width: 480px) 90vw, 300px" width="480" height="265" loading="lazy" decoding="async" alt="Delegates and hosts on stage at the 30th International Youth Forum in Seoul"><figcaption>Opening day of the forum in Seoul</figcaption></figure>
           </li>
-          <li class="stamp wide">
+          <li class="stamp">
+            <span class="country">Cambodia</span>
+            <h4>ASEAN Young Leaders Program</h4>
+            <p>The ASEAN Young Leaders Program again, this time in Cambodia.</p>
+            <svg class="ink" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="60" cy="60" r="45" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="60" y="47" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="11" letter-spacing="2" fill="currentColor">ARRIVED</text><text x="60" y="70" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" letter-spacing="1" fill="currentColor">CAMBODIA</text><path d="M60 76 l3 7 h9 l2 3 h-11 l-3 6 h-3 l1 -6 h-6 l-2 3 h-2 l1 -4 -1 -4 h2 l2 3 h6 l-1 -6 z" transform="rotate(-90 60 84)" fill="currentColor"/></svg>
+          </li>
+          <li class="stamp side wide">
             <span class="country">Malaysia</span>
             <h4>Research Engineer at E-Life Solutions Sdn. Bhd., Johor</h4>
             <p>I dug through IEEE and IEC standards for ERMA, software for managing electromagnetic risk, and turned the research into its product requirements, flowcharts and screens. I also joined high voltage experiments at UTM's high voltage lab.</p>
@@ -926,29 +948,51 @@
           <p>I never really stopped teaching. For years, on the side, I taught calculus, physics, Python and C++, thermodynamics and circuits to university students, prepared high schoolers for UTBK, SAT, ACT, A-Level and IB, and coached olympiad teams. I worked with Excelsis Learning Center, Kejarcita, Kabisa Education, Generasi Cerdas Indonesia, Schoters and several schools.</p>
         </div>
         <div class="art rise">
-          <svg class="ill laptop" data-scrub viewBox="0 0 400 300" role="img" aria-labelledby="ill2">
-              <title id="ill2">Flat drawing of a laptop showing an online physics lesson, its lid opening as you scroll down to it</title>
-              <g class="hand" font-family="Caveat, cursive" font-weight="700" fill="var(--muted)">
-                <text x="26" y="46" font-size="26" transform="rotate(-8 26 46)">v = s / t</text>
-                <text x="40" y="286" font-size="23" transform="rotate(-4 40 286)">P = V × I</text>
-                <text x="236" y="288" font-size="23" transform="rotate(3 236 288)">V = I × R</text>
+          <div class="lap3d" data-scrub role="img" aria-label="A laptop showing an online physics lesson, its lid opening as you scroll down to it and closing as you scroll back up">
+            <svg class="lap-notes" viewBox="0 0 400 300" aria-hidden="true">
+              <g font-family="Caveat, cursive" font-weight="700" fill="var(--muted)">
+                <text x="6" y="40" font-size="23" transform="rotate(-8 6 40)">v = s / t</text>
+                <text x="30" y="286" font-size="23" transform="rotate(-4 30 286)">P = V × I</text>
+                <text x="272" y="288" font-size="23" transform="rotate(3 272 288)">V = I × R</text>
               </g>
-              <g class="lid">
-                <rect x="80" y="70" width="240" height="160" rx="10" fill="var(--ink)"/>
-                <g class="screen">
-                  <rect x="90" y="80" width="220" height="140" rx="4" fill="#F7FAFF"/>
-                  <rect x="100" y="90" width="140" height="92" rx="4" fill="#1F3B34"/>
-                  <text x="114" y="128" font-family="Caveat, cursive" font-weight="700" font-size="30" fill="#EAF1FF">F = m · a</text>
-                  <path d="M114 150 q 20 -18 40 0 t 40 0 t 40 0" stroke="#FFD28C" stroke-width="2.4" fill="none"/>
-                  <circle cx="276" cy="112" r="18" fill="#FFD28C"/><circle cx="276" cy="106" r="7" fill="#14203A"/><path d="M262 126 q 14 -14 28 0" fill="#14203A"/>
-                  <rect x="252" y="140" width="48" height="8" rx="4" fill="#D9E2F1"/><rect x="252" y="154" width="36" height="8" rx="4" fill="#D9E2F1"/>
-                  <circle cx="170" cy="202" r="11" fill="#E66A6A"/><path d="M166 196 L176 202 L166 208 Z" fill="#fff"/>
-                  <rect x="100" y="198" width="56" height="6" rx="3" fill="#D9E2F1"/><rect x="186" y="198" width="114" height="6" rx="3" fill="#D9E2F1"/><rect x="186" y="198" width="60" height="6" rx="3" fill="#E66A6A"/>
-                </g>
-              </g>
-              <path d="M60 228 L340 228 L364 252 H36 Z" fill="var(--steel)"/>
-              <path d="M172 240 h56" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" opacity=".35"/>
             </svg>
+            <div class="lap-rig" aria-hidden="true">
+              <div class="lap-deck">
+                <svg viewBox="0 0 160 110" preserveAspectRatio="none">
+                  <rect width="160" height="110" rx="8" fill="var(--lap-body)"/>
+                  <rect x="4" y="4" width="152" height="66" rx="4" fill="var(--lap-well)"/>
+                  <g fill="var(--lap-key)"><rect x="8" y="8" width="10.6" height="9" rx="1.6"/><rect x="20.4" y="8" width="10.6" height="9" rx="1.6"/><rect x="32.8" y="8" width="10.6" height="9" rx="1.6"/><rect x="45.2" y="8" width="10.6" height="9" rx="1.6"/><rect x="57.6" y="8" width="10.6" height="9" rx="1.6"/><rect x="70" y="8" width="10.6" height="9" rx="1.6"/><rect x="82.4" y="8" width="10.6" height="9" rx="1.6"/><rect x="94.8" y="8" width="10.6" height="9" rx="1.6"/><rect x="107.2" y="8" width="10.6" height="9" rx="1.6"/><rect x="119.6" y="8" width="10.6" height="9" rx="1.6"/><rect x="132" y="8" width="10.6" height="9" rx="1.6"/><rect x="144.4" y="8" width="10.6" height="9" rx="1.6"/><rect x="8" y="20" width="10.6" height="9" rx="1.6"/><rect x="20.4" y="20" width="10.6" height="9" rx="1.6"/><rect x="32.8" y="20" width="10.6" height="9" rx="1.6"/><rect x="45.2" y="20" width="10.6" height="9" rx="1.6"/><rect x="57.6" y="20" width="10.6" height="9" rx="1.6"/><rect x="70" y="20" width="10.6" height="9" rx="1.6"/><rect x="82.4" y="20" width="10.6" height="9" rx="1.6"/><rect x="94.8" y="20" width="10.6" height="9" rx="1.6"/><rect x="107.2" y="20" width="10.6" height="9" rx="1.6"/><rect x="119.6" y="20" width="10.6" height="9" rx="1.6"/><rect x="132" y="20" width="10.6" height="9" rx="1.6"/><rect x="144.4" y="20" width="10.6" height="9" rx="1.6"/><rect x="8" y="32" width="10.6" height="9" rx="1.6"/><rect x="20.4" y="32" width="10.6" height="9" rx="1.6"/><rect x="32.8" y="32" width="10.6" height="9" rx="1.6"/><rect x="45.2" y="32" width="10.6" height="9" rx="1.6"/><rect x="57.6" y="32" width="10.6" height="9" rx="1.6"/><rect x="70" y="32" width="10.6" height="9" rx="1.6"/><rect x="82.4" y="32" width="10.6" height="9" rx="1.6"/><rect x="94.8" y="32" width="10.6" height="9" rx="1.6"/><rect x="107.2" y="32" width="10.6" height="9" rx="1.6"/><rect x="119.6" y="32" width="10.6" height="9" rx="1.6"/><rect x="132" y="32" width="10.6" height="9" rx="1.6"/><rect x="144.4" y="32" width="10.6" height="9" rx="1.6"/><rect x="8" y="44" width="10.6" height="9" rx="1.6"/><rect x="20.4" y="44" width="10.6" height="9" rx="1.6"/><rect x="32.8" y="44" width="10.6" height="9" rx="1.6"/><rect x="45.2" y="44" width="10.6" height="9" rx="1.6"/><rect x="57.6" y="44" width="10.6" height="9" rx="1.6"/><rect x="70" y="44" width="10.6" height="9" rx="1.6"/><rect x="82.4" y="44" width="10.6" height="9" rx="1.6"/><rect x="94.8" y="44" width="10.6" height="9" rx="1.6"/><rect x="107.2" y="44" width="10.6" height="9" rx="1.6"/><rect x="119.6" y="44" width="10.6" height="9" rx="1.6"/><rect x="132" y="44" width="10.6" height="9" rx="1.6"/><rect x="144.4" y="44" width="10.6" height="9" rx="1.6"/><rect x="8" y="56" width="22.8" height="9" rx="1.6"/><rect x="33.2" y="56" width="10.6" height="9" rx="1.6"/><rect x="46.4" y="56" width="59" height="9" rx="1.6"/><rect x="108" y="56" width="10.6" height="9" rx="1.6"/><rect x="120.4" y="56" width="22.8" height="9" rx="1.6"/></g>
+                  <rect x="52" y="76" width="56" height="28" rx="4" fill="var(--lap-pad)"/>
+                </svg>
+              </div>
+              <div class="lap-lid">
+                <div class="lap-screen">
+                  <svg viewBox="0 0 160 100">
+                    <rect width="160" height="100" rx="7" fill="#1A2234"/>
+                    <g class="lap-on">
+                      <rect x="6" y="6" width="148" height="88" rx="3" fill="#F7FAFF"/>
+                      <rect x="12" y="12" width="92" height="58" rx="3" fill="#1F3B34"/>
+                      <text x="21" y="38" font-family="Caveat, cursive" font-weight="700" font-size="19" fill="#EAF1FF">F = m · a</text>
+                      <path d="M21 53 q 12 -11 24 0 t 24 0 t 24 0" stroke="#FFD28C" stroke-width="1.8" fill="none"/>
+                      <circle cx="129" cy="27" r="12" fill="#FFD28C"/><circle cx="129" cy="23.5" r="4.6" fill="#14203A"/><path d="M120 37 q 9 -9 18 0" fill="#14203A"/>
+                      <rect x="113" y="45" width="32" height="5" rx="2.5" fill="#D9E2F1"/><rect x="113" y="54" width="24" height="5" rx="2.5" fill="#D9E2F1"/>
+                      <circle cx="58" cy="82" r="6.5" fill="#E66A6A"/><path d="M55.6 78.6 L61.6 82 L55.6 85.4 Z" fill="#fff"/>
+                      <rect x="12" y="80" width="38" height="4" rx="2" fill="#D9E2F1"/><rect x="68" y="80" width="80" height="4" rx="2" fill="#D9E2F1"/><rect x="68" y="80" width="42" height="4" rx="2" fill="#E66A6A"/>
+                    </g>
+                    <circle cx="80" cy="3.2" r="1.1" fill="#3A4560"/>
+                  </svg>
+                </div>
+                <div class="lap-cover">
+                  <svg viewBox="0 0 160 100">
+                    <rect width="160" height="100" rx="7" fill="var(--lap-body)"/>
+                    <circle cx="80" cy="50" r="13" fill="var(--gold-soft)"/>
+                    <text x="80" y="56" text-anchor="middle" font-family="Caveat, cursive" font-weight="700" font-size="17" fill="#14203A">E=mc²</text>
+                    <rect x="112" y="16" width="30" height="16" rx="4" fill="#8FCDBD" transform="rotate(8 127 24)"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
