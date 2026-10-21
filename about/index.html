@@ -243,7 +243,14 @@
     .paper { font-style: italic; color: var(--ink); }
     .snaps { margin-bottom: 1.4rem; }
     .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 900px; margin: 1rem auto 0; padding: 0; list-style: none; }
-    .badges li { padding: .45rem .85rem; border-radius: 999px; background: var(--card); border: 2px solid var(--line); box-shadow: 2px 2px 0 var(--line); font-weight: 700; font-size: .9rem; line-height: 1.3; }
+    .badges li { display: flex; align-items: center; gap: .6rem; padding: .45rem .9rem .45rem .5rem; border-radius: 14px; background: var(--card); border: 2px solid var(--line); box-shadow: 2px 2px 0 var(--line); text-align: left; line-height: 1.25; }
+    .badges b { display: block; font-size: .9rem; }
+    .badges small { display: block; color: var(--muted); font-size: .8rem; }
+    .badges .bi { flex: none; width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; border: 1.5px solid var(--line); }
+    .badges .bi svg { width: 30px; height: 30px; }
+    .bi-aws { background: #232F3E; }
+    .bi-idx { background: #FFFFFF; } .bi-idx text { fill: #B4202A; }
+    .bi-ea { background: #1E3A7B; }
     .badges li:nth-child(odd) { transform: rotate(-1deg); }
     .badges li:nth-child(even) { transform: rotate(.8deg); }
     .finale h3 { margin: 2rem 0 0; font-size: 1.15rem; letter-spacing: -.01em; }
@@ -506,28 +513,31 @@
           },
           {
             "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "certificate",
+            "name": "AWS Academy Graduate: AWS Academy Cloud Architecting",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Amazon Web Services"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "certificate",
+            "name": "AWS Academy Graduate: AWS Academy Machine Learning Foundations",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Amazon Web Services"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
             "credentialCategory": "license",
             "name": "Securities Broker-Dealer Representative (Wakil Perantara Pedagang Efek, WPPE)"
           },
           {
             "@type": "EducationalOccupationalCredential",
-            "credentialCategory": "certificate",
-            "name": "Strategic Leadership and Management Specialization"
-          },
-          {
-            "@type": "EducationalOccupationalCredential",
-            "credentialCategory": "certificate",
-            "name": "Trading Strategies in Emerging Markets Specialization"
-          },
-          {
-            "@type": "EducationalOccupationalCredential",
-            "credentialCategory": "certificate",
-            "name": "Digital Talent Scholarship: Product Management"
-          },
-          {
-            "@type": "EducationalOccupationalCredential",
-            "credentialCategory": "certificate",
-            "name": "AWS Academy Graduate: AWS Academy Machine Learning Foundations"
+            "credentialCategory": "license",
+            "name": "Investment Manager Representative (Wakil Manajer Investasi, WMI)"
           }
         ],
         "hasOccupation": [
@@ -1189,12 +1199,11 @@
       <p>I love planes, trains and travelling. You might have guessed that from the homepage. I speak Bahasa Indonesia and English, and a little Chinese, Japanese, Russian and French.</p>
       <h3>Badges collected along the way</h3>
       <ul class="badges">
-        <li>Professional Member, Engineers Australia</li>
-        <li>Licensed securities broker-dealer representative (WPPE), Indonesia</li>
-        <li>Strategic Leadership and Management Specialization</li>
-        <li>Trading Strategies in Emerging Markets Specialization</li>
-        <li>Digital Talent Scholarship: Product Management</li>
-        <li>AWS Academy Graduate: Machine Learning Foundations</li>
+        <li><span class="bi bi-aws" aria-hidden="true"><svg viewBox="0 0 32 32"><text x="16" y="17" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="11" fill="#fff">aws</text><path d="M7.5 21.5 q8.5 4.5 17 0" fill="none" stroke="#FF9900" stroke-width="2" stroke-linecap="round"/><path d="M22.5 19.6 l2.6 1.7 -1.2 2.8" fill="none" stroke="#FF9900" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>AWS Academy Graduate</b><small>AWS Academy Cloud Architecting</small></span></li>
+        <li><span class="bi bi-aws" aria-hidden="true"><svg viewBox="0 0 32 32"><text x="16" y="17" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="11" fill="#fff">aws</text><path d="M7.5 21.5 q8.5 4.5 17 0" fill="none" stroke="#FF9900" stroke-width="2" stroke-linecap="round"/><path d="M22.5 19.6 l2.6 1.7 -1.2 2.8" fill="none" stroke="#FF9900" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>AWS Academy Graduate</b><small>AWS Academy Machine Learning Foundations</small></span></li>
+        <li><span class="bi bi-idx" aria-hidden="true"><svg viewBox="0 0 32 32"><text x="16" y="20" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="11" letter-spacing=".3">IDX</text></svg></span><span><b>Securities Broker-Dealer</b><small>Wakil Perantara Pedagang Efek (WPPE)</small></span></li>
+        <li><span class="bi bi-idx" aria-hidden="true"><svg viewBox="0 0 32 32"><text x="16" y="20" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="11" letter-spacing=".3">IDX</text></svg></span><span><b>Investment Manager</b><small>Wakil Manajer Investasi (WMI)</small></span></li>
+        <li><span class="bi bi-ea" aria-hidden="true"><svg viewBox="0 0 32 32"><text x="16" y="20.5" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="#fff">EA</text></svg></span><span><b>Professional Member of Engineers Australia</b><small>MIEAust</small></span></li>
       </ul>
       <ul class="cta">
         <li><a href="https://blog.adjiebrotots.com/">Read the blog <span aria-hidden="true">→</span></a></li>
