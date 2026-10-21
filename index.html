@@ -1644,10 +1644,22 @@
             // In small and see-through, then a pop up to size.
             var k = kinds[i];
             k.classList.add('pop'); k.removeAttribute('display'); k.getBoundingClientRect(); k.classList.remove('pop');
+          },
+          // A different one of its kind (any one, on load), picked at random, without the pop: it's off screen.
+          shuffle: function (any) {
+            kinds[i].setAttribute('display', 'none');
+            i = any ? Math.floor(Math.random() * kinds.length) : (i + 1 + Math.floor(Math.random() * (kinds.length - 1))) % kinds.length;
+            kinds[i].removeAttribute('display');
           }
         };
       };
-      var bus = ride(document.querySelector('.bus')), train = ride(document.querySelector('.train')), plane = ride(document.querySelector('.plane'));
+      /* Each time one comes round again (and on load) it's a random one of its kind. */
+      var shuffled = function (r) {
+        r.shuffle(true);
+        r.el.addEventListener('animationiteration', function (e) { if (e.target === r.el) r.shuffle(); });
+        return r;
+      };
+      var bus = shuffled(ride(document.querySelector('.bus'))), train = shuffled(ride(document.querySelector('.train'))), plane = shuffled(ride(document.querySelector('.plane')));
       // The roo stops only while it's hopping (not mid-jolt), and lands first: a hop takes 0.6 s.
       var rooT = function () { return (rooAnim.currentTime || 0) % LAP; };
       var hopping = function () { var t = rooT(); return !rooAnim || t > 500 && t < 5300 || t > 11700 && t < 16300; };
