@@ -291,26 +291,26 @@
        that search engines and answer engines read as facts about Adjie. */
     .note {
       position: absolute; left: 50%; bottom: calc(100% + 14px); z-index: 3;
-      width: max-content; max-width: 250px; padding: .45rem .8rem .5rem;
-      background: var(--gold-soft); color: #14203A; border: 2px solid var(--line); border-radius: 14px 14px 14px 4px;
-      font-family: 'Caveat', cursive; font-weight: 600; font-size: 1.32rem; line-height: 1.05; text-align: left;
-      box-shadow: 3px 3px 0 var(--line);
+      width: max-content; max-width: 200px; padding: .3rem .6rem .34rem;
+      background: var(--gold-soft); color: #14203A; border: 2px solid var(--line); border-radius: 12px 12px 12px 4px;
+      font-family: 'Caveat', cursive; font-weight: 600; font-size: 1.08rem; line-height: 1.05; text-align: left;
+      box-shadow: 2px 2px 0 var(--line);
       opacity: 0; pointer-events: none;
       transform: translate(-50%, 8px) rotate(-3deg) scale(.92);
       transition: opacity .16s, transform .22s cubic-bezier(.3, .7, .2, 1.5);
     }
     .note::before { content: attr(data-note); }
-    .note::after { content: ''; position: absolute; left: 22px; top: 100%; width: 14px; height: 14px; background: var(--gold-soft); border: 2px solid var(--line); border-top: 0; border-left: 0; transform: translateY(-7px) rotate(45deg); }
+    .note::after { content: ''; position: absolute; left: 18px; top: 100%; width: 11px; height: 11px; background: var(--gold-soft); border: 2px solid var(--line); border-top: 0; border-left: 0; transform: translateY(-5.5px) rotate(45deg); }
     .hub li:nth-child(2) .note { background: #CFE3FF; transform: translate(-50%, 8px) rotate(2deg) scale(.92); }
     .hub li:nth-child(2) .note::after { background: #CFE3FF; }
     .hub li:nth-child(3) .note { background: #C9EEDF; transform: translate(-50%, 8px) rotate(-1.5deg) scale(.92); }
     .hub li:nth-child(3) .note::after { background: #C9EEDF; }
-    .hub li:hover .note, .hub li:focus-within .note { opacity: 1; transform: translate(-50%, 0) rotate(-3deg) scale(1); }
+    .hub li:hover .note, .hub li:focus-within .note { opacity: .86; transform: translate(-50%, 0) rotate(-3deg) scale(1); }
     .hub li:nth-child(2):hover .note, .hub li:nth-child(2):focus-within .note { transform: translate(-50%, 0) rotate(2deg) scale(1); }
     .hub li:nth-child(3):hover .note, .hub li:nth-child(3):focus-within .note { transform: translate(-50%, 0) rotate(-1.5deg) scale(1); }
     /* Touch screens have no hover, so the note sits under its sticker. */
     @media (hover: none) {
-      .note { position: static; display: block; margin: 12px auto 0; opacity: 1; transform: rotate(-2deg); box-shadow: none; font-size: 1.15rem; max-width: 240px; }
+      .note { position: static; display: block; margin: 10px auto 0; opacity: .86; transform: rotate(-2deg); box-shadow: none; font-size: 1rem; max-width: 220px; }
       .note::after { display: none; }
       .hub li:nth-child(n) .note { transform: rotate(-2deg); }
     }
@@ -426,18 +426,34 @@
     .desk.on { opacity: 1; }
     .callout { position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; }
     .callout p {
-      position: relative; margin: 0; width: max-content; max-width: min(260px, calc(100vw - 48px));
-      padding: .3rem .65rem .35rem; background: var(--card); color: var(--ink);
-      border: 2px solid var(--line); border-radius: 12px; box-shadow: 3px 3px 0 var(--line);
-      font-family: 'Caveat', cursive; font-weight: 600; font-size: 1.2rem; line-height: 1.05; text-align: center;
+      position: relative; margin: 0; width: max-content; max-width: min(200px, calc(100vw - 48px));
+      padding: .2rem .5rem .24rem; background: var(--card); color: var(--ink);
+      border: 2px solid var(--line); border-radius: 10px; box-shadow: 2px 2px 0 var(--line);
+      font-family: 'Caveat', cursive; font-weight: 600; font-size: 1rem; line-height: 1.05; text-align: center;
       opacity: 0; transform: translateY(6px) scale(.85) rotate(-2deg); transform-origin: var(--tail, 50%) 100%;
       transition: opacity .2s, transform .25s cubic-bezier(.3, 1.6, .5, 1);
     }
     .callout p::after {
-      content: ''; position: absolute; left: var(--tail, 50%); bottom: -7px; width: 10px; height: 10px; margin-left: -6px;
+      content: ''; position: absolute; left: var(--tail, 50%); bottom: -6px; width: 9px; height: 9px; margin-left: -5px;
       background: var(--card); border: solid var(--line); border-width: 0 2px 2px 0; transform: rotate(45deg);
     }
-    .callout.on p { opacity: 1; transform: rotate(-2deg); }
+    /* Under its speaker, for the plane up at the top of the sky. */
+    .callout.below p { transform-origin: var(--tail, 50%) 0; transform: translateY(-6px) scale(.85) rotate(2deg); }
+    .callout.below p::after { bottom: auto; top: -6px; border-width: 2px 0 0 2px; }
+    .callout.on p { opacity: .86; transform: rotate(-2deg); }
+    .callout.below.on p { transform: rotate(2deg); }
+
+    /* Come too close and they react: the bus, the train and the roo stop, the plane pulls up. */
+    .scene .halt, .scene .halt * { animation-play-state: paused; }
+    .dodge { transition: transform .7s cubic-bezier(.3, .7, .3, 1); }
+    .dodge.up { transform: translateY(-34px); }
+    /* Room above the scene for that climb, where the scene shows its full height (it crops its top on very wide screens). */
+    @supports (overflow: clip) {
+      @media (max-aspect-ratio: 2/1) {
+        .scene-wrap { overflow: clip visible; }
+        .scene { overflow: visible; clip-path: inset(-44px 0 0 0); }
+      }
+    }
 
     .ground {
       background: var(--grass-2); color: var(--ink);
@@ -790,8 +806,7 @@
     </main>
 
     <div class="scene-wrap" id="sceneWrap">
-      <svg class="scene" viewBox="0 110 1920 490" preserveAspectRatio="xMidYMax slice" role="img" aria-labelledby="sceneTitle">
-        <title id="sceneTitle">Flat illustration of Jakarta, with Monas, Wisma 46, Menara BCA and the Selamat Datang monument, then wind and solar farms, then Perth, with the BHP Tower at Brookfield Place, Central Park (the Rio Tinto tower), the Palace Tower, the Bell Tower, Elizabeth Quay Bridge and Optus Stadium. A Singapore Airlines A380 flies overhead while a Transperth C-series train and a Transperth bus pass below, and a kangaroo jumps at the power line, gets a jolt and hops on, a little singed.</title>
+      <svg class="scene" viewBox="0 110 1920 490" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Flat illustration of Jakarta, with Monas, Wisma 46, Menara BCA and the Selamat Datang monument, then wind and solar farms, then Perth, with the BHP Tower at Brookfield Place, Central Park (the Rio Tinto tower), the Palace Tower, the Bell Tower, Elizabeth Quay Bridge and Optus Stadium. A Singapore Airlines A380 flies overhead while a Transperth C-series train and a Transperth bus pass below, and a kangaroo jumps at the power line, gets a jolt and hops on, a little singed.">
         <defs>
           <pattern id="mullV" width="6" height="8" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="1" height="8" class="f-mull"/></pattern>
           <pattern id="mullG" width="8" height="9" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="1" height="9" class="f-mull"/><rect x="0" y="0" width="8" height="1" class="f-mull"/></pattern>
@@ -854,22 +869,24 @@
 
         <!-- Singapore Airlines A380-800, Jakarta to Perth: far away, so it passes behind the towers -->
         <g class="plane">
-          <g transform="translate(0 150) scale(.72)">
-            <rect class="contrail" x="-230" y="15" width="290" height="3.2" rx="1.6" fill="url(#contrail)"/>
-            <rect class="contrail" x="-250" y="20.5" width="320" height="3.2" rx="1.6" fill="url(#contrail)"/>
-            <path d="M8 -11 L -2 -48 L 12 -48 L 36 -12 Z" fill="#14306B"/>
-            <use href="#lgSia" x="5.6" y="-43" width="11" height="14.8" fill="#F7A823"/>
-            <path d="M6 -8 C 10 -12 22 -13 34 -13 L 154 -13 C 166 -13 174 -7 176 0 C 177 6 171 11 160 11 L 44 11 C 30 11 16 4 6 -3 Z" fill="#FBFCFE"/>
-            <path d="M40 8 L 160 8 C 166 8 170 7 172 5" stroke="#14306B" stroke-width="1.6" fill="none"/>
-            <path d="M40 10 L 160 10" stroke="#F7A823" stroke-width="1.2"/>
-            <path d="M44 -6 H150 M44 1 H156" stroke="#14306B" stroke-width="1.7" stroke-dasharray="1.6 2.6"/>
-            <path d="M164 -6 C 168 -6 171 -4 172 -2 L 165 -2 Z" fill="#14306B"/>
-            <path d="M4 -5 L 30 -3 L 12 -1 Z" fill="#C9D2DF"/>
-            <path d="M118 3 L 86 3 L 48 24 L 60 24 Z" fill="#DCE3EC"/>
-            <rect x="86" y="13" width="16" height="7" rx="3.5" fill="#C3CCDA"/><rect x="99" y="14" width="3" height="5" rx="1.5" fill="#4A5568"/>
-            <rect x="66" y="19" width="15" height="6.5" rx="3.2" fill="#C3CCDA"/><rect x="78" y="20" width="3" height="4.5" rx="1.5" fill="#4A5568"/>
-            <path d="M60 -13 h4 v6 h-4z M120 -13 h4 v6 h-4z" fill="#E3E8EF"/>
-            <circle class="blink" cx="20" cy="-46" r="2.2" fill="#FF5A5A"/>
+          <g class="dodge">
+            <g transform="translate(0 150) scale(.72)">
+              <rect class="contrail" x="-230" y="15" width="290" height="3.2" rx="1.6" fill="url(#contrail)"/>
+              <rect class="contrail" x="-250" y="20.5" width="320" height="3.2" rx="1.6" fill="url(#contrail)"/>
+              <path d="M8 -11 L -2 -48 L 12 -48 L 36 -12 Z" fill="#14306B"/>
+              <use href="#lgSia" x="5.6" y="-43" width="11" height="14.8" fill="#F7A823"/>
+              <path class="plane-body" d="M6 -8 C 10 -12 22 -13 34 -13 L 154 -13 C 166 -13 174 -7 176 0 C 177 6 171 11 160 11 L 44 11 C 30 11 16 4 6 -3 Z" fill="#FBFCFE"/>
+              <path d="M40 8 L 160 8 C 166 8 170 7 172 5" stroke="#14306B" stroke-width="1.6" fill="none"/>
+              <path d="M40 10 L 160 10" stroke="#F7A823" stroke-width="1.2"/>
+              <path d="M44 -6 H150 M44 1 H156" stroke="#14306B" stroke-width="1.7" stroke-dasharray="1.6 2.6"/>
+              <path d="M164 -6 C 168 -6 171 -4 172 -2 L 165 -2 Z" fill="#14306B"/>
+              <path d="M4 -5 L 30 -3 L 12 -1 Z" fill="#C9D2DF"/>
+              <path d="M118 3 L 86 3 L 48 24 L 60 24 Z" fill="#DCE3EC"/>
+              <rect x="86" y="13" width="16" height="7" rx="3.5" fill="#C3CCDA"/><rect x="99" y="14" width="3" height="5" rx="1.5" fill="#4A5568"/>
+              <rect x="66" y="19" width="15" height="6.5" rx="3.2" fill="#C3CCDA"/><rect x="78" y="20" width="3" height="4.5" rx="1.5" fill="#4A5568"/>
+              <path d="M60 -13 h4 v6 h-4z M120 -13 h4 v6 h-4z" fill="#E3E8EF"/>
+              <circle class="blink" cx="20" cy="-46" r="2.2" fill="#FF5A5A"/>
+            </g>
           </g>
         </g>
 
@@ -1270,6 +1287,7 @@
       </svg>
       <div class="callout" id="rooSay" aria-hidden="true" data-nosnippet><p></p></div>
       <div class="callout" id="deskSay" aria-hidden="true" data-nosnippet><p></p></div>
+      <div class="callout" id="hitSay" aria-hidden="true" data-nosnippet><p></p></div>
     </div>
   </div>
 
@@ -1309,9 +1327,10 @@
         var t = root.getAttribute('data-theme');
         return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
       };
-      // A bubble follows a point in the scene (which pans on narrow screens) and stays inside the frame.
+      // A bubble follows a point in the scene (which pans on narrow screens) and stays inside the frame,
+      // over its speaker or, for one up at the top of the sky, under it.
       var bubble = function (el) {
-        var p = el.firstChild, raf = 0, at, text;
+        var p = el.firstChild, raf = 0, at, text, below = false;
         var place = function () {
           var w = wrap.getBoundingClientRect(), pt = at(), x = pt.x - w.left, y = pt.y - w.top, t = text();
           if (p.textContent !== t) p.textContent = t;
@@ -1320,14 +1339,14 @@
             var bw = p.offsetWidth, bh = p.offsetHeight;
             var left = Math.max(8, Math.min(w.width - bw - 8, x - bw / 2));
             p.style.setProperty('--tail', Math.max(14, Math.min(bw - 14, x - left)) + 'px');
-            el.style.transform = 'translate(' + left + 'px,' + (y - bh - 10) + 'px)';
+            el.style.transform = 'translate(' + left + 'px,' + (below ? y + 10 : y - bh - 10) + 'px)';
             el.classList.add('on');
           }
           raf = requestAnimationFrame(place);
         };
         return {
           busy: function () { return raf !== 0; },
-          show: function (where, what) { at = where; text = what; if (!raf) place(); },
+          show: function (where, what, under) { at = where; text = what; below = !!under; el.classList.toggle('below', below); if (!raf) place(); },
           hide: function () { cancelAnimationFrame(raf); raf = 0; el.classList.remove('on'); }
         };
       };
@@ -1402,14 +1421,100 @@
         shown = null;
       };
 
+      /* Come close (or tap, on a touch screen) and they notice: the bus, the train and the roo stop for
+         a word, and the plane pulls up while the pilot has one. While they talk, the callouts above keep quiet. */
+      var motion = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hitSay = bubble(document.getElementById('hitSay'));
+      var scene = wrap.querySelector('.scene'), ptr = null, hush = 0, sayTimer = 0, saidAt = 0;
+      var say = function (text, at, below) {
+        // Two at once (the bus and the train side by side): the first one gets the word in.
+        if (Date.now() - saidAt < 500) return;
+        saidAt = Date.now();
+        stop();
+        hitSay.show(at, function () { return text; }, below);
+        clearTimeout(sayTimer);
+        sayTimer = setTimeout(function () { hitSay.hide(); hush = Date.now() + 1500; }, 2600);
+      };
+      var near = function (r, pad, drop) {
+        return ptr.x > r.left - pad && ptr.x < r.right + pad && ptr.y > r.top - pad && ptr.y < r.bottom + (drop || 0) + pad;
+      };
+      var edge = function (el, under) { return function () { var r = el.getBoundingClientRect(); return { x: (r.left + r.right) / 2, y: under ? r.bottom : r.top }; }; };
+      // Over the part nearest the pointer: the middle of a long train can be off a phone's screen.
+      var spot = function (el) {
+        var r = el.getBoundingClientRect(), f = ptr ? Math.max(.1, Math.min(.9, (ptr.x - r.left) / r.width)) : .5;
+        return function () { var r = el.getBoundingClientRect(); return { x: r.left + r.width * f, y: r.top }; };
+      };
+      // Stops while the pointer is close, for at least as long as it talks, then carries on.
+      var stopper = function (el, box, line, at, ready, wait) {
+        var o = { on: false, since: 0, rest: 0, timer: 0 };
+        o.check = function (now, zone) {
+          var close = zone && near(box.getBoundingClientRect(), 30);
+          if (!o.on) {
+            if (close && now > o.rest && (!ready || ready())) {
+              o.on = true; o.since = now;
+              o.timer = setTimeout(function () { el.classList.add('halt'); say(line, at || spot(box)); }, wait ? wait() : 0);
+            }
+          } else if (!close && now - o.since > 3000) {
+            clearTimeout(o.timer); el.classList.remove('halt'); o.on = false; o.rest = now + 1000;
+          }
+        };
+        return o;
+      };
+      var bus = document.querySelector('.bus'), train = document.querySelector('.train');
+      var work = 'I\'m trying to work here mate';
+      // The roo stops only while it's hopping (not mid-jolt), and lands first: a hop takes 0.6 s.
+      var rooT = function () { return (rooAnim.currentTime || 0) % LAP; };
+      var hopping = function () { var t = rooT(); return !rooAnim || t > 500 && t < 5300 || t > 11700 && t < 16300; };
+      var landing = function () { if (!rooAnim) return 0; var t = rooT(); return (600 - (t - (t < 11600 ? 0 : 11600)) % 600) % 600; };
+      // The plane climbs out of the way, and the pilot speaks once it's up.
+      var lift = document.querySelector('.plane .dodge'), body = document.querySelector('.plane-body');
+      var pilot = { on: false, since: 0, rest: 0, timer: 0 };
+      pilot.check = function (now, zone) {
+        if (!pilot.on) {
+          if (zone && near(body.getBoundingClientRect(), 40) && now > pilot.rest) {
+            pilot.on = true; pilot.since = now;
+            if (motion) lift.classList.add('up');
+            pilot.timer = setTimeout(function () { say('That\'s dangerous lah!', edge(body, true), true); }, motion ? 700 : 0);
+          }
+        } else if (now - pilot.since > 3400 && !(zone && near(body.getBoundingClientRect(), 40, motion ? 34 * scene.getScreenCTM().a : 0))) {
+          // Back down only once the way below is clear.
+          clearTimeout(pilot.timer); lift.classList.remove('up'); pilot.on = false; pilot.rest = now + 1500;
+        }
+      };
+      var actors = [
+        pilot,
+        stopper(bus, bus, work),
+        stopper(train, train, work),
+        stopper(roo, roo.querySelector('.roo-fur'), 'G\'day mate', rooAt, hopping, landing)
+      ];
+      var check = function () {
+        var now = Date.now(), w = wrap.getBoundingClientRect();
+        if (ptr && ptr.until < now) ptr = null;
+        // Only measure them when the pointer is over the scene, or just above it where the plane flies.
+        var zone = !!ptr && ptr.y > w.top - 90 && ptr.y < w.bottom && !wrap.classList.contains('is-paused');
+        actors.forEach(function (a) { a.check(now, zone); });
+      };
+      var queued = 0;
+      var queue = function () { if (!queued) queued = requestAnimationFrame(function () { queued = 0; check(); }); };
+      addEventListener('pointermove', function (e) {
+        if (e.pointerType !== 'touch') { ptr = { x: e.clientX, y: e.clientY, until: Infinity }; queue(); }
+      }, { passive: true });
+      document.addEventListener('pointerout', function (e) { if (!e.relatedTarget && e.pointerType !== 'touch') ptr = null; });
+      wrap.addEventListener('pointerdown', function (e) {
+        if (e.pointerType === 'touch') { ptr = { x: e.clientX, y: e.clientY, until: Date.now() + 1000 }; queue(); }
+      }, { passive: true });
+      var engaged = function () { return hitSay.busy() || Date.now() < hush || actors.some(function (a) { return a.on; }); };
+
       setInterval(function () {
+        // They move on their own, so they can run into a pointer that's standing still.
+        check();
         if (wrap.classList.contains('is-paused')) return;
         // The roo's lines are timed off its own animation; without one, a plain clock keeps the laps.
         clock += 150;
         var t = rooAnim ? rooAnim.currentTime || 0 : clock, n = Math.floor(t / LAP), at = t % LAP;
         if (n !== lap) { lap = n; stop(); newLap(); }
         var live = plan && at >= plan.from && at < plan.to;
-        if (!live) { stop(); return; }
+        if (!live || engaged()) { stop(); return; }
         if (shown) return;
         var c = plan.c;
         if (c.desk) {
