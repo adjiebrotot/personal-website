@@ -160,33 +160,44 @@
     .nick { margin: 0; font-size: 1.35rem; color: var(--muted); }
     .nick b { color: var(--accent); font-weight: 700; }
 
-    /* Boarding pass: the short version, as a list anyone (or anything) can read. */
+    /* Boarding pass: the short version, as a list anyone (or anything) can read.
+       Dressed as a Suites-class ticket: gold band, white card, dot-matrix print. */
     .pass {
-      position: relative; background: var(--paper); border: 2px solid var(--line); border-radius: 18px;
-      box-shadow: 6px 6px 0 var(--line); transform: rotate(1.5deg); overflow: hidden;
+      --tk-paper: #FFFFFF; --tk-ink: #1B1B1F; --tk-muted: #6E6658; --tk-gold: #A07A30; --tk-gold-2: #BF9A4C; --tk-on-gold: #FFFFFF; --tk-edge: #E4DCCB;
+      --tk-mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+      position: relative; background: var(--tk-paper); color: var(--tk-ink); border: 1px solid var(--tk-edge); border-radius: 14px;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, .04), 0 18px 34px -16px rgba(20, 32, 58, .45); transform: rotate(1.5deg); overflow: hidden;
     }
-    .pass-head { display: flex; align-items: center; justify-content: space-between; gap: .6rem; padding: .7rem 1.1rem; background: var(--brand); color: #fff; }
-    :root[data-theme="dark"] .pass-head { color: #0F1728; }
-    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pass-head { color: #0F1728; } }
-    .pass-head span { font-weight: 800; letter-spacing: .14em; font-size: .78rem; }
-    .pass-route { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .9rem 1.1rem .4rem; }
-    .pass-route b { display: block; font-size: 2.1rem; line-height: 1; letter-spacing: -.02em; }
-    .pass-route small { display: block; color: var(--muted); font-size: .8rem; }
-    .pass-route .fly { flex: 1; height: 2px; background: repeating-linear-gradient(90deg, var(--muted) 0 6px, transparent 6px 11px); position: relative; margin: 0 .3rem; }
-    .pass-route .fly svg { position: absolute; left: 50%; top: 50%; width: 26px; height: 26px; transform: translate(-50%, -50%); color: var(--brand); }
-    .pass-body { display: grid; grid-template-columns: 84px 1fr; gap: .8rem 1rem; padding: .55rem 1.1rem 1rem; align-items: start; }
-    .pass-body img { width: 84px; height: 84px; border-radius: 12px; border: 2px solid var(--line); object-fit: cover; transform: rotate(-3deg); }
-    .pass dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .6rem 1rem; }
-    .pass dl.more { grid-column: 1 / -1; padding-top: .7rem; border-top: 2px solid var(--rule); }
-    .pass dt { font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; line-height: 1.3; }
-    .pass dd { margin: 0; font-weight: 700; font-size: .92rem; line-height: 1.28; }
-    .pass dd.seat { display: inline; padding: 0 .2em; background: linear-gradient(180deg, transparent 52%, var(--hl) 52%, var(--hl) 94%, transparent 94%); }
+    :root[data-theme="dark"] .pass { --tk-paper: #1E2433; --tk-ink: #F1ECE2; --tk-muted: #B5AC9B; --tk-gold: #C9A55C; --tk-gold-2: #DDBE7A; --tk-on-gold: #1E1A12; --tk-edge: #3A3A40; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pass { --tk-paper: #1E2433; --tk-ink: #F1ECE2; --tk-muted: #B5AC9B; --tk-gold: #C9A55C; --tk-gold-2: #DDBE7A; --tk-on-gold: #1E1A12; --tk-edge: #3A3A40; } }
+    .pass-head { display: flex; align-items: center; justify-content: space-between; gap: .8rem; padding: .75rem 1.1rem; background: linear-gradient(100deg, var(--tk-gold), var(--tk-gold-2)); color: var(--tk-on-gold); }
+    .pass-head .air { font-size: .58rem; font-weight: 700; letter-spacing: .16em; line-height: 1.15; }
+    .pass-head .cls { display: inline-flex; align-items: center; gap: .45rem; font-family: Georgia, 'Times New Roman', serif; font-size: 1.45rem; letter-spacing: .12em; line-height: 1; }
+    .pass-head .cls svg { width: 34px; height: 30px; }
+    .pass-body { display: grid; grid-template-columns: 1fr 72px; gap: .5rem 1rem; padding: .85rem 1.1rem .5rem; font-family: var(--tk-mono); }
+    .pass-body img { grid-column: 2; grid-row: 1 / span 2; width: 72px; height: 72px; border-radius: 6px; object-fit: cover; filter: grayscale(.15); }
+    .pass dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .5rem 1rem; }
+    .pass dt { font-family: var(--tk-mono); font-size: .62rem; color: var(--tk-muted); line-height: 1.3; }
+    .pass dd { margin: 0; font-family: var(--tk-mono); font-weight: 700; font-size: .8rem; line-height: 1.3; text-transform: uppercase; letter-spacing: .02em; }
     .pass dl .wide { grid-column: 1 / -1; }
-    .pass-foot { position: relative; border-top: 2px dashed var(--rule); padding: .55rem 1.1rem .7rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-    .pass-foot::before, .pass-foot::after { content: ''; position: absolute; top: -12px; width: 22px; height: 22px; border-radius: 50%; background: var(--bg); border: 2px solid var(--line); }
-    .pass-foot::before { left: -13px; } .pass-foot::after { right: -13px; }
-    .pass-foot .hand { font-size: 1.15rem; color: var(--muted); }
-    .barcode { height: 26px; width: 120px; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 5px, transparent 5px 8px, var(--ink) 8px 11px, transparent 11px 12px); opacity: .85; }
+    .pass dl.wide-row { grid-column: 1 / -1; }
+    .pass dl.pass-big { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; text-align: center; padding: .35rem .2rem .1rem; }
+    .pass-big dt { font-size: .66rem; }
+    .pass-big dd { font-size: 1.85rem; line-height: 1.05; letter-spacing: .04em; }
+    .pass dd.seat { display: inline; padding: 0 .2em; background: linear-gradient(180deg, transparent 52%, var(--hl) 52%, var(--hl) 94%, transparent 94%); }
+    .pass dl.more { grid-column: 1 / -1; padding-top: .65rem; border-top: 1px solid var(--tk-edge); font-family: 'DM Sans', system-ui, sans-serif; }
+    .pass dl.more dt { font-family: inherit; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; font-size: .6rem; }
+    .pass dl.more dd { font-family: inherit; text-transform: none; letter-spacing: 0; font-size: .86rem; }
+    .pass-print { grid-column: 1 / -1; margin: .1rem 0 0; font-size: .7rem; letter-spacing: .04em; color: var(--tk-muted); text-transform: uppercase; }
+    .pass-foot { position: relative; border-top: 2px dashed var(--tk-edge); padding: .7rem 1.1rem .8rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-family: var(--tk-mono); }
+    .pass-foot::before, .pass-foot::after { content: ''; position: absolute; top: -12px; width: 22px; height: 22px; border-radius: 50%; background: var(--bg); border: 1px solid var(--tk-edge); }
+    .pass-foot::before { left: -12px; } .pass-foot::after { right: -12px; }
+    .pass-foot .stub { display: grid; gap: .15rem; font-size: .7rem; text-transform: uppercase; letter-spacing: .03em; color: var(--tk-muted); }
+    .pass-foot .stub b { color: var(--tk-gold); font-family: Georgia, 'Times New Roman', serif; font-weight: 400; font-size: .95rem; letter-spacing: .14em; }
+    .pass-foot .stub b svg { width: 20px; height: 18px; margin-left: .35rem; vertical-align: -2px; }
+    .pass-foot .stub strong { color: var(--tk-ink); font-size: .78rem; }
+    .qr { flex: none; display: block; width: 92px; height: 92px; padding: 2px; background: #fff; border-radius: 6px; border: 1px solid var(--tk-edge); }
+    .qr svg { display: block; width: 100%; height: 100%; }
 
     .breath {
       position: relative; max-width: 860px; margin: 8px auto clamp(40px, 7vh, 72px); padding: 1.15rem 1.4rem 1.2rem; border-radius: 16px; background: var(--paper);
@@ -416,10 +427,9 @@
       .snaps { grid-template-columns: 1fr; }
       .cta { flex-direction: column; align-items: stretch; max-width: 300px; margin-left: auto; margin-right: auto; }
       .cta a { justify-content: space-between; }
-      .pass-route b { font-size: 1.7rem; }
-      .pass-body { grid-template-columns: 64px 1fr; }
-      .pass-body img { width: 64px; height: 64px; }
-      .pass dl:not(.more) { grid-template-columns: 1fr; gap: .45rem; }
+      .pass-body { grid-template-columns: 1fr 60px; }
+      .pass-body img { width: 60px; height: 60px; }
+      .pass-big dd { font-size: 1.6rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       .sld .blades { animation: none; }
@@ -763,19 +773,21 @@
       </div>
 
       <aside class="pass" aria-label="The short version">
-        <div class="pass-head"><span>BOARDING PASS</span><span>ADJIE AIR</span></div>
-        <div class="pass-route">
-          <div><b>CGK</b><small>Jakarta</small></div>
-          <div class="fly" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 15.5v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V8.5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5l8 2.5z" transform="rotate(90 12 12)"/></svg></div>
-          <div style="text-align:right"><b>PER</b><small>Perth</small></div>
-        </div>
+        <div class="pass-head"><span class="air">ADJIE<br>BROLINES</span><span class="cls">SUITES<svg viewBox="-23 -48 55 49" fill="currentColor" aria-hidden="true"><path d="M-22 0 C -12 -1 -4 -5 0 -12 C -1 -20 4 -28 12 -30 C 14 -34 16 -37 18 -39 L 16.5 -46 L 20 -40.5 L 21.5 -47 L 23 -39.5 C 26 -38.5 29 -36.5 30.5 -34 C 27.5 -32 23.5 -32 21 -31.5 C 21 -27 20 -23 19 -21 L 24 -18 L 23 -16.5 L 17.5 -18.5 C 18 -13 16 -9 13 -7 L 18 -3 L 27 -2 L 27 0 L 9 0 C 5 -2 2 -4 -1 -5 C -6 -3 -13 -1 -22 0 Z"/></svg></span></div>
         <div class="pass-body">
-          <img src="/assets/img/adjie-160.webp" width="84" height="84" alt="Adjie Brotosukmono in a dark suit and white shirt">
           <dl>
             <div class="wide"><dt>Passenger</dt><dd>Adjie Brotosukmono</dd></div>
-            <div><dt>From</dt><dd>Indonesia</dd></div>
+            <div><dt>Origin</dt><dd>Indonesia</dd></div>
             <div><dt>Operator</dt><dd>Mott MacDonald, Perth</dd></div>
-            <div class="wide"><dt>Seat</dt><dd class="seat">Senior Economics Consultant</dd></div>
+          </dl>
+          <img src="/assets/img/adjie-160.webp" width="72" height="72" alt="Adjie Brotosukmono in a dark suit and white shirt">
+          <dl class="pass-big">
+            <div><dt>From</dt><dd>CGK</dd></div>
+            <div><dt>To</dt><dd>PER</dd></div>
+            <div><dt>Suite</dt><dd>1A</dd></div>
+          </dl>
+          <dl class="wide-row">
+            <div class="wide"><dt>Cabin</dt><dd class="seat">Senior Economics Consultant</dd></div>
           </dl>
           <dl class="more">
             <div class="wide"><dt>Trained at</dt><dd>Institut Teknologi Bandung (ITB): Bachelor's in Electrical Power Engineering, Master's in Electrical Engineering</dd></div>
@@ -783,8 +795,12 @@
             <div><dt>Status</dt><dd>Engineers Australia, Professional Member</dd></div>
             <div><dt>Baggage</dt><dd>Banking, edtech, a lot of spreadsheets</dd></div>
           </dl>
+          <p class="pass-print">No Vegemite on board</p>
         </div>
-        <div class="pass-foot"><span class="hand">no Vegemite on board</span><span class="barcode" aria-hidden="true"></span></div>
+        <div class="pass-foot">
+          <div class="stub"><b>SUITES<svg viewBox="-23 -48 55 49" fill="currentColor" aria-hidden="true"><path d="M-22 0 C -12 -1 -4 -5 0 -12 C -1 -20 4 -28 12 -30 C 14 -34 16 -37 18 -39 L 16.5 -46 L 20 -40.5 L 21.5 -47 L 23 -39.5 C 26 -38.5 29 -36.5 30.5 -34 C 27.5 -32 23.5 -32 21 -31.5 C 21 -27 20 -23 19 -21 L 24 -18 L 23 -16.5 L 17.5 -18.5 C 18 -13 16 -9 13 -7 L 18 -3 L 27 -2 L 27 0 L 9 0 C 5 -2 2 -4 -1 -5 C -6 -3 -13 -1 -22 0 Z"/></svg></b><strong>Adjie Brotosukmono</strong><span>CGK to PER, suite 1A</span><span>Scan to connect</span></div>
+          <a class="qr" href="https://www.linkedin.com/in/adjiebrotot/" rel="me noopener" aria-label="Adjie on LinkedIn (QR code)"><svg viewBox="-2 -2 33 33" aria-hidden="true" shape-rendering="crispEdges"><path fill="none" stroke="#000" d="M0 0.5h7m1 0h1m3 0h1m1 0h1m1 0h5m1 0h7m-29 1h1m5 0h1m1 0h2m2 0h1m3 0h1m1 0h1m3 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h2m2 0h1m1 0h1m2 0h1m3 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h3m2 0h2m2 0h1m4 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m3 0h1m2 0h4m2 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m2 0h1m4 0h1m1 0h1m1 0h2m2 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h2m1 0h2m2 0h1m1 0h3m-20 1h1m1 0h2m1 0h3m1 0h3m2 0h1m2 0h1m4 0h1m2 0h1m1 0h2m-29 1h3m1 0h2m4 0h1m1 0h1m1 0h1m1 0h4m1 0h4m3 0h1m-28 1h2m1 0h3m1 0h1m1 0h1m7 0h1m1 0h5m1 0h2m-28 1h3m4 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h3m3 0h1m-26 1h4m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m5 0h2m-26 1h1m1 0h2m3 0h1m1 0h1m2 0h4m2 0h1m2 0h2m2 0h3m-29 1h1m2 0h1m2 0h2m1 0h1m1 0h1m2 0h1m4 0h2m2 0h2m1 0h3m-29 1h4m4 0h2m1 0h2m1 0h3m6 0h2m2 0h1m-28 1h1m3 0h3m1 0h1m1 0h3m1 0h1m3 0h4m2 0h2m1 0h1m-27 1h2m6 0h1m1 0h3m1 0h1m1 0h1m2 0h1m2 0h1m1 0h3m-28 1h1m1 0h2m1 0h3m1 0h1m1 0h2m2 0h3m4 0h2m2 0h1m-23 1h1m2 0h1m1 0h1m1 0h1m2 0h1m2 0h1m4 0h1m3 0h1m-26 1h3m1 0h5m3 0h1m1 0h3m1 0h8m-19 1h3m1 0h2m2 0h3m1 0h1m3 0h5m-29 1h7m1 0h2m2 0h2m4 0h3m1 0h1m1 0h2m1 0h1m-28 1h1m5 0h1m1 0h1m2 0h1m3 0h2m1 0h1m1 0h1m3 0h2m2 0h1m-29 1h1m1 0h3m1 0h1m2 0h2m1 0h1m1 0h1m2 0h1m2 0h5m1 0h3m-29 1h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h4m1 0h3m2 0h2m2 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m5 0h1m6 0h1m2 0h1m1 0h1m-29 1h1m5 0h1m2 0h1m1 0h1m1 0h4m3 0h4m1 0h1m1 0h1m-28 1h7m1 0h1m2 0h1m1 0h2m3 0h5m2 0h1m1 0h1"/></svg></a>
+        </div>
       </aside>
     </section>
 
