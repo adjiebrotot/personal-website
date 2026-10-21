@@ -293,10 +293,16 @@
     .laptop .screen { opacity: var(--p, 1); }
 
     /* Stop 4: arrows run along the diagram's branches the way the power goes, only while it's on screen. */
-    .sld .run { animation: flowRun var(--t, .6s) linear infinite paused; }
+    .sld .run { transition: opacity .3s; }
     .sld .blades { transform-box: view-box; transform-origin: 90px 40px; animation: spin 2.4s linear infinite paused; }
-    .sld.live .run, .sld.live .blades { animation-play-state: running; }
-    @keyframes flowRun { to { transform: translateX(16px); } }
+    .sld.live .blades { animation-play-state: running; }
+    .sld .wind { transition: opacity .3s; }
+    .sld .cb { fill: var(--card); }
+    .sld .trip { opacity: 0; transition: opacity .3s; }
+    .sld .tripped .feeder { stroke-dasharray: 4 5; }
+    .sld .wind.tripped { opacity: .45; } .sld .tripped .blades { animation-play-state: paused; }
+    .sld .wind.tripped .cb { fill: #E66A6A; }
+    .sld.tripped .trip { opacity: 1; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
     /* Map */
@@ -383,7 +389,7 @@
       .pass dl:not(.more) { grid-template-columns: 1fr; gap: .45rem; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .sld .run, .sld .blades { animation: none; }
+      .sld .blades { animation: none; }
       *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
       .js .rise { opacity: 1; transform: none; }
     }
@@ -1094,52 +1100,55 @@
           </ul>
         </div>
         <div class="art rise">
-          <svg class="ill sld" viewBox="0 0 400 300" role="img" aria-labelledby="ill4">
-              <title id="ill4">A simple single line diagram: a wind farm, a solar farm and a battery on a 132 kV bus, a transformer down to a 33 kV bus feeding a mine and a town, with arrows showing the power flowing through it</title>
+          <svg class="ill sld" data-scrub=".85 -.6" data-scrub-narrow=".85 0" viewBox="0 0 400 300" role="img" aria-labelledby="ill4">
+              <title id="ill4">A simple single line diagram: a wind farm, a solar farm and a battery on a 132 kV bus, a transformer down to a 33 kV bus feeding a mine and a town. As you scroll, a day goes by: the arrows speed up, slow down and turn round as the power flows change, the battery charges at noon and discharges at night, and the wind farm trips for an afternoon</title>
               <defs>
                 <path id="gP" d="M3.9 0L-0.2 -3.1L-0.2 -1L-4 -1L-4 1L-0.2 1L-0.2 3.1Z" fill="var(--brand)" stroke="var(--brand)" stroke-width=".6" stroke-linejoin="round" transform="scale(1.2)"/>
-                <path id="gQ" d="M-1.6 -2.8L1.6 0L-1.6 2.8" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="scale(1.2)"/>
               </defs>
               <g stroke="var(--ink)" stroke-width="2.4" fill="none" stroke-linecap="round">
-                <path d="M90 58 V117 M200 58 V117 M310 60 V117 M200 123 V151 M200 187 V217 M120 223 V254 M280 223 V254"/>
+                <path d="M200 58 V117 M310 60 V117 M200 123 V151 M200 187 V217 M120 223 V254 M280 223 V254"/>
                 <circle cx="200" cy="162" r="11"/><circle cx="200" cy="176" r="11"/>
               </g>
               <g fill="var(--card)" stroke="var(--ink)" stroke-width="2">
-                <rect x="86" y="94" width="8" height="8" rx="1.5"/><rect x="196" y="94" width="8" height="8" rx="1.5"/><rect x="306" y="94" width="8" height="8" rx="1.5"/>
+                <rect x="196" y="94" width="8" height="8" rx="1.5"/><rect x="306" y="94" width="8" height="8" rx="1.5"/>
                 <rect x="196" y="131" width="8" height="8" rx="1.5"/><rect x="116" y="231" width="8" height="8" rx="1.5"/><rect x="276" y="231" width="8" height="8" rx="1.5"/>
               </g>
               <rect x="44" y="114" width="312" height="7" rx="3.5" fill="var(--ink)"/>
               <rect x="74" y="216" width="252" height="7" rx="3.5" fill="var(--ink)"/>
-              <!-- Wind, solar and a battery that is charging -->
-              <circle cx="90" cy="40" r="18" fill="var(--card)" stroke="var(--ink)" stroke-width="2.4"/>
-              <g class="blades"><path d="M90 40 L90 26 M90 40 L102 47 M90 40 L78 47" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/></g>
-              <circle cx="90" cy="40" r="2.6" fill="var(--ink)"/>
+              <!-- The wind farm, which trips for an afternoon: drawn faint and dashed, its breaker open -->
+              <g class="wind" id="sldWind">
+                <path class="feeder" d="M90 58 V117" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
+                <rect class="cb" x="86" y="94" width="8" height="8" rx="1.5" stroke="var(--ink)" stroke-width="2"/>
+                <circle cx="90" cy="40" r="18" fill="var(--card)" stroke="var(--ink)" stroke-width="2.4"/>
+                <g class="blades"><path d="M90 40 L90 26 M90 40 L102 47 M90 40 L78 47" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/></g>
+                <circle cx="90" cy="40" r="2.6" fill="var(--ink)"/>
+              </g>
+              <text class="trip" x="24" y="86" font-family="Caveat, cursive" font-weight="700" font-size="17" fill="#E66A6A" transform="rotate(-8 24 86)">tripped!</text>
               <rect x="180" y="26" width="40" height="30" rx="3" fill="var(--glass)" stroke="var(--ink)" stroke-width="2.4"/>
               <path d="M193.3 27 V55 M206.6 27 V55 M181 41 H219" stroke="var(--mull)" stroke-width="1.6"/>
               <rect x="292" y="30" width="36" height="26" rx="3" fill="var(--teal-b)" stroke="var(--ink)" stroke-width="2.4"/>
               <rect x="304" y="25" width="12" height="5" rx="1.5" fill="var(--ink)"/>
               <path d="M300 43 h8 M304 39 v8 M313 43 h8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
-              <!-- Loads -->
               <path d="M110 254 h20 l-10 14 z M270 254 h20 l-10 14 z" fill="var(--ink)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
               <g font-family="Caveat, cursive" font-weight="700" fill="var(--muted)">
                 <text x="116" y="44" font-size="20">wind</text>
                 <text x="226" y="44" font-size="20">solar</text>
                 <text x="334" y="40" font-size="20">battery</text>
-                <text x="334" y="56" font-size="15">charging</text>
+                <text x="334" y="56" font-size="15" id="sldBat">charging</text>
                 <text x="46" y="140" font-size="18">132 kV</text>
                 <text x="302" y="208" font-size="18">33 kV</text>
                 <text x="140" y="268" font-size="20">mine</text>
                 <text x="300" y="268" font-size="20">town</text>
               </g>
-              <!-- Flow lanes, filled in by the script: x1 y1 x2 y2, P or Q, and seconds per step -->
+              <text class="clock" x="24" y="200" font-family="Caveat, cursive" font-weight="700" font-size="26" fill="var(--ink)" id="sldClock">12:00</text>
+              <!-- Flow lanes, filled in by the script: x1 y1 x2 y2 and which flow, positive the way it is drawn -->
               <g class="flows">
-                <g data-lane="99 60 99 112 p .5"></g><g data-lane="81 60 81 112 q 1"></g>
-                <g data-lane="209 60 209 112 p .55"></g>
-                <g data-lane="301 112 301 62 p .8"></g>
-                <g data-lane="209 125 209 150 p .45"></g><g data-lane="191 150 191 125 q .9"></g>
-                <g data-lane="209 188 209 213 p .45"></g>
-                <g data-lane="129 226 129 252 p .6"></g><g data-lane="111 226 111 252 q 1.1"></g>
-                <g data-lane="289 226 289 252 p .75"></g>
+                <g data-lane="99 60 99 112 wind"></g>
+                <g data-lane="209 60 209 112 solar"></g>
+                <g data-lane="301 62 301 112 bat"></g>
+                <g data-lane="209 125 209 150 tx"></g><g data-lane="209 188 209 213 tx"></g>
+                <g data-lane="129 226 129 252 mine"></g>
+                <g data-lane="289 226 289 252 town"></g>
               </g>
             </svg>
         </div>
@@ -1291,11 +1300,14 @@
         });
       }
 
-      /* Stop 4's load flow: a row of arrows per lane, clipped to its branch, stepping along one gap at a time. */
-      var sld = document.querySelector('.sld'), NS = 'http://www.w3.org/2000/svg';
-      [].forEach.call(sld.querySelectorAll('[data-lane]'), function (g, i) {
+      /* Stop 4's load flow: scrolling through the stop runs a day, midnight to midnight. Each lane is a row of
+         arrows clipped to its branch; they move as fast as their flow is big, turn round when it does, and
+         go when it stops. Not a load flow, just a picture of one: the battery takes up whatever is left over. */
+      var sld = document.querySelector('.sld'), NS = 'http://www.w3.org/2000/svg', GAP = 16;
+      var wind = document.getElementById('sldWind'), clock = document.getElementById('sldClock'), batLbl = document.getElementById('sldBat');
+      var lanes = [].map.call(sld.querySelectorAll('[data-lane]'), function (g, i) {
         var v = g.getAttribute('data-lane').split(' '), x1 = +v[0], y1 = +v[1], x2 = +v[2], y2 = +v[3];
-        var len = Math.hypot(x2 - x1, y2 - y1), GAP = 16;
+        var len = Math.hypot(x2 - x1, y2 - y1);
         var clip = document.createElementNS(NS, 'clipPath'), r = document.createElementNS(NS, 'rect');
         clip.id = 'lane' + i;
         r.setAttribute('x', 0); r.setAttribute('y', -7); r.setAttribute('width', len); r.setAttribute('height', 14);
@@ -1304,17 +1316,54 @@
         g.setAttribute('clip-path', 'url(#lane' + i + ')');
         var run = document.createElementNS(NS, 'g');
         run.setAttribute('class', 'run');
-        run.style.setProperty('--t', v[5] + 's');
-        for (var x = -GAP / 2; x < len + GAP; x += GAP) {
+        for (var x = -GAP; x < len + GAP; x += GAP) {
           var u = document.createElementNS(NS, 'use');
-          u.setAttribute('href', v[4] === 'q' ? '#gQ' : '#gP');
-          u.setAttribute('x', x);
+          u.setAttribute('href', '#gP'); u.setAttribute('x', x);
           run.appendChild(u);
         }
         g.appendChild(run);
+        return { run: run, len: len, key: v[4], mw: 0, off: 0 };
       });
+      // The day, in MW: the mine runs flat out, the town peaks in the evening, solar follows the sun
+      // and the wind farm trips from 14:00 to 17:30.
+      function day(h) {
+        var f = {}, tripped = h >= 14 && h < 17.5;
+        f.mine = 40;
+        f.town = 14 + 22 * Math.exp(-Math.pow((h - 19) / 2.4, 2)) + 6 * Math.exp(-Math.pow((h - 8) / 1.6, 2));
+        f.solar = 70 * Math.max(0, Math.sin(Math.PI * (h - 6) / 12));
+        f.wind = tripped ? 0 : 28 + 12 * Math.cos(Math.PI * h / 9);
+        f.tx = f.mine + f.town;
+        f.bat = f.tx - f.wind - f.solar;
+        return { f: f, tripped: tripped };
+      }
+      function setHour(p) {
+        var h = Math.min(23.99, 24 * p), d = day(h), hh = Math.floor(h), mm = Math.floor((h - hh) * 4) * 15;
+        clock.textContent = (hh < 10 ? '0' : '') + hh + ':' + (mm ? mm : '00');
+        lanes.forEach(function (l) { l.mw = d.f[l.key]; l.run.style.opacity = Math.abs(l.mw) < 1 ? 0 : 1; });
+        wind.classList.toggle('tripped', d.tripped); sld.classList.toggle('tripped', d.tripped);
+        batLbl.textContent = d.f.bat < -1 ? 'charging' : d.f.bat > 1 ? 'discharging' : 'idle';
+        if (still || !raf) draw(0);
+      }
+      sld.onScrub = setHour;
+      // Arrows ride at about half a pixel a second per MW, and flip round when the flow goes the other way.
+      var raf = 0, last = 0;
+      function draw(dt) {
+        lanes.forEach(function (l) {
+          l.off = (l.off + Math.abs(l.mw) * .5 * dt) % GAP;
+          l.run.setAttribute('transform', l.mw >= 0 ? 'translate(' + l.off.toFixed(2) + ' 0)' : 'translate(' + (l.len - l.off).toFixed(2) + ' 0) scale(-1 1)');
+        });
+      }
+      function tick(t) {
+        draw(last ? Math.min(.1, (t - last) / 1000) : 0);
+        last = t; raf = requestAnimationFrame(tick);
+      }
       if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (es) { sld.classList.toggle('live', es[0].isIntersecting); }).observe(sld);
+        new IntersectionObserver(function (es) {
+          var on = es[0].isIntersecting;
+          sld.classList.toggle('live', on);
+          if (on && !still && !raf) { last = 0; raf = requestAnimationFrame(tick); }
+          if (!on && raf) { cancelAnimationFrame(raf); raf = 0; }
+        }).observe(sld);
       } else sld.classList.add('live');
 
       /* Stop 5: the plane flies the route as far as the reader has scrolled, and the roo hops while the map is in view. */
