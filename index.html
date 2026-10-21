@@ -419,10 +419,13 @@
       .cloud { transform: translateX(calc(var(--s) * 60vw)); }
     }
 
-    /* Now and then the kangaroo says something: a line as it hops in, or one after the jolt.
-       Drawn by script, aria-hidden and data-nosnippet, so the jokes never become facts. */
-    .roo-say { position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; }
-    .roo-say p {
+    /* Now and then a speech bubble: the kangaroo, as it hops in or after the jolt, or a lit window
+       on one of the towers Adjie has worked in. Drawn by script, aria-hidden and data-nosnippet,
+       so the jokes never become facts. */
+    .desk { fill: #FFC93C; opacity: 0; transition: opacity .3s; }
+    .desk.on { opacity: 1; }
+    .callout { position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; }
+    .callout p {
       position: relative; margin: 0; width: max-content; max-width: min(260px, calc(100vw - 48px));
       padding: .3rem .65rem .35rem; background: var(--card); color: var(--ink);
       border: 2px solid var(--line); border-radius: 12px; box-shadow: 3px 3px 0 var(--line);
@@ -430,11 +433,11 @@
       opacity: 0; transform: translateY(6px) scale(.85) rotate(-2deg); transform-origin: var(--tail, 50%) 100%;
       transition: opacity .2s, transform .25s cubic-bezier(.3, 1.6, .5, 1);
     }
-    .roo-say p::after {
+    .callout p::after {
       content: ''; position: absolute; left: var(--tail, 50%); bottom: -7px; width: 10px; height: 10px; margin-left: -6px;
       background: var(--card); border: solid var(--line); border-width: 0 2px 2px 0; transform: rotate(45deg);
     }
-    .roo-say.on p { opacity: 1; transform: rotate(-2deg); }
+    .callout.on p { opacity: 1; transform: rotate(-2deg); }
 
     .ground {
       background: var(--grass-2); color: var(--ink);
@@ -993,6 +996,7 @@
           <path d="M404 466 V480 M414 466 V480 M424 466 V480 M434 466 V480 M444 466 V480 M454 466 V480 M464 466 V480 M474 466 V480 M484 466 V480 M494 466 V480" stroke="var(--bca-side)" stroke-width=".8" opacity=".6"/>
           <rect x="399" y="216" width="105" height="246" fill="url(#lights3)" class="lit"/>
           <use href="#lgBca" x="421" y="204.6" width="34" height="10.6" fill="#fff"/>
+          <rect class="desk" id="deskBca" x="425" y="380" width="6" height="3.6"/>
         </g>
         <!-- Hotel Indonesia Kempinski and Bundaran HI -->
         <!-- Hotel Indonesia: the long green-glass slab with white floor bands, the scalloped parapet, the end wall -->
@@ -1076,6 +1080,7 @@
           <path d="M1489.2 260 V480 M1496.4 250 V480 M1503.6 240 V480 M1510.8 230 V480" stroke="var(--pal-line)" stroke-width="1.2"/>
           <path d="M1482 266 L1489.2 260 V256 L1496.4 250 V246 L1503.6 240 V236 L1510.8 230 V226 L1518 220" fill="none" stroke="var(--pal-clad)" stroke-width="1.4" stroke-linejoin="round"/>
           <rect x="1484" y="270" width="33" height="190" fill="url(#lights3)" class="lit"/>
+          <rect class="desk" id="deskPalace" x="1497.6" y="395" width="4.8" height="3.6"/>
           <path class="f-grey" d="M1518 480 V214 L1528 205 V480 Z"/>
           <path fill="var(--pal-clad)" d="M1518 480 V214 L1521.6 210.8 V480 Z"/>
           <path d="M1518 236 h10 M1518 300 h10 M1518 364 h10 M1518 428 h10" stroke="var(--cp-2)" stroke-width=".8"/>
@@ -1260,7 +1265,8 @@
         </g>
 
       </svg>
-      <div class="roo-say" id="rooSay" aria-hidden="true" data-nosnippet><p></p></div>
+      <div class="callout" id="rooSay" aria-hidden="true" data-nosnippet><p></p></div>
+      <div class="callout" id="deskSay" aria-hidden="true" data-nosnippet><p></p></div>
     </div>
   </div>
 
@@ -1294,78 +1300,117 @@
         }).observe(wrap);
       }
 
-      /* The kangaroo talks, now and then. Lines are timed off its own 18 s animation:
-         "before" ones while it hops in (0.4 to 5.6 s), "after" ones once it's sooty (7.9 to 12.4 s). */
-      var say = document.getElementById('rooSay'), sayP = say.firstChild;
-      var roo = document.querySelector('.roo'), rooAnchor = roo.querySelector('.roo-flash');
-      var rooAnim = roo.getAnimations && roo.getAnimations()[0];
-      if (rooAnim && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        var lines = {
-          before: [
-            'Adjie models power grids for a living. This roo just tests them.',
-            'Adjie has two degrees from ITB. None of them in kangaroo safety.',
-            'Adjie speaks Bahasa Indonesia, English, and a little Chinese, Japanese, Russian and French. Not Kangaroonese, yet.',
-            'Adjie once sold credit cards at BCA. Tap to pay, not tap the wire.',
-            'Adjie used to teach physics. Lesson one: don\'t touch the line.',
-            'Adjie flew Jakarta to Perth. This roo hopped.',
-            'Adjie still has no Vegemite on board.',
-            'Adjie said yes to almost every youth summit abroad. Japan, Singapore, Thailand (twice), Korea, Cambodia.',
-            'G\'day, mate! Mind the power line.',
-            'Is this what they call a load flow?',
-            'Just checking the frequency.'
-          ],
-          after: [
-            'Ouch. That was 132 kV of regret.',
-            'Totally meant to do that.',
-            'Hair: fully charged.',
-            'Note to self: wires are not snacks.',
-            'Roo 1, transmission line 0. Wait, no.',
-            'Smells like toastie.'
-          ]
-        };
-        var bags = { before: [], after: [] };
-        var LAP = 18000, lap = -1, plan = null, spoke = false, raf = 0;
-        var rand = function (lo, hi) { return lo + Math.random() * (hi - lo); };
-        // Shuffled bags, so no line comes round again until the rest have had a turn.
-        var draw = function (k) {
-          if (!bags[k].length) bags[k] = lines[k].slice().sort(function () { return Math.random() - .5; });
-          return bags[k].pop();
-        };
-        var newLap = function () {
-          plan = null;
-          // Quiet after it has spoken, chattier after a quiet lap: no fixed rhythm to it.
-          if (Math.random() < (spoke ? .2 : .55)) {
-            var k = Math.random() < .5 ? 'before' : 'after', text = draw(k);
-            var dur = k === 'before' ? Math.min(5000, 1800 + 40 * text.length) : Math.min(4000, 1800 + 45 * text.length);
-            var from = k === 'before' ? rand(400, 5600 - dur) : rand(7900, 12400 - dur);
-            plan = { text: text, from: from, to: from + dur };
-          }
-          spoke = !!plan;
-        };
-        // Follows the roo (and the scene's pan on narrow screens), and keeps the bubble inside the frame.
+      /* Speech bubbles, now and then: the kangaroo, and a note on the two towers Adjie has worked in. */
+      var rand = function (lo, hi) { return lo + Math.random() * (hi - lo); };
+      var isDark = function () {
+        var t = root.getAttribute('data-theme');
+        return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      };
+      // A bubble follows a point in the scene (which pans on narrow screens) and stays inside the frame.
+      var bubble = function (el) {
+        var p = el.firstChild, raf = 0, at, text;
         var place = function () {
-          var w = wrap.getBoundingClientRect(), r = rooAnchor.getBoundingClientRect();
-          var x = (r.left + r.right) / 2 - w.left, y = r.top + r.height * .6 - w.top;
-          if (x < 28 || x > w.width - 28) say.classList.remove('on');
+          var w = wrap.getBoundingClientRect(), pt = at(), x = pt.x - w.left, y = pt.y - w.top, t = text();
+          if (p.textContent !== t) p.textContent = t;
+          if (x < 28 || x > w.width - 28) el.classList.remove('on');
           else {
-            var bw = sayP.offsetWidth, bh = sayP.offsetHeight;
+            var bw = p.offsetWidth, bh = p.offsetHeight;
             var left = Math.max(8, Math.min(w.width - bw - 8, x - bw / 2));
-            sayP.style.setProperty('--tail', Math.max(14, Math.min(bw - 14, x - left)) + 'px');
-            say.style.transform = 'translate(' + left + 'px,' + (y - bh - 10) + 'px)';
-            say.classList.add('on');
+            p.style.setProperty('--tail', Math.max(14, Math.min(bw - 14, x - left)) + 'px');
+            el.style.transform = 'translate(' + left + 'px,' + (y - bh - 10) + 'px)';
+            el.classList.add('on');
           }
           raf = requestAnimationFrame(place);
         };
-        var hush = function () { cancelAnimationFrame(raf); raf = 0; say.classList.remove('on'); };
-        setInterval(function () {
-          if (wrap.classList.contains('is-paused')) return;
+        return {
+          busy: function () { return raf !== 0; },
+          show: function (where, what) { at = where; text = what; if (!raf) place(); },
+          hide: function () { cancelAnimationFrame(raf); raf = 0; el.classList.remove('on'); }
+        };
+      };
+
+      /* The kangaroo's lines are timed off its own 18 s animation:
+         "before" ones while it hops in (0.4 to 5.6 s), "after" ones once it's sooty (7.9 to 12.4 s). */
+      var rooSay = bubble(document.getElementById('rooSay'));
+      var roo = document.querySelector('.roo'), rooAnchor = roo.querySelector('.roo-flash');
+      var rooAnim = !matchMedia('(prefers-reduced-motion: reduce)').matches && roo.getAnimations && roo.getAnimations()[0];
+      var rooAt = function () { var r = rooAnchor.getBoundingClientRect(); return { x: (r.left + r.right) / 2, y: r.top + r.height * .6 }; };
+      var lines = {
+        before: [
+          'Adjie models power grids for a living. This roo just tests them.',
+          'Adjie has two degrees from ITB. None of them in kangaroo safety.',
+          'Adjie speaks Bahasa Indonesia, English, and a little Chinese, Japanese, Russian and French. Not Kangaroonese, yet.',
+          'Adjie once sold credit cards at BCA. Tap to pay, not tap the wire.',
+          'Adjie used to teach physics. Lesson one: don\'t touch the line.',
+          'Adjie flew Jakarta to Perth. This roo hopped.',
+          'Adjie still has no Vegemite on board.',
+          'Adjie said yes to almost every youth summit abroad. Japan, Singapore, Thailand (twice), Korea, Cambodia.',
+          'G\'day, mate! Mind the power line.',
+          'Is this what they call a load flow?',
+          'Just checking the frequency.'
+        ],
+        after: [
+          'Ouch. That was 132 kV of regret.',
+          'Totally meant to do that.',
+          'Hair: fully charged.',
+          'Note to self: wires are not snacks.',
+          'Roo 1, transmission line 0. Wait, no.',
+          'Smells like toastie.'
+        ]
+      };
+      var bags = { before: [], after: [] };
+      var LAP = 18000, lap = -1, plan = null, spoke = false;
+      // Shuffled bags, so no line comes round again until the rest have had a turn.
+      var draw = function (k) {
+        if (!bags[k].length) bags[k] = lines[k].slice().sort(function () { return Math.random() - .5; });
+        return bags[k].pop();
+      };
+      var newLap = function () {
+        plan = null;
+        // Quiet after it has spoken, chattier after a quiet lap: no fixed rhythm to it.
+        if (Math.random() < (spoke ? .2 : .55)) {
+          var k = Math.random() < .5 ? 'before' : 'after', text = draw(k);
+          var dur = k === 'before' ? Math.min(5000, 1800 + 40 * text.length) : Math.min(4000, 1800 + 45 * text.length);
+          var from = k === 'before' ? rand(400, 5600 - dur) : rand(7900, 12400 - dur);
+          plan = { text: text, from: from, to: from + dur };
+        }
+        spoke = !!plan;
+      };
+
+      /* The towers: a window lights up on the floor Adjie works (or worked) on, overtime after dark. */
+      var deskSay = bubble(document.getElementById('deskSay'));
+      var desks = [
+        { el: document.getElementById('deskPalace'), text: function () { return 'Adjie is working here' + (isDark() ? ' (overtime)' : ''); } },
+        { el: document.getElementById('deskBca'), text: function () { return 'Adjie was working here' + (isDark() ? ' (overtime)' : ''); } }
+      ];
+      var deskAt = function (d) { return function () { var r = d.el.getBoundingClientRect(); return { x: (r.left + r.right) / 2, y: r.top }; }; };
+      var desk = null, deskUntil = 0, deskNext = performance.now() + rand(5000, 20000);
+
+      setInterval(function () {
+        if (wrap.classList.contains('is-paused')) return;
+        var now = performance.now();
+        if (rooAnim) {
           var t = rooAnim.currentTime || 0, n = Math.floor(t / LAP), at = t % LAP;
-          if (n !== lap) { lap = n; hush(); newLap(); }
+          if (n !== lap) { lap = n; rooSay.hide(); newLap(); }
           var live = plan && at >= plan.from && at < plan.to;
-          if (live && !raf) { sayP.textContent = plan.text; place(); }
-          else if (!live && raf) hush();
-        }, 150);
-      }
+          // One bubble at a time: a line that comes up while a tower is talking just goes unsaid.
+          if (live && !rooSay.busy() && !desk) { var said = plan.text; rooSay.show(rooAt, function () { return said; }); }
+          else if (!live && rooSay.busy()) rooSay.hide();
+        }
+        if (desk && now > deskUntil) {
+          deskSay.hide(); desk.el.classList.remove('on'); desk = null;
+          deskNext = now + rand(15000, 45000);
+        } else if (!desk && now > deskNext && !rooSay.busy()) {
+          // Only a tower that's in frame right now; on a phone the scene pans, so try again shortly.
+          var w = wrap.getBoundingClientRect();
+          var seen = desks.filter(function (d) { var x = deskAt(d)().x - w.left; return x > 28 && x < w.width - 28; });
+          if (!seen.length) { deskNext = now + rand(2000, 6000); return; }
+          desk = seen[Math.floor(Math.random() * seen.length)];
+          desk.el.classList.add('on');
+          deskSay.show(deskAt(desk), desk.text);
+          deskUntil = now + rand(3200, 4800);
+        }
+      }, 150);
     })();
   </script>
 </body>
