@@ -261,8 +261,8 @@
     .roles ul { margin: 0; padding: 0; }
     .roles span { padding: 0 .3em; background: linear-gradient(180deg, transparent 56%, var(--hl) 56%, var(--hl) 92%, transparent 92%); }
     @keyframes role { 0% { opacity: 0; transform: translateY(100%); } 4%, 33.3% { opacity: 1; transform: translateY(0); } 37.3%, 100% { opacity: 0; transform: translateY(-100%); } }
-    .lede { margin: 0 auto; max-width: 64ch; color: var(--muted); font-size: clamp(.98rem, 1.6vw, 1.08rem); }
-    .lede strong { color: var(--ink); font-weight: 700; }
+    .loc { display: flex; justify-content: center; align-items: center; gap: .3em; margin: 0 auto; color: var(--muted); font-size: clamp(.98rem, 1.6vw, 1.08rem); font-weight: 600; }
+    .loc svg { width: 1.05em; height: 1.05em; flex: none; color: var(--accent); }
 
     /* ── Where to next: three stickers with a handwritten note each ──── */
     .hub { display: flex; justify-content: center; flex-wrap: wrap; gap: clamp(14px, 2.4vw, 28px); margin: clamp(18px, 3.4vh, 36px) 0 0; padding: 0; list-style: none; }
@@ -749,7 +749,7 @@
           <li><span>Project Manager</span><span class="vh">.</span></li>
         </ul>
       </div>
-      <p class="lede">An Indonesian engineer at <strong>Mott MacDonald</strong> in <strong>Perth</strong>, working out what energy projects are worth. Bandung trained, Jakarta seasoned, and still looking for a way to like Vegemite.</p>
+      <p class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9.5" r="2.6"/></svg>Perth, Australia</p>
 
       <ul class="hub">
         <li>
