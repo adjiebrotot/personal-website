@@ -51,7 +51,7 @@ await page.addStyleTag({ content: `
   .og-eyebrow { font-size: 40px; color: #B45309; margin: 0 0 6px; transform: rotate(-3deg); display: inline-block; }
   .og-name { font-size: 34px; font-weight: 800; margin: 0; }
   .og-sub { font-size: 24px; color: #4C5B76; margin: 4px 0 0; }
-  .map-card { width: 560px; } .map-card svg { width: 100%; height: auto; display: block; -webkit-mask-image: radial-gradient(closest-side, #000 76%, transparent); mask-image: radial-gradient(closest-side, #000 76%, transparent); }
+  .map-card { width: 560px; } .map-card svg { width: 100%; height: auto; display: block; }
 `});
 await page.waitForTimeout(400);
 await page.screenshot({ path: 'assets/img/og-about.png' });
