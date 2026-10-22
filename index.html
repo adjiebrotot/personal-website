@@ -41,11 +41,19 @@
   <link rel="preload" href="/assets/fonts/caveat.woff2" as="font" type="font/woff2" crossorigin>
 
   <script>
-    /* Day or night before the first paint: the reader's own pick, else their local clock (day from 6:00 to 18:00). */
+    /* Day or night before the first paint: the reader's own pick, else the clock in Perth. */
     (function () {
       var t = null;
-      try { t = localStorage.getItem('www-theme'); } catch (e) {}
-      if (t !== 'light' && t !== 'dark') { var h = new Date().getHours(); t = h >= 6 && h < 18 ? 'light' : 'dark'; }
+      /* The reader's pick: the abt-theme cookie shared with the blog and the tools, else this site's own key. */
+      var m = /(?:^|;\s*)abt-theme=(light|dark)/.exec(document.cookie);
+      if (m) t = m[1]; else { try { t = localStorage.getItem('www-theme'); } catch (e) {} }
+      if (t !== 'light' && t !== 'dark') {
+        /* No pick yet: the sky over Perth right now (day from 6:00 to 18:00 there), whatever the reader's clock says. */
+        var h = new Date().getHours();
+        try { h = +new Intl.DateTimeFormat('en-AU', { timeZone: 'Australia/Perth', hour: 'numeric', hourCycle: 'h23' }).format(new Date()) % 24; } catch (e) {}
+        if (isNaN(h)) h = new Date().getHours();
+        t = h >= 6 && h < 18 ? 'light' : 'dark';
+      }
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -156,6 +164,7 @@
     body {
       margin: 0;
       min-height: 100vh;
+      min-height: 100svh;
       font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
       color: var(--ink);
       background: var(--grass-2);
@@ -248,7 +257,7 @@
     .title .name path { fill: none; stroke: var(--gold-soft); stroke-width: 7; stroke-linecap: round; stroke-dasharray: 260; stroke-dashoffset: 260; animation: draw 1s .35s ease-out forwards; }
     @keyframes draw { to { stroke-dashoffset: 0; } }
     .formal {
-      position: absolute; right: max(0px, calc(50% - 470px)); top: clamp(26px, 7vh, 70px);
+      position: absolute; right: max(16px, calc(50% - 470px)); top: clamp(26px, 7vh, 70px);
       margin: 0; font-size: 1.2rem; color: var(--muted); transform: rotate(7deg); line-height: 1.1; text-align: left;
     }
     .formal svg { display: block; width: 46px; height: 30px; margin: 2px 0 0 4px; stroke: var(--muted); fill: none; stroke-width: 2; stroke-linecap: round; }
@@ -261,7 +270,7 @@
     .roles ul { margin: 0; padding: 0; }
     .roles span { padding: 0 .3em; background: linear-gradient(180deg, transparent 56%, var(--hl) 56%, var(--hl) 92%, transparent 92%); }
     @keyframes role { 0% { opacity: 0; transform: translateY(100%); } 4%, 33.3% { opacity: 1; transform: translateY(0); } 37.3%, 100% { opacity: 0; transform: translateY(-100%); } }
-    .loc { display: flex; justify-content: center; align-items: center; gap: .3em; margin: 0 auto; color: var(--muted); font-size: clamp(.98rem, 1.6vw, 1.08rem); font-weight: 600; }
+    .loc { display: flex; justify-content: center; align-items: center; gap: .3em; margin: 0 auto; color: var(--muted); font-size: 1.0625rem; font-weight: 600; }
     .loc svg { width: 1.05em; height: 1.05em; flex: none; color: var(--accent); }
 
     /* ── Where to next: three stickers with a handwritten note each ──── */
@@ -283,7 +292,7 @@
     .stick .ico { flex: none; width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: var(--dot); border: 2px solid var(--line); color: #14203A; }
     .stick .ico svg { width: 24px; height: 24px; }
     .stick .lbl { display: block; font-weight: 800; font-size: 1.15rem; line-height: 1.15; }
-    .stick .url { display: block; color: var(--muted); font-size: .82rem; }
+    .stick .url { display: block; color: var(--muted); font-size: .875rem; }
     .stick .go { margin-left: auto; font-weight: 800; transition: transform .18s; }
     .stick:hover .go, .stick:focus-visible .go { transform: translateX(4px); }
 
@@ -461,12 +470,20 @@
 
     .ground {
       background: var(--grass-2); color: var(--ink);
-      padding: 14px 16px 22px; text-align: center; font-size: .86rem;
+      padding: 14px 16px 22px; text-align: center; font-size: .875rem;
     }
     .ground p { margin: 0; color: var(--ink); opacity: .82; }
     .ground nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem 1.2rem; margin-bottom: .45rem; font-weight: 700; }
     .ground nav a { text-decoration: none; }
     .ground nav a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* A tall, narrow screen (a tablet held upright) has sky to spare: the city
+       grows into it and the hello sits in the middle of what is left, so no
+       empty band opens between the stickers and the skyline. */
+    @media (max-aspect-ratio: 4/5) and (min-width: 600px) {
+      .scene-wrap { --h: clamp(240px, 36vh, 420px); margin-top: 0; }
+      .hello { flex: 0 0 auto; margin-block: auto; }
+    }
 
     @media (max-width: 720px) {
       .formal { position: static; transform: rotate(-2deg); margin: .5rem auto 0; text-align: center; font-size: 1.12rem; }
@@ -1476,6 +1493,10 @@
         var next = cur === 'dark' ? 'light' : 'dark';
         root.setAttribute('data-theme', next);
         try { localStorage.setItem('www-theme', next); } catch (e) {}
+        // Shared with the blog and the tools, so they open the same way.
+        if (/(^|\.)adjiebrotots\.com$/.test(location.hostname)) {
+          document.cookie = 'abt-theme=' + next + '; max-age=31536000; path=/; SameSite=Lax; domain=adjiebrotots.com' + (location.protocol === 'https:' ? '; Secure' : '');
+        }
       });
 
       /* The scene rests when nobody can see it */

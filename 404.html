@@ -10,8 +10,16 @@
   <script>
     (function () {
       var t = null;
-      try { t = localStorage.getItem('www-theme'); } catch (e) {}
-      if (t !== 'light' && t !== 'dark') { var h = new Date().getHours(); t = h >= 6 && h < 18 ? 'light' : 'dark'; }
+      /* The reader's pick: the abt-theme cookie shared with the blog and the tools, else this site's own key. */
+      var m = /(?:^|;\s*)abt-theme=(light|dark)/.exec(document.cookie);
+      if (m) t = m[1]; else { try { t = localStorage.getItem('www-theme'); } catch (e) {} }
+      if (t !== 'light' && t !== 'dark') {
+        /* No pick yet: the sky over Perth right now (day from 6:00 to 18:00 there), whatever the reader's clock says. */
+        var h = new Date().getHours();
+        try { h = +new Intl.DateTimeFormat('en-AU', { timeZone: 'Australia/Perth', hour: 'numeric', hourCycle: 'h23' }).format(new Date()) % 24; } catch (e) {}
+        if (isNaN(h)) h = new Date().getHours();
+        t = h >= 6 && h < 18 ? 'light' : 'dark';
+      }
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
