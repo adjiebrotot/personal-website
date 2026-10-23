@@ -777,7 +777,7 @@
         <img src="/logos/logo.svg" alt="" width="32" height="32">
         <span>Adjie <b>Brotot</b></span>
       </a>
-      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch day and night" title="Day or night?">
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch day or night" title="Switch day or night">
         <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
         <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
       </button>
@@ -1487,6 +1487,13 @@
     (function () {
       var root = document.documentElement;
       /* Day and night */
+      /* The toggle says what a press will do, as on the blog and the tools. */
+      var themeBtn = document.getElementById('themeBtn');
+      var label = function () {
+        var t = root.getAttribute('data-theme') === 'dark' ? 'Switch to day' : 'Switch to night';
+        themeBtn.setAttribute('aria-label', t); themeBtn.title = t;
+      };
+      label();
       var btn = document.getElementById('themeBtn');
       btn.addEventListener('click', function () {
         var cur = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -1497,6 +1504,7 @@
         if (/(^|\.)adjiebrotots\.com$/.test(location.hostname)) {
           document.cookie = 'abt-theme=' + next + '; max-age=31536000; path=/; SameSite=Lax; domain=adjiebrotots.com' + (location.protocol === 'https:' ? '; Secure' : '');
         }
+        label();
       });
 
       /* The scene rests when nobody can see it */
