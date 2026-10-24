@@ -11,6 +11,7 @@ story at `/about/`. Static files only, published by GitHub Pages. Sister sites:
 | --- | --- |
 | `index.html` | Homepage: the Jakarta, energy and Perth skyline (click the plane, bus or train for another), links to about, blog and tools |
 | `about/index.html` | The story so far, as a five-stop trail with the projects at each stop |
+| `id/about/index.html` | The same story in Bahasa Indonesia, written natively (not line by line); the two pages link to each other with `hreflang` |
 | `404.html` | Not found |
 | `llms.txt` | Who Adjie is, written for answer engines |
 | `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME` | Crawling, install and domain |
