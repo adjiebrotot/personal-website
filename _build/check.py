@@ -16,7 +16,7 @@ from html.parser import HTMLParser
 
 SITE = 'https://www.adjiebrotots.com'
 PERSON = SITE + '/#person'
-MAIN = ['index.html', 'about/index.html', '404.html']
+MAIN = ['index.html', 'about/index.html', 'id/about/index.html', '404.html']
 # Notes drawn from data-note attributes: never part of the page text.
 NOTES = ['not that important', 'as words', 'hope it can help you too']
 problems = []
@@ -123,7 +123,7 @@ def main():
             bad(f, 'missing')
             continue
         s = check_page(f)
-        if f in MAIN[:2]:
+        if f in MAIN[:3]:
             sizes[f] = (len(s.encode()), len(gzip.compress(s.encode(), 9)))
     # Sitemap: every URL is a real page.
     sm = open('sitemap.xml', encoding='utf-8').read()
