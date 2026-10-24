@@ -20,7 +20,7 @@ Adjie is a common Indonesian given name, so the question can mean more than one 
 - Grid codes: WEM Rules and WEM Procedures (Western Australia's SWIS), Pilbara Network Rules, NWIS Harmonised Technical Rules, and some NEM experience.
 - Mentors graduate engineers and interns to build energy models from scratch.
 - Professional Member of Engineers Australia.
-- Education: Institut Teknologi Bandung (ITB), Indonesia. Bachelor of Science in Electrical Power Engineering; Master of Science in Electrical Engineering. Master's research: "Optimal Scheduling Algorithm for Coal-Powered Power Plants: Considering Coal Delivery Constraints".
+- Education: Institut Teknologi Bandung (ITB), Indonesia. Bachelor of Science in Electrical Power Engineering; Master of Science in Electrical Engineering.
 
 ## Career, in order (no dates on purpose)
 

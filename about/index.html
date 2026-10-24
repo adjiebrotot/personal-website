@@ -146,6 +146,13 @@
     .nav { display: flex; align-items: center; gap: clamp(.6rem, 2vw, 1.4rem); }
     .nav a { display: inline-flex; align-items: center; height: 36px; color: var(--ink); text-decoration: none; font-weight: 700; font-size: .875rem; }
     .nav a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+    .nav a.lang-btn {
+      gap: 6px; box-sizing: border-box; padding: 0 12px; line-height: 1; font-weight: 600;
+      border: 2px solid var(--line); background: var(--card); border-radius: 10px;
+      box-shadow: 3px 3px 0 var(--line); transition: transform .15s, box-shadow .15s;
+    }
+    .nav a.lang-btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--line); text-decoration: none; }
+    .nav a.lang-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--line); }
     .theme-btn {
       appearance: none; border: 2px solid var(--line); background: var(--card); color: var(--ink);
       width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: grid; place-items: center;
@@ -270,7 +277,6 @@
     .projects .snaps.one { margin: .8rem auto .3rem; max-width: 300px; }
     .detour { margin: 0 0 1.1rem; padding: .65rem .95rem; border-left: 4px solid var(--teal-soft); background: var(--card-2); border-radius: 0 12px 12px 0; color: var(--muted); font-size: 1rem; }
     .detour .hand { color: var(--teal); font-size: 1.25rem; margin-right: .25rem; }
-    .paper { font-style: italic; color: var(--ink); }
     .snaps { margin-bottom: 1.4rem; }
     .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 900px; margin: 1rem auto 0; padding: 0; list-style: none; }
     .badges li { display: flex; align-items: center; gap: .6rem; padding: .45rem .9rem .45rem .5rem; border-radius: 14px; background: var(--card); border: 2px solid var(--line); box-shadow: 2px 2px 0 var(--line); text-align: left; line-height: 1.25; }
@@ -673,19 +679,6 @@
         ]
       },
       {
-        "@type": "ScholarlyArticle",
-        "@id": "https://www.adjiebrotots.com/about/#coal-scheduling",
-        "name": "Optimal Scheduling Algorithm for Coal-Powered Power Plants: Considering Coal Delivery Constraints",
-        "author": {
-          "@id": "https://www.adjiebrotots.com/#person"
-        },
-        "about": [
-          "Power plant scheduling",
-          "Coal-fired power plants",
-          "Coal delivery constraints"
-        ]
-      },
-      {
         "@type": "BreadcrumbList",
         "itemListElement": [
           {
@@ -735,7 +728,7 @@
             "name": "Where did Adjie Brotosukmono study?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "At Institut Teknologi Bandung (ITB) in Indonesia: a Bachelor's in Electrical Power Engineering and a Master's in Electrical Engineering, both on scholarships. The master's research was on optimal scheduling of coal-powered power plants under coal delivery constraints."
+              "text": "At Institut Teknologi Bandung (ITB) in Indonesia: a Bachelor's in Electrical Power Engineering and a Master's in Electrical Engineering, both on scholarships."
             }
           },
           {
@@ -770,7 +763,7 @@
       <a href="/" class="opt">Home</a>
       <a href="https://blog.adjiebrotots.com/">Blog</a>
       <a href="https://tool.adjiebrotots.com/">Tools</a>
-      <a href="/id/about/" hreflang="id" lang="id" title="Baca dalam Bahasa Indonesia">ID</a>
+      <a class="lang-btn" id="langToggle" href="/id/about/" hreflang="id" lang="id" title="Baca dalam Bahasa Indonesia"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg> ID</a>
       <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch day or night" title="Switch day or night">
         <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
         <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
@@ -836,7 +829,6 @@
           <h2 id="s1">Electrical power engineering at <span class="mark">ITB</span></h2>
           <p>Why electrical power engineering? Blame physics. Since junior high I loved playing with formulas, and engineering looked like the place where formulas get a real job.</p>
           <p>I went to <strong>Institut Teknologi Bandung (ITB)</strong> and stayed for two degrees: a <strong>Bachelor's in Electrical Power Engineering</strong>, then a <strong>Master's in Electrical Engineering</strong>. Scholarships paid for both. I have not forgotten that.</p>
-          <p>My master's asked a very practical question. A coal plant needs coal, and the coal does not always arrive on time, so how do you schedule the plants? The answer became a paper: <span class="paper">Optimal Scheduling Algorithm for Coal-Powered Power Plants, Considering Coal Delivery Constraints</span>.</p>
           <p>I practically lived in the labs, too. I coordinated the assistants of the power system engineering lab, guided students through power system analysis and high voltage practicals, and helped teach signals and systems, electrical materials and electromagnetics.</p>
           <p>One thing at a time was never enough, so I also started a business. <strong>Ganeshtore</strong> sold books, tools and accessories to new students. We were a small team with a CFO (yes, for a student shop), and I built our cash flow and point-of-sale system on Google Sheets and Apps Script. It kept going, I learned a lot, and part of the profit went to charity.</p>
         </div>
@@ -1339,7 +1331,7 @@
       </details>
       <details>
         <summary>Where did Adjie Brotosukmono study?</summary>
-        <p>At Institut Teknologi Bandung (ITB) in Indonesia: a Bachelor's in Electrical Power Engineering and a Master's in Electrical Engineering, both on scholarships. The master's research was on optimal scheduling of coal-powered power plants under coal delivery constraints.</p>
+        <p>At Institut Teknologi Bandung (ITB) in Indonesia: a Bachelor's in Electrical Power Engineering and a Master's in Electrical Engineering, both on scholarships.</p>
       </details>
       <details>
         <summary>Are Adjie Brotools and the Adjie Brotot Blog made by the same person?</summary>
