@@ -8,6 +8,8 @@ try { pw = require('playwright'); } catch { pw = createRequire('/opt/node22/lib/
 const base = process.env.BASE || 'http://localhost:8411';
 const browser = await pw.chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, colorScheme: 'light', reducedMotion: 'reduce' });
+// The pages pick night from the clock in Perth; the cards are always drawn by day.
+await page.addInitScript(() => { try { localStorage.setItem('www-theme', 'light'); } catch (e) {} });
 
 await page.goto(base + '/', { waitUntil: 'load' });
 await page.addStyleTag({ content: `
@@ -38,7 +40,7 @@ await page.evaluate(() => {
   document.body.innerHTML = '';
   const wrap = document.createElement('div');
   wrap.className = 'og';
-  wrap.innerHTML = '<div class="og-text"><p class="hand og-eyebrow">about me</p><h1>From Bandung<br>to <span>Perth</span>.</h1><p class="og-name">Adjie Brotosukmono</p><p class="og-sub">Energy economics consultant and power system engineer</p></div>';
+  wrap.innerHTML = '<div class="og-text"><p class="hand og-eyebrow">about me</p><h1>From Bandung<br>to <span>Perth</span>.</h1><p class="og-name">Adjie Brotosukmono</p><p class="og-sub">Senior economics consultant and power system engineer</p></div>';
   wrap.appendChild(map);
   document.body.appendChild(wrap);
   map.querySelector('svg').classList.add('go');
