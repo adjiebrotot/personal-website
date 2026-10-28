@@ -19,7 +19,9 @@ about page's text), or not at all.
 
 ## Keep it fast
 
-- Each page inlines its own CSS, SVG and JS. No frameworks, no external scripts or fonts.
+- Each page inlines its own CSS, SVG and JS. No frameworks, no external scripts or fonts. The
+  one exception is the async AdSense loader in each `<head>`, the same tag the tool site and the
+  blog use; ad placement is set in AdSense (Auto ads), not in the pages.
 - Animate only `transform` and `opacity`; honour `prefers-reduced-motion`; pause the skyline
   when it's off screen.
 - Images are WebP with `width`/`height`, `loading="lazy"` below the fold.

@@ -15,6 +15,7 @@ import sys
 from html.parser import HTMLParser
 
 SITE = 'https://www.adjiebrotots.com'
+ADSENSE = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8730116101825381'
 PERSON = SITE + '/#person'
 MAIN = ['index.html', 'about/index.html', 'id/about/index.html', '404.html']
 # Notes drawn from data-note attributes: never part of the page text.
@@ -81,10 +82,13 @@ def check_page(f):
             bad(f, 'no meta description')
         elif m and not 50 <= len(html.unescape(m.group(1))) <= 170:
             bad(f, 'meta description is %d characters' % len(m.group(1)))
-    # No external scripts, styles or images: every byte a page paints is ours.
+    # No external scripts, styles or images: every byte a page paints is ours. The one
+    # exception is the AdSense loader, async so it never holds up the first paint.
     for tag, attr in (('script', 'src'), ('link', 'href'), ('img', 'src'), ('iframe', 'src')):
         for m in re.finditer(r'<%s\b[^>]*\b%s="(https?://[^"]+)"' % (tag, attr), s):
             whole = m.group(0)
+            if tag == 'script' and m.group(1).startswith(ADSENSE) and ' async ' in whole:
+                continue
             if tag == 'link' and not re.search(r'rel="(stylesheet|preload|modulepreload)"', whole):
                 continue
             bad(f, 'external %s: %s' % (tag, m.group(1)))
