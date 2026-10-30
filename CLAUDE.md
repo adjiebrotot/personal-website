@@ -22,6 +22,9 @@ about page's text), or not at all.
 - Each page inlines its own CSS, SVG and JS. No frameworks, no external scripts or fonts. The
   one exception is the async AdSense loader in the about pages' `<head>`, the same tag the tool
   site and the blog use.
+- Animate only `transform` and `opacity`; honour `prefers-reduced-motion`; pause the skyline
+  when it's off screen.
+- Images are WebP with `width`/`height`, `loading="lazy"` below the fold.
 
 ## Ads
 
@@ -32,9 +35,6 @@ about page's text), or not at all.
 - A page with ads links to the privacy policy (`tool.adjiebrotots.com/privacy/`, which covers
   all three sites) with `rel="privacy-policy"`.
 - The slot map for all three sites is in the tool repo, `shared.css`, above `.ad-slot`.
-- Animate only `transform` and `opacity`; honour `prefers-reduced-motion`; pause the skyline
-  when it's off screen.
-- Images are WebP with `width`/`height`, `loading="lazy"` below the fold.
 
 ## Page text
 
