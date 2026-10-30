@@ -453,6 +453,14 @@
       .pass-body img { width: 60px; height: 60px; }
       .pass-big dd { font-size: 1.6rem; }
     }
+    /* The one AdSense unit, after the story and before the badges. It takes no room until
+       Google fills it, so an empty or blocked unit leaves no gap; the label is drawn by CSS,
+       so it never becomes page text. */
+    .ad-slot { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; text-align: center; }
+    .ad-slot:has(ins.adsbygoogle[data-ad-status="filled"]) { margin: 0 auto clamp(48px, 8vh, 90px); }
+    .ad-slot:has(ins.adsbygoogle[data-ad-status="filled"])::before { content: "Iklan"; display: block; margin-bottom: 6px; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .ad-slot:has(ins.adsbygoogle[data-ad-status="unfilled"]) { display: none; }
+    @media print { .ad-slot { display: none !important; } }
     @media (prefers-reduced-motion: reduce) {
       .sld .blades { animation: none; }
       *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -1279,6 +1287,12 @@
       </section>
     </div>
 
+    <!-- AdSense, Display 5: after the story, before the badges (.ad-slot above) -->
+    <div class="ad-slot">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8730116101825381" data-ad-slot="1821351030" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
     <section class="finale creds rise" aria-labelledby="badges">
       <h2 id="badges">Lencana yang terkumpul di sepanjang jalan</h2>
       <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1355,6 +1369,7 @@
       <a href="https://tool.adjiebrotots.com/">Tools</a>
       <a href="https://www.instagram.com/adjiebrotot/" rel="me noopener">Instagram</a>
       <a href="https://www.linkedin.com/in/adjiebrotot/" rel="me noopener">LinkedIn</a>
+      <a href="https://tool.adjiebrotots.com/privacy/id/" rel="privacy-policy">Privasi</a>
     </nav>
     <p>© Adjie Brotosukmono · digambar di Perth, ditenagai kopi Indonesia</p>
   </footer>

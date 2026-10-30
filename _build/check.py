@@ -74,6 +74,14 @@ def check_page(f):
         for i in set(ids):
             if i != PERSON:
                 bad(f, 'person @id %s is not %s' % (i, PERSON))
+    # AdSense: never on a screen without content of its own (the homepage is a signpost to
+    # about, blog and tools; 404 is an error page), and a page that loads it links to the
+    # privacy policy that says so.
+    ads = ADSENSE in s
+    if ads and f in ('index.html', '404.html'):
+        bad(f, 'loads AdSense on a page without content of its own')
+    if ads and 'rel="privacy-policy"' not in s:
+        bad(f, 'loads AdSense but has no privacy policy link')
     if not redirect and f != '404.html':
         if not re.search(r'<link rel="canonical" href="https://www\.adjiebrotots\.com/', s):
             bad(f, 'no absolute canonical')
