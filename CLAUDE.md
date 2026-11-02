@@ -8,8 +8,8 @@ Static personal site at www.adjiebrotots.com, published by GitHub Pages. Sister 
 
 - `/` and `/about/` are linked from the tool site, the blog and elsewhere. Never rename either;
   a new page gets its own path and a line in `_build/sitemap.py`.
-- Short links (`/pns/` and the like) come from `LINKS` in `_build/links.py`; regenerate, never
-  hand-edit. Once shared, a slug is never reused for another target.
+- Short links (`/pns` and the like) are the map in `_data/links.yml`, redirected by `404.html`.
+  Once shared, a slug is never reused for another target.
 - The old Blogger blog that used to live on this domain is retired on purpose. Don't bring its
   posts back.
 

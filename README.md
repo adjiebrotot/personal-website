@@ -13,7 +13,7 @@ story at `/about/`. Static files only, published by GitHub Pages. Sister sites:
 | `about/index.html` | The story so far, as a five-stop trail with the projects at each stop |
 | `id/about/index.html` | The same story in Bahasa Indonesia, written natively (not line by line); the two pages link to each other with `hreflang` |
 | `404.html` | Not found |
-| `<slug>/index.html` | Short links such as `/pns/`, made by `_build/links.py` from its `LINKS` list (don't edit them by hand) |
+| `_data/links.yml` | The short-link map (`pns: https://...`), read by `404.html` |
 | `llms.txt` | Who Adjie is, written for answer engines |
 | `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME` | Crawling, install and domain |
 | `assets/` | Fonts (DM Sans, Caveat, subset) and images |
@@ -34,9 +34,11 @@ node _build/og.mjs             # social preview images, after the homepage or ma
 
 ## Short links
 
-`www.adjiebrotots.com/pns` (and `adjiebrotots.com/pns`) sends the reader to a longer URL. Add
-a line to `LINKS` in `_build/links.py`, run `python3 _build/links.py`, commit the new folder.
-Each link is a static page that redirects at once; it stays out of the sitemap.
+`www.adjiebrotots.com/pns` (and `adjiebrotots.com/pns`) sends the reader to a longer URL. Add a
+line `slug: https://...` to `_data/links.yml` and commit, from the GitHub web editor if you like;
+nothing to run. GitHub Pages builds the map into `404.html`, which redirects any path in it
+before the not-found page paints. The response is still an HTTP 404, so browsers follow it but
+link previews (WhatsApp, X) show the 404 page's title and search engines don't follow it.
 
 ## Going live (one time)
 

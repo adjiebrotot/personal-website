@@ -143,6 +143,18 @@ def main():
         t = target(loc.replace(SITE, ''))
         if not os.path.exists(t):
             bad('sitemap.xml', 'lists %s, which does not exist' % loc)
+    # Short links (_data/links.yml, redirected by 404.html): a slug never shadows a real path,
+    # and every target is https.
+    if os.path.exists('_data/links.yml'):
+        for n, line in enumerate(open('_data/links.yml', encoding='utf-8'), 1):
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            m = re.fullmatch(r'([a-z0-9][a-z0-9-]*):\s+(https://\S+)', line)
+            if not m:
+                bad('_data/links.yml', 'line %d is not "slug: https://..."' % n)
+            elif os.path.exists(m.group(1)) or os.path.exists(m.group(1) + '.html'):
+                bad('_data/links.yml', 'slug %s is a real path on the site' % m.group(1))
     for f, (raw, gz) in sizes.items():
         print('%-20s %6.1f kB, %5.1f kB gzipped' % (f, raw / 1024, gz / 1024))
         if gz > 60 * 1024:

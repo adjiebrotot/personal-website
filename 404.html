@@ -1,3 +1,6 @@
+---
+# Jekyll front matter so the short-link map below is filled in from _data/links.yml.
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +9,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Wrong stop | Adjie Brotosukmono</title>
   <meta name="robots" content="noindex, follow">
+  <script>
+    /* Short links: /pns or /pns/ goes to its target in _data/links.yml, before the 404 paints. */
+    (function () {
+      var links = {{ site.data.links | jsonify }};
+      var slug = location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+      if (links && Object.prototype.hasOwnProperty.call(links, slug)) {
+        document.documentElement.style.visibility = 'hidden';
+        location.replace(links[slug] + location.hash);
+      }
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="/logos/logo.svg">
   <link rel="apple-touch-icon" href="/logos/apple-touch-icon.png">
   <script>

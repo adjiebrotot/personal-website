@@ -1,0 +1,5 @@
+# Short links: www.adjiebrotots.com/<slug> (and adjiebrotots.com/<slug>) sends the reader to
+# the URL after the colon. Add a line, commit, done: GitHub Pages rebuilds and 404.html does
+# the redirect. Slugs are lowercase letters, digits and hyphens. Once a link is shared, never
+# reuse its slug for another target.
+pns: https://blog.adjiebrotots.com/id/pensiun-tanpa-jadi-pns/
