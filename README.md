@@ -13,6 +13,7 @@ story at `/about/`. Static files only, published by GitHub Pages. Sister sites:
 | `about/index.html` | The story so far, as a five-stop trail with the projects at each stop |
 | `id/about/index.html` | The same story in Bahasa Indonesia, written natively (not line by line); the two pages link to each other with `hreflang` |
 | `404.html` | Not found |
+| `<slug>/index.html` | Short links such as `/pns/`, made by `_build/links.py` from its `LINKS` list (don't edit them by hand) |
 | `llms.txt` | Who Adjie is, written for answer engines |
 | `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME` | Crawling, install and domain |
 | `assets/` | Fonts (DM Sans, Caveat, subset) and images |
@@ -30,6 +31,12 @@ python3 _build/sitemap.py      # after adding a page or changing one (bump its d
 python3 -m http.server 8411 &  # then
 node _build/og.mjs             # social preview images, after the homepage or map changes
 ```
+
+## Short links
+
+`www.adjiebrotots.com/pns` (and `adjiebrotots.com/pns`) sends the reader to a longer URL. Add
+a line to `LINKS` in `_build/links.py`, run `python3 _build/links.py`, commit the new folder.
+Each link is a static page that redirects at once; it stays out of the sitemap.
 
 ## Going live (one time)
 
