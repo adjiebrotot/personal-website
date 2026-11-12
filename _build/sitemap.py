@@ -9,7 +9,7 @@ SITE = 'https://www.adjiebrotots.com'
 PAGES = [
     ('/', '2026-11-12', '1.0'),
     ('/about/', '2026-11-06', '0.9'),
-    ('/id/about/', '2026-11-06', '0.9'),
+    ('/id/about/', '2026-11-12', '0.9'),
 ]
 
 rows = ['<?xml version="1.0" encoding="UTF-8"?>',
