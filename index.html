@@ -888,7 +888,7 @@
     </main>
 
     <div class="scene-wrap" id="sceneWrap">
-      <svg class="scene" viewBox="0 110 1920 490" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Flat illustration of Jakarta, with Monas, Wisma 46, Menara BCA and the Selamat Datang monument, then wind and solar farms, then Perth, with the BHP Tower at Brookfield Place, Central Park (the Rio Tinto tower), the Palace Tower, the Bell Tower, Elizabeth Quay Bridge and Optus Stadium. A Singapore Airlines A380 flies overhead while a Transperth C-series train and a Transperth bus pass below, and a kangaroo jumps at the power line, gets a jolt and hops on, a little singed.">
+      <svg class="scene" viewBox="0 110 1920 490" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Flat illustration of Jakarta, with the Istiqlal Mosque, Monas, Wisma 46, UOB Plaza, Menara BCA, Hotel Indonesia and the Selamat Datang monument, then wind and solar farms, then Perth, with QV1, the BHP Tower at Brookfield Place, Central Park (the Rio Tinto tower), the Palace Tower, Allendale Square, St Martins Tower, Council House, the Ritz-Carlton, the Bell Tower, Elizabeth Quay Bridge, Matagarup Bridge and Optus Stadium. A Singapore Airlines A380 flies overhead while a Transperth C-series train and a Transperth bus pass below, and a kangaroo jumps at the power line, gets a jolt and hops on, a little singed.">
         <defs>
           <pattern id="mullV" width="6" height="8" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="1" height="8" class="f-mull"/></pattern>
           <pattern id="mullG" width="8" height="9" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="1" height="9" class="f-mull"/><rect x="0" y="0" width="8" height="1" class="f-mull"/></pattern>
@@ -898,6 +898,7 @@
           <linearGradient id="contrail" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".9"/></linearGradient>
           <g id="turbine">
             <path class="f-blade2" d="M-4.5 0 L4.5 0 L2 -160 L-2 -160 Z"/>
+            <path d="M-3.7 -52 H3.7 M-2.9 -106 H2.9" stroke="var(--blade)" stroke-width=".7"/><rect x="-1.4" y="-8" width="2.8" height="6.4" rx=".5" fill="var(--pylon)" opacity=".45"/>
             <rect class="f-blade" x="-5" y="-165" width="16" height="9" rx="4"/>
             <g transform="translate(-5 -160.5)">
               <g class="spin">
@@ -915,6 +916,14 @@
           <g id="panel"><path class="s-pylon" d="M10 0 V-10 M46 0 V-14"/><path class="f-panel" d="M0 -8 L54 -8 L60 -22 L6 -22 Z"/><path d="M14 -8 L20 -22 M28 -8 L34 -22 M42 -8 L48 -22 M3 -15 L57 -15" stroke="var(--panel-2)" stroke-width=".8" fill="none"/></g>
           <g id="tree"><rect x="-1.5" y="-10" width="3" height="10" class="f-bronze"/><circle cy="-16" r="9" class="f-grass"/><circle cx="-5" cy="-11" r="6" class="f-grass"/><circle cx="5" cy="-12" r="6.5" class="f-grass2"/></g>
           <g id="palm"><path d="M0 0 C 1 -12 -1 -24 2 -36" stroke="var(--bronze)" stroke-width="2.6" fill="none"/><path class="f-grass2" d="M2 -36 c -10 -6 -18 -2 -22 4 c 8 -5 15 -5 22 -4z M2 -36 c 10 -6 18 -2 22 4 c -8 -5 -15 -5 -22 -4z M2 -36 c -4 -10 -12 -12 -18 -10 c 8 0 13 4 18 10z M2 -36 c 4 -10 12 -12 18 -10 c -8 0 -13 4 -18 10z"/></g>
+          <pattern id="ribV" width="3" height="6" patternUnits="userSpaceOnUse"><rect x="1" width="1.2" height="6" fill="var(--w46-win)"/></pattern>
+          <pattern id="chT" width="6" height="7" patternUnits="userSpaceOnUse"><path d="M0 .7 H6 M3 .7 V4.6" stroke="var(--halo)" stroke-width="1.1" fill="none"/></pattern>
+          <pattern id="qvG" width="5" height="4.5" patternUnits="userSpaceOnUse"><rect width="5" height="1.1" fill="var(--bca-band)"/><rect width=".6" height="4.5" class="f-mull"/></pattern>
+          <pattern id="hazeG" width="5" height="7" patternUnits="userSpaceOnUse"><rect width="5" height=".8" fill="var(--far-2)"/></pattern>
+          <g id="lamp"><path d="M0 0 V-17 q0 -3 4.4 -3" fill="none" stroke="var(--pylon)" stroke-width=".9"/><rect x="3.4" y="-20.6" width="3" height="1.2" rx=".6" fill="var(--pylon)"/><circle class="lit" cx="4.9" cy="-18.6" r="1.5" fill="var(--lit)"/></g>
+          <g id="gum"><path d="M0 0 C .6 -7 -.6 -11 -3.4 -16 M0 -8 C 1.4 -12 3.4 -14 5 -17" fill="none" stroke="var(--white-b)" stroke-width="1.5" stroke-linecap="round"/><ellipse cx="-5" cy="-19" rx="8" ry="4.6" class="f-grass2"/><ellipse cx="5.6" cy="-20" rx="7" ry="4" class="f-grass"/><ellipse cx="-.6" cy="-24" rx="6.4" ry="3.6" class="f-grass2"/></g>
+          <g id="sheep"><ellipse cx="0" cy="-3.4" rx="3.6" ry="2.3" class="f-white"/><circle cx="3.6" cy="-4.4" r="1.2" fill="var(--steel)"/><path d="M-2 -1.4 V0 M-.4 -1.4 V0 M1.4 -1.4 V0 M2.6 -1.4 V0" stroke="var(--steel)" stroke-width=".6"/></g>
+          <g id="yacht"><path d="M0 0 h11 l-1.8 2.4 h-7.4 z" class="f-white"/><path d="M5 -.6 V-14 L10.4 -1.4 Z M4.2 -1.4 V-11.6 L.4 -1.4 Z" fill="var(--halo)"/></g>
           <pattern id="bcaV" width="3.2" height="4.6" patternUnits="userSpaceOnUse"><rect width=".7" height="4.6" class="f-mull"/><rect width="3.2" height=".45" class="f-mull"/></pattern>
           <pattern id="bhpG" width="4" height="16" patternUnits="userSpaceOnUse"><rect width=".8" height="16" class="f-mull"/><rect y="0" width="4" height="1.7" fill="var(--bhp-band)"/><rect y="8" width="4" height=".5" class="f-mull"/></pattern>
           <pattern id="palG" width="4" height="5.5" patternUnits="userSpaceOnUse"><rect width=".8" height="5.5" fill="var(--pal-line)"/><rect width="4" height=".5" fill="var(--pal-line)"/></pattern>
@@ -948,14 +957,26 @@
 
         <!-- Far: haze of both cities and the Darling Range -->
         <path class="f-range" d="M1180 480 L1180 412 C 1260 396 1330 404 1400 392 C 1500 376 1600 398 1700 384 C 1790 372 1860 388 1920 380 L1920 480 Z"/>
+        <!-- Jakarta's haze, west to east: Sahid Sudirman Center, Gama Tower, then Thamrin Nine (the Autograph Tower,
+             the tallest in the country, and the Luminary beside it), Plaza Indonesia, Menara Astra and Wisma Nusantara.
+             Perth's: the east end of the Terrace. -->
         <g class="f-far">
-          <rect x="16" y="352" width="34" height="128"/><rect x="58" y="380" width="30" height="100"/><rect x="190" y="300" width="30" height="180"/><rect x="276" y="330" width="26" height="150"/>
-          <rect x="350" y="276" width="34" height="204"/><rect x="530" y="318" width="36" height="162"/><rect x="574" y="356" width="28" height="124"/><rect x="616" y="300" width="34" height="180"/><rect x="660" y="340" width="40" height="140"/>
-          <rect x="1236" y="338" width="34" height="142"/><rect x="1424" y="302" width="30" height="178"/><rect x="1520" y="318" width="36" height="162"/><rect x="1630" y="330" width="32" height="150"/><rect x="1750" y="350" width="40" height="130"/><rect x="1836" y="362" width="30" height="118"/>
+          <rect x="58" y="388" width="26" height="92"/>
+          <path d="M186 480 V306 h5 v-9 h5 v-9 h8 v18 h6 V480 Z M197 288 v-18 h1.2 v18 Z"/>
+          <path d="M272 480 V262 H284 V236 L290 230 V480 Z"/>
+          <path d="M356 480 V190 L360 182 V168 L382 156 V480 Z"/>
+          <path d="M508 480 V352 h6 v-10 h8 v-10 h10 V480 Z"/>
+          <path d="M572 480 V336 Q 574 304 604 300 V480 Z"/>
+          <rect x="616" y="306" width="24" height="174"/>
+          <path d="M660 480 V344 h8 v-6 h10 v6 h22 V480 Z"/>
+          <rect x="1424" y="302" width="30" height="178"/><rect x="1526" y="324" width="18" height="156"/>
+          <path d="M1626 480 V330 h6 v-6 h22 v6 h6 V480 Z"/><rect x="1750" y="350" width="40" height="130"/><rect x="1836" y="362" width="30" height="118"/>
         </g>
         <g class="f-far2">
-          <rect x="566" y="276" width="20" height="204"/><path d="M640 480 V262 l14 -12 l14 12 V480 Z"/><rect x="1556" y="290" width="24" height="190"/><rect x="1662" y="300" width="26" height="180"/>
+          <path d="M384 480 V226 L396 216 V480 Z"/><path d="M640 480 V262 l14 -12 l14 12 V480 Z"/><rect x="1662" y="296" width="26" height="184"/>
+          <path d="M370 480 V162.4 L382 156 V480 Z M284 480 V236 L290 230 V480 Z" opacity=".7"/>
         </g>
+        <path fill="url(#hazeG)" d="M186 480 V306 h5 v-9 h5 v-9 h8 v18 h6 V480 Z M272 480 V262 H284 V480 Z M356 480 V190 L360 182 V168 L370 162.4 V480 Z M572 480 V336 Q 574 304 604 300 V480 Z M1626 480 V330 h6 v-6 h22 v6 h6 V480 Z"/>
 
         <!-- Far away, so it passes behind the towers: the Singapore Airlines A380-800, Jakarta to Perth.
              Click (or tap) it for a Qantas A350-1000, then a B-2 Spirit, seen from below and hard to spot. -->
@@ -1038,9 +1059,42 @@
           <rect x="1100" y="462" width="38" height="16" rx="1.5" class="f-white"/><rect x="1140" y="462" width="38" height="16" rx="1.5" class="f-white"/>
           <path d="M1106 466 h26 M1106 470 h26 M1146 466 h26 M1146 470 h26" stroke="var(--grey-b)" stroke-width="1.2"/>
           <rect x="1104" y="473" width="4" height="3" fill="#3ECF8E"/><rect x="1144" y="473" width="4" height="3" fill="#3ECF8E"/>
+          <path d="M1134 464 v12 M1174 464 v12 M1100 478.6 h78" stroke="var(--grey-b)" stroke-width="1"/>
+        </g>
+        <!-- The substation under the first tower: a transformer with its bushings and cooling fins, a gantry, a fence -->
+        <g>
+          <path class="s-pylon" stroke-width="1.1" d="M778 480 V453 M789 480 V453 M775 453 H792 M778 459 H789 M780.5 453 v-3 M783.5 453 v-3 M786.5 453 v-3"/>
+          <rect x="794" y="466" width="15" height="14" class="f-grey"/><rect x="794" y="466" width="15" height="2" class="f-white"/>
+          <path d="M797 466 v-5 M801.5 466 v-5 M806 466 v-5" stroke="var(--pylon)" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M810.4 469 v10 M812.4 469 v10 M814.4 469 v10" stroke="var(--pylon)" stroke-width="1"/>
+          <path d="M770 480 V473.4 H820 V480 M776 473.4 V480 M784 473.4 V480 M792 473.4 V480 M800 473.4 V480 M808 473.4 V480 M814 473.4 V480" stroke="var(--pylon)" stroke-width=".5" fill="none" opacity=".8"/>
+        </g>
+        <!-- Station country: a windmill on its lattice tower, a tank, a few gums and sheep -->
+        <g>
+          <path class="s-pylon" stroke-width=".8" d="M1066 476 L1070 452 L1074 476 M1067.4 468 H1072.6 M1068.6 460 H1071.4 M1066 476 L1072.6 468 M1074 476 L1067.4 468"/>
+          <path d="M1070 452 h8 l3 -2.4 v4.8 z" fill="var(--pylon)"/>
+          <g transform="translate(1070 452)"><g class="spin" style="--spd:3.4s"><path d="M0 -6.4 V6.4 M-6.4 0 H6.4 M-4.5 -4.5 L4.5 4.5 M-4.5 4.5 L4.5 -4.5" stroke="var(--blade-2)" stroke-width="1.5"/><circle r="6.4" fill="none" stroke="var(--blade-2)" stroke-width=".7"/><circle r="1.3" fill="var(--pylon)"/></g></g>
+          <rect x="1078" y="470" width="12" height="6.6" rx="1" class="f-grey"/><path d="M1078 472.4 h12 M1078 474.4 h12" stroke="var(--pylon)" stroke-width=".5" opacity=".6"/>
+          <use href="#gum" transform="translate(842 478)"/><use href="#gum" transform="translate(1086 462) scale(.7)"/><use href="#gum" transform="translate(728 480) scale(.85)"/>
+          <use href="#sheep" transform="translate(826 479)"/><use href="#sheep" transform="translate(834 476) scale(-.8 .8)"/><use href="#sheep" transform="translate(1040 479) scale(.9)"/>
         </g>
 
         <!-- ═══ Jakarta ═══ -->
+        <!-- Istiqlal, north-east of Monas: the great dome on its drum, the prayer hall's long colonnade, the one minaret -->
+        <g>
+          <rect x="-12" y="440" width="76" height="40" class="f-white"/>
+          <rect x="-12" y="440" width="76" height="3" class="f-grey"/>
+          <path d="M-8 446 V480 M-2 446 V480 M4 446 V480 M10 446 V480 M16 446 V480 M22 446 V480 M28 446 V480 M34 446 V480 M40 446 V480 M46 446 V480 M52 446 V480 M58 446 V480" stroke="var(--grey-b)" stroke-width="1.6"/>
+          <rect x="-12" y="460" width="76" height="1.6" class="f-white"/>
+          <rect x="0" y="431" width="48" height="9" class="f-white"/><path d="M4 433 v5 M10 433 v5 M16 433 v5 M22 433 v5 M28 433 v5 M34 433 v5 M40 433 v5 M46 433 v5" stroke="var(--grey-b)" stroke-width="1.4"/>
+          <path class="f-white" d="M1 431 A 23 23 0 0 1 47 431 Z"/>
+          <path class="f-grey" d="M24 408 A 23 23 0 0 1 47 431 H30 C 30 422 28 414 24 408 Z"/>
+          <path d="M8 431 C 9 420 14 412 24 408 M16 431 C 17 420 20 412 24 408 M38 431 C 37.4 420 32 412 24 408" fill="none" stroke="var(--grey-b)" stroke-width=".6"/>
+          <path d="M24 408 V399" stroke="var(--steel)" stroke-width=".9"/><circle cx="24" cy="398" r="1.5" fill="var(--flame)"/>
+          <path class="f-white" d="M62 480 V372 h5.2 V480 Z"/><path class="f-grey" d="M65 480 V372 h2.2 V480 Z"/>
+          <rect x="60.6" y="384" width="8" height="2.2" class="f-white"/><rect x="60.6" y="404" width="8" height="1.6" class="f-grey"/>
+          <path class="f-grey" d="M62.6 372 L64.6 352 L66.6 372 Z"/><path d="M64.6 352 V344" stroke="var(--steel)" stroke-width=".8"/>
+        </g>
         <!-- Monas: the cawan (the lesung, a wide shallow cup) on its base, the slim marble shaft (the alu),
              the flared collar under the observation deck, the bronze holder and the gold-leaf flame -->
         <g transform="translate(100 480) scale(1.12) translate(-100 -480)">
@@ -1060,6 +1114,11 @@
           <path class="f-mon" d="M89.8 442.2 L110.2 442.2 L108.4 231 L91.6 231 Z"/>
           <path class="f-mon2" d="M101.4 442.2 L110.2 442.2 L108.4 231 L101 231 Z"/>
           <path d="M90 420 H110 M90.2 396 H109.8 M90.4 372 H109.6 M90.6 348 H109.4 M90.8 324 H109.2 M91 300 H109 M91.2 276 H108.8 M91.4 252 H108.6" stroke="var(--mon-2)" stroke-width=".5" opacity=".55"/>
+          <path d="M94.6 441 L95.4 232 M98.6 441 L98.9 232 M105.6 441 L105 232" stroke="var(--mon-2)" stroke-width=".45" opacity=".6" fill="none"/>
+          <path d="M46 444.4 h8 v3.6 h-8z M58 444.4 h8 v3.6 h-8z M70 444.4 h8 v3.6 h-8z M122 444.4 h8 v3.6 h-8z M134 444.4 h8 v3.6 h-8z M146 444.4 h8 v3.6 h-8z" fill="var(--mon-2)" opacity=".55"/>
+          <path d="M30 475 V456 M44 475 V459 M156 475 V459 M170 475 V456" stroke="var(--steel)" stroke-width=".6"/>
+          <path d="M30 456 h5 v1.5 h-5z M44 459 h5 v1.5 h-5z M156 459 h5 v1.5 h-5z M170 456 h5 v1.5 h-5z" fill="#E63939"/>
+          <path d="M30 457.5 h5 v1.5 h-5z M44 460.5 h5 v1.5 h-5z M156 460.5 h5 v1.5 h-5z M170 457.5 h5 v1.5 h-5z" fill="#fff"/>
           <path class="f-mon" d="M91.6 231 L86.4 220.2 H113.6 L108.4 231 Z"/>
           <path class="f-mon2" d="M101 231 L100.6 220.2 H113.6 L108.4 231 Z"/>
           <rect x="86.4" y="205.6" width="27.2" height="14.6" class="f-mon"/>
@@ -1112,6 +1171,10 @@
           <rect x="292" y="234" width="62" height="14" fill="#21366B"/>
           <use href="#lgUob" x="297" y="236.6" width="32" height="9" fill="#fff"/>
           <rect x="292" y="252" width="62" height="226" fill="url(#lights)" class="lit"/>
+          <rect x="300" y="228" width="40" height="6" fill="var(--g-dark)"/><path d="M304 228 v6 M310 228 v6 M316 228 v6 M322 228 v6 M328 228 v6 M334 228 v6" stroke="var(--mullion)" stroke-width=".8"/>
+          <path d="M346 234 V212 M343.6 222 h4.8" stroke="var(--steel)" stroke-width="1"/><circle class="blink" cx="346" cy="211" r="1.4" fill="#FF5A5A"/>
+          <rect x="286" y="462" width="74" height="18" class="f-pale2"/><rect x="286" y="462" width="74" height="18" fill="url(#mullV)"/>
+          <rect x="284" y="459.6" width="78" height="3" class="f-white"/><rect x="312" y="470" width="22" height="10" fill="var(--g-dark)" opacity=".55"/><rect x="308" y="468" width="30" height="1.8" class="f-white"/>
         </g>
         <!-- Menara BCA: a convex, finned glass face carrying the BCA sign, a taller pale spine, a darker east face
              stepping down at its corner; above, the curved glass crown rising to a lattice frame and the mast -->
@@ -1157,9 +1220,20 @@
           <rect x="535.6" y="411.4" width="6.8" height="27.2" fill="#5A91E8" opacity=".55"/>
           <rect x="548" y="417" width="156" height="48" fill="url(#lights2)" class="lit"/>
         </g>
-        <use href="#palm" transform="translate(684 480)"/><use href="#palm" transform="translate(372 480) scale(.85)"/><use href="#tree" transform="translate(268 480)"/><use href="#tree" transform="translate(20 480) scale(.9)"/>
+        <use href="#palm" transform="translate(684 480)"/><use href="#palm" transform="translate(372 480) scale(.85)"/><use href="#tree" transform="translate(268 480)"/><use href="#tree" transform="translate(20 480) scale(.9)"/><use href="#tree" transform="translate(4 480) scale(.7)"/><use href="#tree" transform="translate(190 480) scale(.62)"/><use href="#palm" transform="translate(516 480) scale(.7)"/>
 
         <!-- ═══ Perth ═══ -->
+        <!-- QV1, Harry Seidler's tower at the west end of the Terrace: blue-grey glass under rows of sunshades,
+             the corners cut back near the top, an open steel trellis for a crown -->
+        <g>
+          <path class="f-bca" d="M1244 480 V298 L1250 290 V282 H1282 V290 L1288 298 V480 Z"/>
+          <path class="f-bca2" opacity=".7" d="M1276 480 V282 H1282 V290 L1288 298 V480 Z"/>
+          <path fill="url(#qvG)" d="M1244 480 V298 L1250 290 V282 H1282 V290 L1288 298 V480 Z"/>
+          <path d="M1266 282 V480" stroke="var(--bca-band)" stroke-width=".8" opacity=".7"/>
+          <rect x="1246" y="300" width="40" height="130" fill="url(#lights3)" class="lit"/>
+          <path class="s-steel" stroke-width="1.1" d="M1250 282 V270 H1282 V282 M1258 282 V270 M1266 282 V270 M1274 282 V270 M1250 276 H1282"/>
+          <path d="M1266 270 V250" stroke="var(--steel)" stroke-width="1"/><circle class="blink" cx="1266" cy="249" r="1.4" fill="#FF5A5A"/>
+        </g>
         <!-- RAC Arena: an Escher-ish puzzle of angled panels in greys and blues -->
         <g>
           <path class="f-pale2" d="M1196 480 V448 L1212 436 L1226 446 L1244 430 L1262 444 L1280 434 L1296 450 V480 Z"/>
@@ -1239,17 +1313,43 @@
           <path d="M1482 466 v-3 a1.6 1.6 0 0 1 3.2 0 v3 z M1489 466 v-3 a1.6 1.6 0 0 1 3.2 0 v3 z M1496 466 v-3 a1.6 1.6 0 0 1 3.2 0 v3 z M1503 466 v-3 a1.6 1.6 0 0 1 3.2 0 v3 z M1482 474 v-3 a1.6 1.6 0 0 1 3.2 0 v3 z M1489 474 v-3 a1.6 1.6 0 0 1 3.2 0 v3 z M1496 474 v-3 a1.6 1.6 0 0 1 3.2 0 v3 z M1503 474 v-3 a1.6 1.6 0 0 1 3.2 0 v3 z" fill="var(--heritage-2)"/>
           <path d="M1478 467.4 h30" stroke="var(--heritage-2)" stroke-width="1"/>
         </g>
+        <!-- Allendale Square: an aluminium tower turned 45 degrees to the Terrace, so a corner faces the river and
+             each face steps back in a sawtooth of window bays -->
         <g>
-          <rect x="1542" y="262" width="50" height="218" class="f-blue"/><rect x="1542" y="262" width="50" height="218" fill="url(#mullG)"/>
-          <rect x="1580" y="262" width="12" height="218" fill="var(--g-dark)" opacity=".35"/>
-          <rect x="1540" y="259" width="54" height="4" class="f-pale"/>
-          <rect x="1542" y="270" width="50" height="208" fill="url(#lights2)" class="lit"/>
+          <path class="f-cp" d="M1544 480 V318 L1566 313 V480 Z"/><path class="f-cp2" d="M1566 480 V313 L1588 318 V480 Z"/>
+          <path fill="url(#cpBand)" d="M1544 480 V318 L1566 313 L1588 318 V480 Z"/>
+          <path d="M1549.5 317 V480 M1555 315.6 V480 M1560.5 314.4 V480 M1571.5 314.4 V480 M1577 315.6 V480 M1582.5 317 V480" stroke="var(--cp-2)" stroke-width="1"/>
+          <path d="M1566 313 V480" stroke="var(--cp)" stroke-width="1.4"/>
+          <path d="M1544 318 L1566 313 L1588 318" fill="none" stroke="var(--cp-2)" stroke-width="1.6"/>
+          <path class="f-cp2" d="M1556 315 V307 H1576 V315 L1566 313 Z"/><path d="M1556 310 h20" stroke="var(--cp-pin)" stroke-width=".9"/>
+          <rect x="1546" y="322" width="40" height="150" fill="url(#lights3)" class="lit"/>
         </g>
+        <!-- St Martins Tower: ribbed precast concrete, and the round revolving restaurant sitting on top like a lid -->
         <g>
-          <rect x="1600" y="300" width="38" height="180" class="f-grey"/><rect x="1600" y="300" width="38" height="180" fill="url(#mullH)"/>
-          <rect x="1646" y="248" width="42" height="232" class="f-dark"/><rect x="1646" y="248" width="42" height="232" fill="url(#mullV)"/>
-          <rect x="1646" y="258" width="42" height="220" fill="url(#lights)" class="lit"/>
+          <rect x="1602" y="316" width="30" height="164" class="f-cream"/><rect x="1602" y="318" width="30" height="156" fill="url(#ribV)"/>
+          <rect x="1623" y="316" width="9" height="164" class="f-cream2" opacity=".6"/>
+          <rect x="1602" y="474" width="30" height="6" class="f-cream2"/>
+          <rect x="1598" y="306" width="38" height="10" rx="2" fill="var(--w46-win)"/>
+          <path d="M1603 306 v10 M1609 306 v10 M1615 306 v10 M1621 306 v10 M1627 306 v10 M1633 306 v10" stroke="var(--cream)" stroke-width=".7"/>
+          <rect x="1596.6" y="304" width="40.8" height="2.6" rx="1" class="f-cream"/><rect x="1596.6" y="315" width="40.8" height="2.2" rx="1" class="f-cream2"/>
+          <rect x="1609" y="297" width="16" height="7" class="f-cream2"/>
+          <path d="M1617 297 V274 M1614.6 286 h4.8" stroke="var(--steel)" stroke-width="1"/><circle class="blink" cx="1617" cy="273" r="1.4" fill="#FF5A5A"/>
+          <rect x="1598" y="306" width="38" height="10" rx="2" fill="var(--lit)" class="lit" opacity=".8"/>
+          <rect x="1603" y="322" width="28" height="150" fill="url(#lights2)" class="lit"/>
         </g>
+        <!-- Council House: eleven floors of glass behind a white grid of T-shaped sunshades, a floating roof, pilotis at the foot -->
+        <g>
+          <rect x="1644" y="418" width="46" height="62" class="f-teal"/>
+          <rect x="1644" y="419" width="46" height="50" fill="url(#chT)"/>
+          <rect x="1646" y="421" width="42" height="46" fill="url(#lights2)" class="lit"/>
+          <rect x="1644" y="469" width="46" height="11" fill="var(--g-dark)" opacity=".55"/>
+          <path d="M1647 469 V480 M1656 469 V480 M1665 469 V480 M1674 469 V480 M1683 469 V480 M1689 469 V480" stroke="var(--halo)" stroke-width="1.3"/>
+          <path d="M1644 418 V469 M1690 418 V469" stroke="var(--halo)" stroke-width="1.6"/>
+          <rect x="1642" y="415.6" width="50" height="3" class="f-white"/><rect x="1642" y="467.6" width="50" height="2" class="f-white"/>
+          <path d="M1652 415.6 v-4 M1667 415.6 v-4 M1682 415.6 v-4" stroke="var(--halo)" stroke-width="1"/><rect x="1648" y="409.6" width="38" height="2" class="f-white"/>
+        </g>
+        <!-- The foreshore: the trees of the Esplanade and the Supreme Court Gardens -->
+        <use href="#tree" transform="translate(1404 481) scale(.55)"/><use href="#tree" transform="translate(1536 481) scale(.6)"/><use href="#tree" transform="translate(1594 481) scale(.5)"/><use href="#tree" transform="translate(1640 481) scale(.62)"/><use href="#palm" transform="translate(1764 481) scale(.6)"/>
         <!-- The Ritz-Carlton at Elizabeth Quay: two joined glass cylinders in a mosaic of sunset-tinted panes, on a stone podium -->
         <g>
           <rect x="1727" y="330" width="26" height="150" fill="url(#ritzM)"/>
@@ -1267,6 +1367,14 @@
         </g>
         <!-- The Swan River in front of the city -->
         <rect x="1180" y="478" width="740" height="26" class="f-water"/>
+        <g opacity=".13"><rect x="1298" y="479" width="84" height="23" class="f-bhp"/><rect x="1414" y="479" width="46" height="23" class="f-cp"/><rect x="1484" y="479" width="42" height="21" class="f-pal"/><rect x="1546" y="479" width="40" height="15" class="f-cp"/><rect x="1700" y="479" width="50" height="17" class="f-cream2"/><rect x="1246" y="479" width="40" height="17" class="f-bca"/></g>
+        <!-- Matagarup Bridge to the stadium: a white arch and a black one crossing over the deck, like a pair of swans -->
+        <g fill="none">
+          <path d="M1806 472 H1850" stroke="var(--grey-b)" stroke-width="1.4"/>
+          <path d="M1817 472 Q 1829 432 1841 472 M1806 472 Q 1811.5 459 1817 472" stroke="var(--halo)" stroke-width="1.7"/>
+          <path d="M1819.4 472 Q 1830 441 1839 472" stroke="var(--steel)" stroke-width="1.2"/>
+          <path d="M1822 472 V459 M1826 472 V453.4 M1830 472 V452.4 M1834 472 V455.6" stroke="var(--halo)" stroke-width=".4" opacity=".8"/>
+        </g>
         <path d="M1200 486 h40 M1290 494 h56 M1420 488 h30 M1700 494 h60 M1820 486 h44" stroke="var(--water-hi)" stroke-width="2" stroke-linecap="round"/>
         <!-- The Bell Tower: a glass spire on a steel axle, its lower third wrapped in two copper sails -->
         <g>
@@ -1283,6 +1391,13 @@
         <g>
           <path class="s-white" stroke-width="3.4" d="M1556 488 C 1566 446 1606 440 1620 488 M1598 488 C 1610 456 1644 452 1654 488"/>
           <path class="s-white" stroke-width="2.6" d="M1546 490 C 1580 486 1620 492 1664 488"/>
+        </g>
+        <!-- Elizabeth Quay: Spanda's nested white arcs on the point, a Transperth ferry coming in, yachts out on the river -->
+        <g>
+          <path d="M1667 490 Q 1675.5 449 1684 490 M1670 490 Q 1675.5 460 1681 490 M1672.4 490 Q 1675.5 470 1678.6 490" fill="none" stroke="var(--halo)" stroke-width="1.2"/>
+          <path d="M1702 498.4 h27 l-2.6 3.4 h-22.4 z" class="f-white"/><rect x="1705" y="494" width="19" height="4.6" rx="1" class="f-white"/>
+          <rect x="1706.4" y="495.2" width="16.2" height="2" fill="var(--hi-screen)"/><path d="M1702.6 499.6 h25.6" stroke="#0F9D58" stroke-width="1"/><path d="M1712 494 v-2.6 h5" stroke="var(--steel)" stroke-width=".7" fill="none"/>
+          <use href="#yacht" transform="translate(1398 497)"/><use href="#yacht" transform="translate(1872 498) scale(-.8 .8)"/><use href="#yacht" transform="translate(1238 496) scale(.7)"/>
         </g>
         <!-- Optus Stadium: bronze strata wrapped round the bowl, a band of glass, and the white fabric halo of a roof -->
         <g>
@@ -1309,6 +1424,16 @@
         <path d="M0 549 H1920" stroke="var(--rail)" stroke-width="1" stroke-dasharray="2 7" opacity=".7"/>
         <rect x="0" y="554" width="1920" height="46" class="f-grass2"/>
 
+        <!-- Along Thamrin: street lamps, and the TransJakarta halt at Bundaran HI, long and rounded like a ship, with its deck on top -->
+        <g>
+          <use href="#lamp" transform="translate(196 498)"/><use href="#lamp" transform="translate(282 498)"/><use href="#lamp" transform="translate(384 498)"/><use href="#lamp" transform="translate(522 498)"/><use href="#lamp" transform="translate(706 498) scale(-1 1)"/>
+          <path class="f-white" d="M424 497 V490.6 Q 424 486 430 486 H490 Q 500 486 503 491.6 L505 497 Z"/>
+          <path d="M429 489 H494 Q 498.6 489 500.4 492.4 H429 Z" fill="var(--hi-screen)" opacity=".85"/>
+          <path d="M436 489 v3.4 M444 489 v3.4 M452 489 v3.4 M460 489 v3.4 M468 489 v3.4 M476 489 v3.4 M484 489 v3.4 M492 489 v3.4" stroke="var(--white-b)" stroke-width=".7"/>
+          <path d="M430 486 V482.6 H486 V486 M438 482.6 V486 M448 482.6 V486 M458 482.6 V486 M468 482.6 V486 M478 482.6 V486" stroke="var(--pylon)" stroke-width=".6" fill="none"/>
+          <rect x="426" y="494.4" width="78" height="1" fill="#E63939" opacity=".85"/>
+          <rect x="429" y="489" width="71" height="3.4" fill="url(#lights2)" class="lit"/>
+        </g>
         <!-- Bundaran HI sits on the plaza, in front of Hotel Indonesia -->
         <!-- Bundaran HI: the round pool with its ring of arching jets, the tall pedestal, and the Selamat Datang pair,
              a man and a woman waving, the woman holding up flowers -->
