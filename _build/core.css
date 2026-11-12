@@ -1,0 +1,74 @@
+/* The design system every page shares. Each page inlines these blocks between
+   "@sync NAME" and "@end NAME" markers; after editing this file run
+
+       python3 _build/core.py
+
+   and _build/check.py fails if a page drifts from it. See DESIGN.md.
+
+   "@dark { ... }" is written once here and expanded into the two selectors a
+   page needs: the reader's pick (data-theme) and the system setting (no JS). */
+
+/* @sync core */
+@font-face { font-family: 'DM Sans'; src: url('/assets/fonts/dm-sans.woff2') format('woff2'); font-weight: 400 800; font-display: swap; }
+@font-face { font-family: 'Caveat'; src: url('/assets/fonts/caveat.woff2') format('woff2'); font-weight: 500 700; font-display: swap; }
+:root {
+  color-scheme: light;
+  /* Colour: ink, paper and the brand blues, teal and gold of Adjie Brotools. */
+  --ink: #14203A; --muted: #4C5B76; --line: #14203A;
+  --card: #FFFFFF; --card-2: #F7FAFF;
+  --brand: #0052CC; --accent: #3A71C8; --accent-soft: #5A91E8;
+  --teal: #2E9E7A; --teal-soft: #8FCDBD; --gold: #B45309; --gold-soft: #FFD28C; --rose: #E66A6A;
+  --hl: rgba(255, 210, 140, .7);
+  /* Sticker fills: the same pastel day and night, always with --on-soft ink on top. */
+  --mint-soft: #C9EEDF; --sky-soft: #CFE3FF; --on-soft: #14203A;
+  /* Pop: the hard offset shadow. 0 pressed, 1 small bits, 2 round buttons and pins, 3 cards and big buttons, 4 hover. */
+  --pop-c: var(--line);
+  --pop-0: 1px 1px 0 var(--pop-c); --pop-1: 2px 2px 0 var(--pop-c); --pop-2: 3px 3px 0 var(--pop-c);
+  --pop-3: 4px 4px 0 var(--pop-c); --pop-4: 6px 6px 0 var(--pop-c);
+  /* Corners: sm chips and bubbles, md buttons and quiet cards, lg sticker cards, xl dashed regions. */
+  --r-sm: 10px; --r-md: 14px; --r-lg: 16px; --r-xl: 28px;
+  /* Type: handwriting in three sizes, section headings in two. */
+  --hand-s: 1.2rem; --hand-m: 1.35rem; --hand-l: 1.5rem;
+  --fs-h2: clamp(1.6rem, 3vw, 2.25rem); --fs-h2-s: clamp(1.35rem, 2.6vw, 1.75rem);
+  /* Measure: reading blocks, and wider rows of cards or photos. */
+  --measure: 820px; --measure-wide: 940px;
+  /* Motion: transform and opacity only. */
+  --t-fast: .15s; --ease-pop: cubic-bezier(.3, .7, .2, 1.4);
+}
+@dark {
+  color-scheme: dark;
+  --ink: #EAF1FF; --muted: #A8B6CF; --line: #8DBBFF;
+  --card: #162033; --card-2: #1C2942;
+  --brand: #8DBBFF; --accent: #8DBBFF; --accent-soft: #B3D1FF;
+  --teal: #8FCDBD; --gold: #FFD28C; --rose: #FF8B8B;
+  --hl: rgba(255, 210, 140, .28);
+  /* At night the outline stays bright and the shadow steps back, so it reads as depth, not a second border. */
+  --pop-c: #4A6FAE;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+.hand { font-family: 'Caveat', 'Comic Sans MS', cursive; font-weight: 600; }
+.vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+/* @end core */
+
+/* @sync chrome */
+.brand { display: inline-flex; align-items: center; gap: .55rem; color: var(--ink); text-decoration: none; font-weight: 800; letter-spacing: -.01em; font-size: 1.05rem; }
+.brand img { width: 32px; height: 32px; }
+.brand b { color: var(--brand); font-weight: 800; }
+.theme-btn {
+  appearance: none; border: 2px solid var(--line); background: var(--card); color: var(--ink);
+  width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: grid; place-items: center;
+  box-shadow: var(--pop-2); transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+.theme-btn:hover { transform: translate(-1px, -1px) rotate(-12deg); box-shadow: var(--pop-3); }
+.theme-btn:active { transform: translate(2px, 2px); box-shadow: var(--pop-0); }
+.theme-btn svg { width: 20px; height: 20px; }
+.ico-moon { display: none; }
+:root[data-theme="dark"] .ico-sun { display: none; }
+:root[data-theme="dark"] .ico-moon { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ico-sun { display: none; }
+  :root:not([data-theme="light"]) .ico-moon { display: block; }
+}
+/* @end chrome */

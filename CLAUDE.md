@@ -26,6 +26,15 @@ about page's text), or not at all.
   when it's off screen.
 - Images are WebP with `width`/`height`, `loading="lazy"` below the fold.
 
+## One design system
+
+- Shared tokens and base styles live in `_build/core.css` and are copied into each page between
+  `/* @sync ... */` markers by `python3 _build/core.py`. Never edit between the markers, and never
+  redefine a shared token in a page. `DESIGN.md` explains the scales and the parts.
+- Offset shadows, corner radii, handwriting sizes and section headings come from the scales
+  (`--pop-N`, `--r-*`, `--hand-*`, `--fs-h2*`). A missing step is added to `core.css`, not
+  written as a one-off. `_build/check.py` fails on drift.
+
 ## Ads
 
 - AdSense runs on the about pages only: one hand-placed unit each (Display 5, `1821351030`),
