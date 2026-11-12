@@ -127,14 +127,49 @@ def check_page(f):
     return s
 
 
+def style_of(s):
+    return '\n'.join(re.findall(r'<style[^>]*>(.*?)</style>', s, re.S))
+
+
+def check_design(f, s):
+    """The design system (DESIGN.md): pages build on the shared tokens instead of drifting from them."""
+    css = style_of(s)
+    own = re.sub(r'/\* @sync (\w+) \*/.*?/\* @end \1 \*/', '', css, flags=re.S)
+    # Hard offset shadows come from the --pop scale, so every sticker lifts the same way in both themes.
+    for m in re.finditer(r'box-shadow:[^;}]*?\b\d+px \d+px 0 (?:var\(--line\)|#[0-9A-Fa-f]{3,8})', own):
+        bad(f, 'hand-written offset shadow, use var(--pop-N): %s' % m.group(0))
+    # A token defined in core.css is never redefined by a page, or the three sites drift apart again.
+    core = set(re.findall(r'(--[\w-]+)\s*:', ''.join(re.findall(r'/\* @sync core \*/.*?/\* @end core \*/', css, re.S))))
+    for m in re.finditer(r':root[^{]*\{([^}]*)\}', own):
+        for name in re.findall(r'(--[\w-]+)\s*:', m.group(1)):
+            if name in core:
+                bad(f, 'page redefines the shared token %s (change it in _build/core.css)' % name)
+    # Night is written twice (the reader's pick, and the system setting when there is no script): keep the two the same.
+    norm = lambda t: ' '.join(t.split())
+    pick = dict((norm(k), norm(v)) for k, v in re.findall(r':root\[data-theme="dark"\]([^{]*)\{([^}]*)\}', own))
+    system = dict((norm(k), norm(v)) for k, v in re.findall(r':root:not\(\[data-theme="light"\]\)([^{]*)\{([^}]*)\}', own))
+    for sel in sorted(set(pick) | set(system)):
+        if pick.get(sel) != system.get(sel):
+            bad(f, 'night rule ":root%s" differs between data-theme and prefers-color-scheme' % (' ' + sel if sel else ''))
+    # Every var() names a token that exists (a typo paints nothing, silently).
+    defined = set(re.findall(r'(--[\w-]+)\s*:', s)) | set(re.findall(r"setProperty\(\s*'(--[\w-]+)'", s))
+    for name in sorted(set(re.findall(r'var\((--[\w-]+)\)', s))):
+        if name not in defined:
+            bad(f, 'var(%s) is used but never defined' % name)
+
+
 def main():
     pages = list(MAIN)
     sizes = {}
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import core
+    problems.extend(core.sync(check=True))
     for f in pages:
         if not os.path.exists(f):
             bad(f, 'missing')
             continue
         s = check_page(f)
+        check_design(f, s)
         if f in MAIN[:3]:
             sizes[f] = (len(s.encode()), len(gzip.compress(s.encode(), 9)))
     # Sitemap: every URL is a real page.

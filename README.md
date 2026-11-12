@@ -17,7 +17,8 @@ story at `/about/`. Static files only, published by GitHub Pages. Sister sites:
 | `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME` | Crawling, install and domain |
 | `assets/` | Fonts (DM Sans, Caveat, subset) and images |
 | `logos/` | The favicon (`logo.svg`), the app icons and the Apple touch icon, wired the way the tool site does it |
-| `_build/` | Checks, the sitemap and the social images (never published) |
+| `_build/` | The shared design tokens (`core.css`), checks, the sitemap and the social images (never published) |
+| `DESIGN.md` | The design system: tokens, parts, and how to add to them |
 
 Everything a page needs to paint is inline in it (CSS, SVG, a few lines of JS), so each page
 is one request plus two small font files.
@@ -25,7 +26,8 @@ is one request plus two small font files.
 ## Check and regenerate
 
 ```sh
-python3 _build/check.py        # one h1 per page, JSON-LD, links, images, page weight
+python3 _build/core.py         # after editing _build/core.css: copy the shared tokens into every page
+python3 _build/check.py        # one h1 per page, JSON-LD, links, images, page weight, design tokens in sync
 python3 _build/sitemap.py      # after adding a page or changing one (bump its date in PAGES)
 python3 -m http.server 8411 &  # then
 node _build/og.mjs             # social preview images, after the homepage or map changes
