@@ -68,18 +68,21 @@ def tot_mark():
     x 50 to 373, y 62 to 255). One flat silhouette: the eyes are holes, and every part laid over
     another keeps a small gap, as in the original. Letters in brand blue, the cap in ink."""
     eyes = ((171, 154), (247, 153))   # hole radius 21; the o is cut back to 25.5 around them
-    t = ("M68 115A18.5 18.5 0 0 1 105 115V205C105 220 112 228 122 229V241C122 250 115 255 105 255"
-         "C88 255 68 238 68 204Z")
-    bar = '<rect x="50" y="127" width="79" height="24" rx="12"/>'
-    letter = f'<path d="{t}"/>{bar}'
+    # The t is drawn from arcs only: a round top, a crossbar with round ends and small fillets
+    # into the stem, and a foot that bends right out of a fillet and turns under in two arcs.
+    t = ("M68 115A18.5 18.5 0 0 1 105 115V123A4 4 0 0 0 109 127H117A12 12 0 0 1 117 151H109"
+         "A4 4 0 0 0 105 155V215.06A10 10 0 0 0 111.8 224.54A15 15 0 0 1 102.9 253.2"
+         "A48 48 0 0 1 68 207V155A4 4 0 0 0 64 151H62"
+         "A12 12 0 0 1 62 127H64A4 4 0 0 0 68 123Z")
+    letter = f'<path d="{t}"/>'
     ring = ('<path fill-rule="evenodd" d="M142 186a69 69 0 1 0 138 0a69 69 0 1 0-138 0Z'
             'M178 192a33.5 33.5 0 1 0 67 0a33.5 33.5 0 1 0-67 0Z"/>')
-    skull = "M160 107L213.5 123L268 107V134H250V155H172V134H160Z"
+    skull = "M162.5 109.6L213.5 125.5L265.5 109.6V149.5H162.5Z"  # flat bottom; the eyes bite its corners
     tassel = ("M143 90H149V113C152 118 158 124 158 134V162H139Q134 162 134 157V134"
               "C134 124 138 118 143 113Z")
     board = "M128 91L213 62L299 90L213.5 118Z"
     holes = "".join(f'<circle cx="{x}" cy="{y}" r="21"/>' for x, y in eyes)
-    ring_cut = (f'<path d="{skull}" stroke="#000" stroke-width="10" stroke-linejoin="round"/>'
+    ring_cut = (f'<path d="{skull}" stroke="#000" stroke-width="15" stroke-linejoin="round"/>'
                 f'<path d="{tassel}" stroke="#000" stroke-width="6" stroke-linejoin="round"/>'
                 + "".join(f'<circle cx="{x}" cy="{y}" r="25.5"/>' for x, y in eyes)
                 + '<rect x="186" y="150" width="54" height="16"/>')  # between the eyes the o opens into the cap's gap
@@ -93,7 +96,7 @@ def tot_mark():
         f'<g fill="{BRAND}">{letter}<g transform="translate(243.5 0)">{letter}</g>'
         f'<g mask="url(#tot-o)">{ring}</g></g>'
         f'<g fill="{INK}"><path d="{board}" stroke="{INK}" stroke-width="3" stroke-linejoin="round"/>'
-        f'<g mask="url(#tot-cap)"><path d="{skull}" stroke="{INK}" stroke-width="3" stroke-linejoin="round"/><path d="{tassel}"/></g>'
+        f'<g mask="url(#tot-cap)"><path d="{skull}" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/><path d="{tassel}"/></g>'
         '<circle cx="184" cy="156" r="10.5"/><circle cx="248.5" cy="166" r="10.5"/></g>'
     )
 
@@ -129,12 +132,36 @@ def tot_lockup(pad):
     return body, W, H
 
 
-def tot_academy():
-    body, W, H = tot_lockup(16)
-    (OUT / "tot-academy.svg").write_text(svg(round(W), round(H), "Tot Academy",
-                                             f'<g transform="translate({(round(W) - W) / 2:.2f} {(round(H) - H) / 2:.2f})">{body}</g>'))
+def tot_side(pad):
+    """The mark with "academy" to its right, sitting on the letters' baseline."""
+    size, tracking = 104, 0.0
+    x0, y0, x1, y1 = MARK
+    mw, mh = x1 - x0, y1 - y0
+    ax0, ay0, ax1, ay1 = ink_box("academy", size, tracking)
+    gap = 30
+    base = pad + mh                      # the bottom of the t's and the o
+    top = min(pad, base + ay0)
+    bottom = max(pad + mh, base + ay1)
+    shift = pad - top                    # room for anything that rises above the mark
+    W = pad + mw + gap + (ax1 - ax0) + pad
+    H = bottom + shift + pad
+    acad, _ = word("academy", pad + mw + gap - ax0, base + shift, size, INK, tracking)
+    body = f'<g transform="translate({pad - x0:.2f} {pad + shift - y0:.2f})">{tot_mark()}</g>{acad}'
+    return body, W, H
 
-    # Square: the lockup centred on paper, inside the circle a profile picture crops to.
+
+def framed(body, W, H):
+    """An SVG of whole-pixel size with the drawing centred in it."""
+    w, h = round(W), round(H)
+    return w, h, f'<g transform="translate({(w - W) / 2:.2f} {(h - H) / 2:.2f})">{body}</g>'
+
+
+def tot_academy():
+    # Wide: "academy" on the right. Stacked: "academy" underneath.
+    (OUT / "tot-academy.svg").write_text(svg(*framed(*tot_side(16))[:2], "Tot Academy", framed(*tot_side(16))[2]))
+    (OUT / "tot-academy-stacked.svg").write_text(svg(*framed(*tot_lockup(16))[:2], "Tot Academy", framed(*tot_lockup(16))[2]))
+
+    # Square: the stacked lockup centred on paper, inside the circle a profile picture crops to.
     body, W, H = tot_lockup(0)
     S = 512
     k = 380 / W
