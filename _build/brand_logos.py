@@ -64,45 +64,82 @@ def svg(w, h, title, body, bg=None):
 
 # ---------------------------------------------------------------- Tot Academy
 def tot_mark():
-    """The tot wordmark with the mortarboard and the owl eyes, in a 0 0 400 230 box."""
-    t = (f'<path d="M0 0V112Q0 146 38 146" fill="none" stroke="{BRAND}" stroke-width="50" stroke-linecap="round"/>'
-         f'<path d="M-30 28H40" fill="none" stroke="{BRAND}" stroke-width="32" stroke-linecap="round"/>')
-    left = f'<g transform="translate(70 72)">{t}</g>'
-    right = f'<g transform="translate(320 72)">{t}</g>'
-    ring = f'<circle cx="200" cy="160" r="49" fill="none" stroke="{BRAND}" stroke-width="44"/>'
-    # Cap: the skull first, the board on top, then the cord and tassel hanging off the left.
-    cap = (f'<path d="M146 88V118Q200 140 254 118V88Z" fill="{INK}"/>'
-           f'<path d="M200 44L294 76L200 106L106 76Z" fill="{INK}"/>'
-           f'<path d="M200 76L130 86V114" fill="none" stroke="{GOLD_SOFT}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>'
-           f'<rect x="122" y="108" width="16" height="26" rx="7" fill="{GOLD_SOFT}" stroke="{INK}" stroke-width="3"/>'
-           f'<circle cx="200" cy="76" r="6" fill="{GOLD_SOFT}"/>')
-    eyes = ""
-    for ex in (166, 234):
-        eyes += (f'<circle cx="{ex}" cy="128" r="20" fill="{PAPER}" stroke="{INK}" stroke-width="5"/>'
-                 f'<circle cx="{ex + 5}" cy="124" r="7.5" fill="{INK}"/>')
-    return left + ring + right + cap + eyes
+    """The tot wordmark, measured off the original artwork (a 431 x 329 frame; the mark spans
+    x 50 to 373, y 62 to 255). One flat silhouette: the eyes are holes, and every part laid over
+    another keeps a small gap, as in the original. Letters in brand blue, the cap in ink."""
+    eyes = ((171, 154), (247, 153))   # hole radius 21; the o is cut back to 25.5 around them
+    t = ("M68 115A18.5 18.5 0 0 1 105 115V205C105 220 112 228 122 229V241C122 250 115 255 105 255"
+         "C88 255 68 238 68 204Z")
+    bar = '<rect x="50" y="127" width="79" height="24" rx="12"/>'
+    letter = f'<path d="{t}"/>{bar}'
+    ring = ('<path fill-rule="evenodd" d="M142 186a69 69 0 1 0 138 0a69 69 0 1 0-138 0Z'
+            'M178 192a33.5 33.5 0 1 0 67 0a33.5 33.5 0 1 0-67 0Z"/>')
+    skull = "M160 107L213.5 123L268 107V134H250V155H172V134H160Z"
+    tassel = ("M143 90H149V113C152 118 158 124 158 134V162H139Q134 162 134 157V134"
+              "C134 124 138 118 143 113Z")
+    board = "M128 91L213 62L299 90L213.5 118Z"
+    holes = "".join(f'<circle cx="{x}" cy="{y}" r="21"/>' for x, y in eyes)
+    ring_cut = (f'<path d="{skull}" stroke="#000" stroke-width="10" stroke-linejoin="round"/>'
+                f'<path d="{tassel}" stroke="#000" stroke-width="6" stroke-linejoin="round"/>'
+                + "".join(f'<circle cx="{x}" cy="{y}" r="25.5"/>' for x, y in eyes)
+                + '<rect x="186" y="150" width="54" height="16"/>')  # between the eyes the o opens into the cap's gap
+    return (
+        '<defs>'
+        f'<mask id="tot-o" maskUnits="userSpaceOnUse" x="0" y="0" width="431" height="329">'
+        f'<rect width="431" height="329" fill="#fff"/><g fill="#000">{ring_cut}</g></mask>'
+        f'<mask id="tot-cap" maskUnits="userSpaceOnUse" x="0" y="0" width="431" height="329">'
+        f'<rect width="431" height="329" fill="#fff"/><g fill="#000">{holes}</g></mask>'
+        '</defs>'
+        f'<g fill="{BRAND}">{letter}<g transform="translate(243.5 0)">{letter}</g>'
+        f'<g mask="url(#tot-o)">{ring}</g></g>'
+        f'<g fill="{INK}"><path d="{board}" stroke="{INK}" stroke-width="3" stroke-linejoin="round"/>'
+        f'<g mask="url(#tot-cap)"><path d="{skull}" stroke="{INK}" stroke-width="3" stroke-linejoin="round"/><path d="{tassel}"/></g>'
+        '<circle cx="184" cy="156" r="10.5"/><circle cx="248.5" cy="166" r="10.5"/></g>'
+    )
+
+
+def ink_box(text, size, tracking=0.0):
+    """Bounds (x0, y0, x1, y1) of a word set at the origin, y up being negative."""
+    s = size / UPM
+    bp = BoundsPen(GS)
+    cx = 0.0
+    for ch in text:
+        g = CMAP[ord(ch)]
+        GS[g].draw(TransformPen(bp, (s, 0, 0, -s, cx, 0)))
+        cx += HMTX[g][0] * s + tracking * size
+    return bp.bounds
+
+
+MARK = (50, 60.5, 373, 255)  # the tot mark's left, top, right, bottom in its own frame
+
+
+def tot_lockup(pad):
+    """The mark with "academy" centred under it. Returns (body, width, height)."""
+    size, tracking = 62, 0.06
+    x0, y0, x1, y1 = MARK
+    mw, mh = x1 - x0, y1 - y0
+    ax0, ay0, ax1, ay1 = ink_box("academy", size, tracking)
+    aw = ax1 - ax0
+    W = max(mw, aw) + 2 * pad
+    gap = 22
+    base = pad + mh + gap - ay0
+    H = base + ay1 + pad
+    acad, _ = word("academy", (W - aw) / 2 - ax0, base, size, INK, tracking)
+    body = f'<g transform="translate({(W - mw) / 2 - x0:.2f} {pad - y0:.2f})">{tot_mark()}</g>{acad}'
+    return body, W, H
 
 
 def tot_academy():
-    size = 62
-    tracking = 0.06
-    w = width_of("academy", size, tracking)
-    # Wide: the mark with "academy" centred under it.
-    mark_w, mark_h = 400, 230
-    W, H = 440, 330
-    mx = (W - mark_w) / 2
-    acad, aw = word("academy", (W - w) / 2, 300, size, INK, tracking)
-    wide = svg(W, H, "Tot Academy", f'<g transform="translate({mx} 4)">{tot_mark()}</g>{acad}')
-    (OUT / "tot-academy.svg").write_text(wide)
+    body, W, H = tot_lockup(16)
+    (OUT / "tot-academy.svg").write_text(svg(round(W), round(H), "Tot Academy",
+                                             f'<g transform="translate({(round(W) - W) / 2:.2f} {(round(H) - H) / 2:.2f})">{body}</g>'))
 
-    # Square: the same lockup centred on paper, kept inside the circle a profile picture crops to.
+    # Square: the lockup centred on paper, inside the circle a profile picture crops to.
+    body, W, H = tot_lockup(0)
     S = 512
-    scale = 1.0
-    gx = (S - W * scale) / 2
-    gy = (S - H * scale) / 2
+    k = 380 / W
     sq = svg(S, S, "Tot Academy",
-             f'<g transform="translate({gx:.1f} {gy:.1f}) scale({scale})">'
-             f'<g transform="translate({mx} 4)">{tot_mark()}</g>{acad}</g>', bg=PAPER)
+             f'<g transform="translate({(S - W * k) / 2:.2f} {(S - H * k) / 2:.2f}) scale({k:.4f})">{body}</g>', bg=PAPER)
     (OUT / "tot-academy-square.svg").write_text(sq)
 
 
@@ -131,11 +168,25 @@ def anthem_madness():
     W = round(x0 + aw + sp + mw + 14)
     (OUT / "anthem-madness.svg").write_text(svg(W, H, "Anthem Madness", mark_svg + a + m))
 
-    # Square: the red circled A filling the frame, so a round profile crop keeps all of it.
-    k = 512 / 600
-    (OUT / "anthem-madness-square.svg").write_text(
-        svg(512, 512, "Anthem Madness",
-            f'<g transform="translate({-40 * k:.2f} {-40 * k:.2f}) scale({k:.5f})">{circled_a(ROSE)}</g>'))
+    # Square: the circled A over the name on two lines, for profile pictures.
+    S = 512
+    size = 74
+    words = [("Anthem", INK), ("Madness", ROSE)]
+    boxes = [ink_box(t, size, -0.01) for t, _ in words]
+    cap = -boxes[0][1]          # "A" and "M" set the cap height
+    lead = 1.12 * size
+    disc = 228
+    gap = 30
+    block = disc + gap + cap + lead
+    top = (S - block) / 2
+    k = disc / 600
+    body = f'<g transform="translate({(S - disc) / 2 - 40 * k:.2f} {top - 40 * k:.2f}) scale({k:.5f})">{circled_a(ROSE)}</g>'
+    base = top + disc + gap + cap
+    for (t, fill), (x0, _, x1, _) in zip(words, boxes):
+        path, _ = word(t, (S - (x1 - x0)) / 2 - x0, base, size, fill, -0.01)
+        body += path
+        base += lead
+    (OUT / "anthem-madness-square.svg").write_text(svg(S, S, "Anthem Madness", body, bg=PAPER))
 
 
 if __name__ == "__main__":
