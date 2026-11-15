@@ -16,7 +16,7 @@ story at `/about/`. Static files only, published by GitHub Pages. Sister sites:
 | `llms.txt` | Who Adjie is, written for answer engines |
 | `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME` | Crawling, install and domain |
 | `assets/` | Fonts (DM Sans, Caveat, subset) and images |
-| `logos/` | The favicon (`logo.svg`), the app icons and the Apple touch icon, wired the way the tool site does it |
+| `logos/` | The favicon (`logo.svg`), the app icons and the Apple touch icon, wired the way the tool site does it; also the Tot Academy (wide, stacked, square) and Anthem Madness (wide, square) logos as SVG and PNG (drawn by `_build/brand_logos.py`, PNGs by `node _build/brand_logos_png.mjs`) |
 | `_build/` | The shared design tokens (`core.css`), checks, the sitemap and the social images (never published) |
 | `DESIGN.md` | The design system: tokens, parts, and how to add to them |
 
